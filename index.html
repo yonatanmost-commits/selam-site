@@ -130,13 +130,10 @@
   .hero-inner .crafts-line{ justify-content:center; }
   .hero-inner .hero-cta{ justify-content:center; }
 
-  /* watercolor tent band — her hand-painted treatment space, full width */
-  .tentband{ position:relative; padding:clamp(2.5rem,6vw,5.5rem) 0; overflow-x:clip; }
-  .tentband::before{ content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(60% 92% at 50% 46%, rgba(126,131,88,.16), transparent 70%); }
-  .tentband-inner{ position:relative; width:min(760px,92vw); margin-inline:auto; display:flex; flex-direction:column; align-items:center; text-align:center; gap:1rem; }
-  .tentband .eyebrow{ justify-content:center; }
-  .tentband img{ width:min(560px,84vw); height:auto; filter:drop-shadow(0 22px 44px rgba(46,38,31,.16)); }
-  .tentband-cap{ color:var(--ink-soft); font-size:clamp(1.05rem,2vw,1.25rem); font-weight:300; max-width:32ch; }
+  /* her hand-painted treatment tent, inside מרחב הטיפול — aligned to the start like the rest */
+  .tent-figure{ margin:0 0 clamp(2rem,5vw,3.2rem); }
+  .tent-figure img{ display:block; width:min(560px,90%); height:auto; filter:drop-shadow(0 22px 44px rgba(46,38,31,.16)); }
+  .tent-figure figcaption{ margin-top:1.1rem; color:var(--ink-soft); font-size:clamp(1.05rem,2vw,1.2rem); font-weight:300; max-width:48ch; }
 
   /* ───────────────── SECTION SHELL ───────────────── */
   section{ padding:clamp(4.5rem,9vw,7.5rem) 0; }
@@ -286,7 +283,7 @@
     סלם
   </a>
   <nav>
-    <a href="#treatments">הטיפולים</a>
+    <a href="#treatments">מרחב הטיפול</a>
     <a href="#shop">הסבונים</a>
     <a href="#about">הסיפור</a>
     <a href="#contact" class="nav-cta">צרו קשר</a>
@@ -307,7 +304,7 @@
 
     <div class="hero-inner">
       <div class="hero-copy">
-        <span class="eyebrow reveal">ריפוי טבעי לנשים · בעבודת יד · באהבה</span>
+        <span class="eyebrow reveal">רפואה משלימה</span>
         <h1 class="reveal" data-delay="1">מעשה ידיים,<br><span class="tint">מעשה לב.</span></h1>
         <p class="lead reveal" data-delay="2">סלם — רפלקסולוגיה, ריפוי רייקי וסבון טבעי שנרקח לאט. ריפוי הוליסטי שנבנה דרך הקשבה, פתיחות ורצון אמיתי להרגיש טוב יותר.</p>
         <div class="crafts-line reveal" data-delay="3">
@@ -325,19 +322,10 @@
     </div>
   </section>
 
-  <!-- WATERCOLOR TENT BAND — her treatment space, hand-painted, full width -->
-  <section class="tentband" aria-label="מרחב הטיפול של סלם">
-    <div class="tentband-inner reveal">
-      <span class="eyebrow">מרחב הטיפול</span>
-      <img src="images/main-pic.png" alt="אוהל הטיפולים של סלם בלב הטבע — איור בצבעי מים" loading="lazy" />
-      <p class="tentband-cap">אוהל רך בלב הטבע — מרחב להניח בו את מה שכבד, ולנשום.</p>
-    </div>
-  </section>
-
-  <!-- TREATMENTS -->
+  <!-- TREATMENTS — unified "מרחב הטיפול", including her hand-painted tent -->
   <section id="treatments" class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">הטיפולים של סלם</span>
+      <span class="eyebrow">מרחב הטיפול</span>
       <h2>מגע שמקשיב, ריפוי שמאזן.</h2>
       <p>שתי דרכים עדינות לאותו המקום — להחזיר את הגוף והנפש אל האיזון הטבעי שלהם.</p>
       <span class="women-note">
@@ -346,10 +334,15 @@
       </span>
     </div>
 
+    <figure class="tent-figure reveal">
+      <img src="images/main-pic.png" alt="אוהל הטיפולים של סלם בלב הטבע — איור בצבעי מים" loading="lazy" />
+      <figcaption>אוהל רך בלב הטבע — מרחב להניח בו את מה שכבד, ולנשום.</figcaption>
+    </figure>
+
     <div class="treat">
       <div class="treat-photo reveal">
         <img src="images/reiki.jpeg" alt="סלם מעבירה טיפול רייקי בחלל מרגיע" loading="lazy" />
-        <span class="tag">מרחב הטיפול</span>
+        <span class="tag">טיפול רייקי</span>
       </div>
       <div class="treat-blocks reveal" data-delay="1">
         <article class="tblock">
@@ -515,9 +508,9 @@
       <div class="about-body reveal" data-delay="1">
         <span class="eyebrow">נעים מאוד</span>
         <h2 style="font-weight:900; font-size:clamp(2rem,4.5vw,3.1rem); margin:1rem 0 1.5rem; letter-spacing:-.02em;">הסיפור שלי</h2>
-        <p>נעים מאוד, אני סלם — בעלת תואר ראשון במדעי הרוח, מטפלת ברפלקסולוגיה וברייקי, ורוקחת סבונים טבעיים. אני מאמינה בטיפול הוליסטי המחבר בין גוף לנפש, ומתוך ההבנה שכאב פיזי לעיתים מבקש לספר גם על כאב פנימי שלא קיבל מקום.</p>
-        <div class="pull">בעיניי, ריפוי הוא תהליך עדין שנבנה דרך הקשבה, פתיחות ורצון להרגיש טוב יותר.</div>
-        <p>הרפלקסולוגיה היא כלי טיפולי עמוק עבורי. אני רואה בכפות הרגליים את השורשים שלנו — המקום שמחזיק את כל העומס שאנחנו נושאים. דרך מגע נכון ומדויק אפשר לחוות שחרור, רוגע ותחושת קלילות כבר מהטיפול הראשון.</p>
+        <p>נעים מאוד, אני סלם. מטפלת הוליסטית ברפלקסולוגיה ורייקי, בעלת תואר ראשון במדעי הרוח ורוקחת סבונים טבעיים.</p>
+        <p>הגישה שלי מבוססת על החיבור השלם בין הגוף לנפש. אני מאמינה שהגוף שלנו מדבר איתנו, שכאב פיזי הוא לפעמים שיקוף של כאב רגשי או פנימי שפשוט זקוק למקום.</p>
+        <div class="pull">תהליך הריפוי בקליניקה הוא מרחב בטוח ועדין, שנבנה על הקשבה מלאה, פתיחות ורצון משותף להביא מזור, איזון ותחושה טובה יותר.</div>
         <div class="creds">
           <span class="cred">תואר ראשון במדעי הרוח</span>
           <span class="cred">רפלקסולוגיה</span>
