@@ -1,3 +1,9 @@
+# Loose original photos (clean copies live in images/)
 /Selam.jpg
 /Cacao, white clay, ylang ylang Soap.jpg
+
+# Local working stuff — never publish
 .claude/
+screenshots/
+screen shot/
+screenshot/
