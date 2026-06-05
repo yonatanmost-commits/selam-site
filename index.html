@@ -90,7 +90,7 @@
   @media(max-width:820px){ nav a:not(.nav-cta){ display:none; } nav{ gap:0; } }
 
   /* ───────────────── HERO ───────────────── */
-  .hero{ min-height:100svh; display:grid; align-items:center; padding-top:7.5rem; padding-bottom:4rem; position:relative; overflow-x:clip; }
+  .hero{ min-height:90svh; display:grid; align-items:center; padding-top:7.5rem; padding-bottom:3rem; position:relative; overflow-x:clip; }
   /* topographic terrain — irregular, the real road she walked */
   .terrain{ position:absolute; inset:0; z-index:-1; width:100%; height:100%; opacity:.45; pointer-events:none; }
   .terrain path{ fill:none; stroke:var(--cacao); stroke-width:1; opacity:.55; }
@@ -123,6 +123,20 @@
   .badge .b-mark use{ fill:none; stroke:var(--clay); stroke-width:.9; vector-effect:non-scaling-stroke; }
   .badge small{ font-size:.84rem; line-height:1.45; color:var(--ink-soft); }
   .badge b{ color:var(--espresso); font-weight:700; }
+
+  /* hero: text-only, centered, calm opener */
+  .hero-inner{ width:100%; max-width:780px; margin-inline:auto; text-align:center; }
+  .hero-inner .lead{ margin-inline:auto; }
+  .hero-inner .crafts-line{ justify-content:center; }
+  .hero-inner .hero-cta{ justify-content:center; }
+
+  /* watercolor tent band — her hand-painted treatment space, full width */
+  .tentband{ position:relative; padding:clamp(2.5rem,6vw,5.5rem) 0; overflow-x:clip; }
+  .tentband::before{ content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(60% 92% at 50% 46%, rgba(126,131,88,.16), transparent 70%); }
+  .tentband-inner{ position:relative; width:min(760px,92vw); margin-inline:auto; display:flex; flex-direction:column; align-items:center; text-align:center; gap:1rem; }
+  .tentband .eyebrow{ justify-content:center; }
+  .tentband img{ width:min(560px,84vw); height:auto; filter:drop-shadow(0 22px 44px rgba(46,38,31,.16)); }
+  .tentband-cap{ color:var(--ink-soft); font-size:clamp(1.05rem,2vw,1.25rem); font-weight:300; max-width:32ch; }
 
   /* ───────────────── SECTION SHELL ───────────────── */
   section{ padding:clamp(4.5rem,9vw,7.5rem) 0; }
@@ -291,7 +305,7 @@
       <path d="M-40 582 C 110 560 212 642 332 590 C 452 540 560 662 690 600 C 812 542 910 652 1032 600 C 1132 558 1212 622 1260 590"/>
     </svg>
 
-    <div class="hero-grid">
+    <div class="hero-inner">
       <div class="hero-copy">
         <span class="eyebrow reveal">ריפוי טבעי לנשים · בעבודת יד · באהבה</span>
         <h1 class="reveal" data-delay="1">מעשה ידיים,<br><span class="tint">מעשה לב.</span></h1>
@@ -308,24 +322,15 @@
           <a href="#shop" class="btn btn-ghost">לגלריית הסבונים</a>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="hero-art reveal" data-delay="2">
-        <svg class="rings-bg" viewBox="0 0 400 400" aria-hidden="true">
-          <use href="#treering" transform="translate(200 200) scale(1) translate(-200 -200)"/>
-          <use href="#treering" transform="translate(4 5) rotate(6 200 200) translate(200 200) scale(.8) translate(-200 -200)"/>
-          <use href="#treering" transform="translate(9 11) rotate(-5 200 200) translate(200 200) scale(.6) translate(-200 -200)"/>
-          <use href="#treering" transform="translate(14 16) rotate(9 200 200) translate(200 200) scale(.42) translate(-200 -200)"/>
-          <use href="#treering" transform="translate(18 21) rotate(-6 200 200) translate(200 200) scale(.26) translate(-200 -200)"/>
-        </svg>
-        <div class="photo-frame">
-          <img src="images/red-clay-pomegranate-jasmine.jpeg" alt="סבונים טבעיים בעבודת יד על קרש עץ בשדה" loading="eager" />
-          <div class="photo-cap"><b>בעבודת יד, בשדה הפורח</b><small>כל חפיסה נולדת לאט</small></div>
-        </div>
-        <div class="badge">
-          <svg class="b-mark" viewBox="0 0 400 400"><use href="#treering" transform="translate(200 200) scale(.95) translate(-200 -200)"/><use href="#treering" transform="translate(8 8) rotate(8 200 200) translate(200 200) scale(.55) translate(-200 -200)"/></svg>
-          <small><b>תהליך קר.</b> שבועות של סבלנות בכל חפיסה — צמחי לחלוטין.</small>
-        </div>
-      </div>
+  <!-- WATERCOLOR TENT BAND — her treatment space, hand-painted, full width -->
+  <section class="tentband" aria-label="מרחב הטיפול של סלם">
+    <div class="tentband-inner reveal">
+      <span class="eyebrow">מרחב הטיפול</span>
+      <img src="images/main-pic.png" alt="אוהל הטיפולים של סלם בלב הטבע — איור בצבעי מים" loading="lazy" />
+      <p class="tentband-cap">אוהל רך בלב הטבע — מרחב להניח בו את מה שכבד, ולנשום.</p>
     </div>
   </section>
 
