@@ -29,7 +29,7 @@
     --clay-light: #C4895C;
     --olive:      #7E8358;   /* sage / olive                       */
     --rose:       #C2867F;   /* dusty rose — the feminine thread   */
-    --rose-deep:  #9F635D;
+    --rose-deep:  #824641;   /* deepened for WCAG AA contrast (cream 6.1:1, blush 4.7:1) */
     --blush:      #E7CBC3;   /* soft blush                         */
     --gold:       #B68B43;
     --line:       rgba(46,38,31,.16);
@@ -65,6 +65,12 @@
   }
   main, header, footer{ position:relative; z-index:1; }
   ::selection{ background:var(--clay); color:var(--paper); }
+
+  /* ── accessibility: visible keyboard focus + skip link ── */
+  :focus-visible{ outline:3px solid var(--espresso); outline-offset:2px; border-radius:3px; }
+  footer :focus-visible{ outline-color:var(--paper); }
+  .skip-link{ position:absolute; inset-inline-start:1rem; top:-4rem; z-index:200; background:var(--espresso); color:var(--paper); padding:.65rem 1.1rem; border-radius:0 0 10px 10px; text-decoration:none; font-weight:600; transition:top .2s ease; }
+  .skip-link:focus{ top:0; }
 
   h1,h2,h3{ font-weight:700; line-height:1.12; letter-spacing:-.01em; }
   .wrap{ width:min(1140px, 90vw); margin-inline:auto; }
@@ -113,7 +119,7 @@
   .crafts-line .dot{ width:5px; height:5px; border-radius:50%; background:var(--olive); }
   .hero-cta{ margin-top:2.3rem; display:flex; gap:1rem; flex-wrap:wrap; }
   .btn{ font-family:inherit; font-weight:600; font-size:1.02rem; padding:.85rem 1.8rem; border-radius:100px; text-decoration:none; cursor:pointer; border:none; transition:transform .25s ease, box-shadow .25s ease, background .25s, border-color .25s; display:inline-flex; align-items:center; gap:.6rem; }
-  .btn-primary{ background:var(--clay); color:var(--paper); box-shadow:0 14px 28px -14px rgba(169,87,47,.85); }
+  .btn-primary{ background:var(--clay-deep); color:var(--paper); box-shadow:0 14px 28px -14px rgba(135,68,38,.85); }
   .btn-primary:hover{ transform:translateY(-3px); box-shadow:0 20px 36px -14px rgba(169,87,47,.9); }
   .btn-ghost{ background:transparent; color:var(--espresso); border:1.5px solid var(--line); }
   .btn-ghost:hover{ border-color:var(--espresso); transform:translateY(-3px); }
@@ -276,10 +282,12 @@
   .reveal{ opacity:0; transform:translateY(26px); transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
   .reveal.in{ opacity:1; transform:none; }
   [data-delay="1"]{ transition-delay:.1s; } [data-delay="2"]{ transition-delay:.2s; } [data-delay="3"]{ transition-delay:.3s; } [data-delay="4"]{ transition-delay:.4s; }
-  @media(prefers-reduced-motion:reduce){ .reveal{ opacity:1; transform:none; } }
+  @media(prefers-reduced-motion:reduce){ .reveal{ opacity:1; transform:none; } html{ scroll-behavior:auto; } *{ animation-duration:.001ms !important; transition-duration:.001ms !important; } }
 </style>
+<noscript><style>.reveal{ opacity:1 !important; transform:none !important; }</style></noscript>
 </head>
 <body>
+<a class="skip-link" href="#top">דלג לתוכן</a>
 
 <!-- ░░ irregular tree-ring, drawn once, reused everywhere (a real ring, off-center, lived-in) ░░ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -288,10 +296,10 @@
 
 <header id="topbar">
   <a href="#top" class="brand">
-    <img class="mark" src="images/Logo_small.png" alt="הלוגו של סלם — כף יד פתוחה" />
+    <img class="mark" src="images/Logo_small.png" alt="" />
     <span class="brand-text"><span class="brand-name">סֶלָּם</span><span class="brand-tag">רְפוּאַת שֹׁרֶשׁ</span></span>
   </a>
-  <nav>
+  <nav aria-label="ניווט ראשי">
     <a href="#treatments">מרחב הטיפול</a>
     <a href="#shop">הסבונים</a>
     <a href="#about">הסיפור</a>
@@ -299,7 +307,7 @@
   </nav>
 </header>
 
-<main id="top">
+<main id="top" tabindex="-1">
 
   <!-- HERO -->
   <section class="hero wrap">
@@ -344,7 +352,7 @@
       </div>
       <div class="treat-blocks reveal" data-delay="1">
         <article class="tblock">
-          <div class="ic"><object data="images/reflexology-icon.svg" type="image/svg+xml" style="width:100%; height:100%;"></object></div>
+          <div class="ic" aria-hidden="true"><object data="images/reflexology-icon.svg" type="image/svg+xml" tabindex="-1" aria-hidden="true" style="width:100%; height:100%; pointer-events:none;"></object></div>
           <h3>רפלקסולוגיה</h3>
           <p>רפלקסולוגיה היא שיטת טיפול הוליסטית המתבצעת דרך כפות הרגליים, כאשר כל אזור בכף הרגל משקף איברים ומערכות שונות בגוף. באמצעות מגע ולחיצות מדויקות ניתן לעודד זרימה, איזון, הרפיה ושחרור מתחים בגוף ובנפש.</p>
         </article>
@@ -552,7 +560,7 @@
 <footer>
   <div class="wrap foot">
     <a href="#top" class="brand">
-      <img class="mark" src="images/Logo_small.png" alt="הלוגו של סלם — כף יד פתוחה" />
+      <img class="mark" src="images/Logo_small.png" alt="" />
       <span class="brand-text"><span class="brand-name">סֶלָּם</span><span class="brand-tag">רְפוּאַת שֹׁרֶשׁ</span></span>
     </a>
     <small>רפלקסולוגיה · ריפוי רייקי · סבון טבעי · לנשים</small>
@@ -574,6 +582,7 @@
   window.addEventListener('load', () => { document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in')); });
 
   document.querySelectorAll('.buy[data-soap]').forEach(b => {
+    b.setAttribute('aria-label', 'להזמנה בוואטסאפ: ' + b.getAttribute('data-soap'));
     b.addEventListener('click', () => {
       const soap = b.getAttribute('data-soap');
       const text = 'היי סלם! 🌿\nאשמח להזמין את הסבון: ' + soap + '.\nאפשר פרטים?';
