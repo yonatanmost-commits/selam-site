@@ -78,7 +78,11 @@
     transition:background .4s ease, box-shadow .4s ease, padding .4s ease;
   }
   header.scrolled{ background:rgba(244,235,226,.86); backdrop-filter:blur(12px); box-shadow:0 1px 0 var(--line-soft); padding-top:.6rem; padding-bottom:.6rem; }
-  .brand{ font-family:"Bellefair", serif; font-weight:400; font-size:1.7rem; color:var(--espresso); text-decoration:none; display:flex; align-items:center; gap:.55rem; letter-spacing:.02em; white-space:nowrap; flex:none; }
+  .brand{ font-family:"Bellefair", serif; font-weight:400; color:var(--espresso); text-decoration:none; display:flex; align-items:center; gap:.6rem; white-space:nowrap; flex:none; }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.05; gap:.14rem; }
+  .brand-name{ font-size:1.6rem; letter-spacing:.03em; }
+  .brand-tag{ font-family:"Frank Ruhl Libre",serif; font-weight:500; font-size:.72rem; letter-spacing:.05em; color:var(--rose-deep); }
+  .foot .brand-tag{ color:var(--blush); }
   .brand .mark{ width:auto; height:32px; flex:none; object-fit:contain; }
   .brand .mark use{ fill:none; stroke:var(--clay); stroke-width:1.4; vector-effect:non-scaling-stroke; }
   nav{ display:flex; gap:1.8rem; align-items:center; min-width:0; }
@@ -281,7 +285,7 @@
 <header id="topbar">
   <a href="#top" class="brand">
     <img class="mark" src="images/Logo_small.png" alt="הלוגו של סלם — כף יד פתוחה" />
-    סֶלָּם
+    <span class="brand-text"><span class="brand-name">סֶלָּם</span><span class="brand-tag">רְפוּאַת שֹׁרֶשׁ</span></span>
   </a>
   <nav>
     <a href="#treatments">מרחב הטיפול</a>
@@ -551,7 +555,7 @@
   <div class="wrap foot">
     <a href="#top" class="brand">
       <img class="mark" src="images/Logo_small.png" alt="הלוגו של סלם — כף יד פתוחה" />
-      סֶלָּם
+      <span class="brand-text"><span class="brand-name">סֶלָּם</span><span class="brand-tag">רְפוּאַת שֹׁרֶשׁ</span></span>
     </a>
     <small>רפלקסולוגיה · ריפוי רייקי · סבון טבעי · לנשים</small>
     <small>נבנה ביד ובלב <span class="heart">♥</span> · כל הזכויות שמורות לסלם</small>
