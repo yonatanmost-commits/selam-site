@@ -269,6 +269,11 @@
   .field textarea{ resize:vertical; min-height:120px; }
   form .btn-primary{ width:100%; justify-content:center; }
   .form-note{ font-size:.85rem; color:var(--ink-soft); margin-top:.9rem; text-align:center; }
+  .consent{ margin-bottom:1rem; }
+  .check-label{ display:flex; align-items:flex-start; gap:.6rem; font-size:.95rem; color:var(--espresso); font-weight:400; cursor:pointer; line-height:1.5; }
+  .check-label input{ width:1.15rem; height:1.15rem; flex:none; margin-top:.28rem; accent-color:var(--clay-deep); }
+  .form-legal{ font-size:.82rem; color:var(--ink-soft); margin-top:1rem; line-height:1.65; }
+  .form-legal a{ color:var(--clay-deep); font-weight:600; }
 
   /* ───────────────── FOOTER ───────────────── */
   footer{ background:var(--espresso); color:rgba(244,235,226,.7); padding:3.5rem 0 2.5rem; margin-top:2rem; }
@@ -547,10 +552,16 @@
         <div class="field"><label for="name">השם שלך</label><input id="name" name="name" type="text" placeholder="איך לקרוא לך?" required /></div>
         <div class="field"><label for="phone">טלפון</label><input id="phone" name="phone" type="tel" placeholder="050-000-0000" required /></div>
         <div class="field"><label for="msg">מה מביא אותך?</label><textarea id="msg" name="msg" placeholder="ספרי לי כמה מילים — טיפול, סבון, או סתם שאלה..."></textarea></div>
+        <div class="field consent">
+          <label class="check-label" for="consent">
+            <input type="checkbox" id="consent" name="consent" required />
+            <span>אני מאשרת שהפרטים שמסרתי ישמשו ליצירת קשר ולמענה לפנייתי בלבד.</span>
+          </label>
+        </div>
         <button type="submit" class="btn btn-primary">לשליחה בוואטסאפ
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg>
         </button>
-        <p class="form-note">הטופס פותח שיחת וואטסאפ עם הפרטים שמילאת — מוכנה לשליחה.</p>
+        <p class="form-legal">הפרטים שתמסרי נאספים אך ורק לצורך מענה לפנייתך, בהתאם לחוק הגנת הפרטיות (תיקון 13). הטופס אינו שומר מידע בשרת — הוא פותח הודעת וואטסאפ מוכנה לשליחה. למידע נוסף ראי את <a href="privacy.html">מדיניות הפרטיות</a>.</p>
       </form>
     </div>
   </section>
@@ -564,6 +575,7 @@
       <span class="brand-text"><span class="brand-name">סֶלָּם</span><span class="brand-tag">רְפוּאַת שֹׁרֶשׁ</span></span>
     </a>
     <small>רפלקסולוגיה · ריפוי רייקי · סבון טבעי · לנשים</small>
+    <small><a href="privacy.html">מדיניות פרטיות</a> · <a href="accessibility.html">הצהרת נגישות</a></small>
     <small>נבנה ביד ובלב <span class="heart">♥</span> · כל הזכויות שמורות לסלם</small>
   </div>
 </footer>
@@ -592,6 +604,7 @@
 
   document.getElementById('contactForm').addEventListener('submit', (ev) => {
     ev.preventDefault();
+    if (!document.getElementById('consent').checked) return; // consent required before sending
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const msg = document.getElementById('msg').value.trim();
