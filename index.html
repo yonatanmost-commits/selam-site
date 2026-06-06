@@ -3,10 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>סלם · ריפוי טבעי · סבון בעבודת יד · רפלקסולוגיה · רייקי</title>
-<meta name="description" content="סלם — סבון טבעי בתהליך קר, רפלקסולוגיה וריפוי רייקי לנשים. ריפוי הוליסטי שנבנה דרך הקשבה, מתוך אהבה אמיתית לאדם ולטבע." />
+<title>רפואה משלימה</title>
+<meta name="description" content="סלם — רפואה משלימה לנשים: רפלקסולוגיה, ריפוי רייקי וסבון טבעי בעבודת יד. ריפוי הוליסטי שנבנה דרך הקשבה, מתוך אהבה אמיתית לאדם ולטבע." />
 <!-- Draft phase: shareable by link, but kept out of search engines -->
 <meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/svg+xml" href="images/Logo_Palm.svg" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -78,7 +79,7 @@
   }
   header.scrolled{ background:rgba(244,235,226,.86); backdrop-filter:blur(12px); box-shadow:0 1px 0 var(--line-soft); padding-top:.6rem; padding-bottom:.6rem; }
   .brand{ font-weight:900; font-size:1.45rem; color:var(--espresso); text-decoration:none; display:flex; align-items:center; gap:.5rem; letter-spacing:-.02em; white-space:nowrap; flex:none; }
-  .brand .mark{ width:20px; height:20px; flex:none; }
+  .brand .mark{ width:auto; height:32px; flex:none; object-fit:contain; }
   .brand .mark use{ fill:none; stroke:var(--clay); stroke-width:1.4; vector-effect:non-scaling-stroke; }
   nav{ display:flex; gap:1.8rem; align-items:center; min-width:0; }
   nav a{ color:var(--ink-soft); text-decoration:none; font-size:1rem; font-weight:500; position:relative; transition:color .25s; white-space:nowrap; }
@@ -91,9 +92,9 @@
 
   /* ───────────────── HERO ───────────────── */
   .hero{ min-height:90svh; display:grid; align-items:center; padding-top:7.5rem; padding-bottom:3rem; position:relative; overflow-x:clip; }
-  /* topographic terrain — irregular, the real road she walked */
-  .terrain{ position:absolute; inset:0; z-index:-1; width:100%; height:100%; opacity:.45; pointer-events:none; }
-  .terrain path{ fill:none; stroke:var(--cacao); stroke-width:1; opacity:.55; }
+  /* background image — main-pic.png */
+  .terrain{ position:absolute; inset:0; z-index:-1; width:100%; height:100%; opacity:.2; pointer-events:none; background-image:url('images/main-pic.png'); background-size:cover; background-position:center; background-repeat:no-repeat; }
+  .terrain path{ display:none; }
   .hero-grid{ display:grid; grid-template-columns:1.08fr .92fr; gap:clamp(2rem,5vw,4.5rem); align-items:center; }
   @media(max-width:920px){ .hero-grid{ grid-template-columns:1fr; } }
   .hero h1{ font-weight:900; font-size:clamp(3rem,8.5vw,6rem); color:var(--espresso); margin:1.3rem 0 .5rem; letter-spacing:-.02em; }
@@ -258,7 +259,7 @@
   /* ───────────────── FOOTER ───────────────── */
   footer{ background:var(--espresso); color:rgba(244,235,226,.7); padding:3.5rem 0 2.5rem; margin-top:2rem; }
   .foot{ display:flex; justify-content:space-between; align-items:center; gap:1.5rem; flex-wrap:wrap; }
-  .foot .brand{ color:var(--paper); } .foot .brand .mark use{ stroke:var(--rose); }
+  .foot .brand{ color:var(--paper); } .foot .brand .mark{ filter:brightness(0) invert(1); opacity:.85; }
   .foot a{ color:var(--blush); text-decoration:none; }
   .foot small{ font-size:.85rem; }
   .heart{ color:var(--rose); }
@@ -279,7 +280,7 @@
 
 <header id="topbar">
   <a href="#top" class="brand">
-    <svg class="mark" viewBox="0 0 400 400"><use href="#treering" transform="translate(200 200) scale(.92) translate(-200 -200)"/><use href="#treering" transform="translate(8 6) rotate(7 200 200) translate(200 200) scale(.5) translate(-200 -200)"/></svg>
+    <img class="mark" src="images/Logo_Palm.svg" alt="הלוגו של סלם — כף יד פתוחה" />
     סלם
   </a>
   <nav>
@@ -294,19 +295,13 @@
 
   <!-- HERO -->
   <section class="hero wrap">
-    <svg class="terrain" viewBox="0 0 1200 700" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M-40 150 C 120 95 215 205 330 158 C 445 112 520 60 645 152 C 765 240 850 120 980 182 C 1090 235 1180 150 1260 200"/>
-      <path d="M-40 255 C 95 232 205 320 305 250 C 425 168 560 300 690 250 C 800 210 905 330 1015 268 C 1115 212 1200 290 1260 252"/>
-      <path d="M-40 360 C 105 332 185 268 322 360 C 432 428 545 298 665 372 C 785 442 880 318 1000 392 C 1100 448 1190 360 1260 402"/>
-      <path d="M-40 470 C 130 522 232 408 342 480 C 452 548 560 430 690 502 C 800 562 905 448 1022 510 C 1122 560 1200 480 1260 522"/>
-      <path d="M-40 582 C 110 560 212 642 332 590 C 452 540 560 662 690 600 C 812 542 910 652 1032 600 C 1132 558 1212 622 1260 590"/>
-    </svg>
+    <div class="terrain" aria-hidden="true"></div>
 
     <div class="hero-inner">
       <div class="hero-copy">
         <span class="eyebrow reveal">רפואה משלימה</span>
         <h1 class="reveal" data-delay="1">מעשה ידיים,<br><span class="tint">מעשה לב.</span></h1>
-        <p class="lead reveal" data-delay="2">סלם — רפלקסולוגיה, ריפוי רייקי וסבון טבעי שנרקח לאט. ריפוי הוליסטי שנבנה דרך הקשבה, פתיחות ורצון אמיתי להרגיש טוב יותר.</p>
+        <p class="lead reveal" data-delay="2">רפלקסולוגיה, ריפוי רייקי וסבון טבעי שנרקח לאט.<br>ריפוי הוליסטי שנבנה דרך הקשבה, פתיחות ורצון אמיתי<br>להרגיש טוב יותר.</p>
         <div class="crafts-line reveal" data-delay="3">
           <span><i class="dot"></i> רפלקסולוגיה</span>
           <span><i class="dot"></i> ריפוי רייקי</span>
@@ -334,11 +329,6 @@
       </span>
     </div>
 
-    <figure class="tent-figure reveal">
-      <img src="images/main-pic.png" alt="אוהל הטיפולים של סלם בלב הטבע — איור בצבעי מים" loading="lazy" />
-      <figcaption>אוהל רך בלב הטבע — מרחב להניח בו את מה שכבד, ולנשום.</figcaption>
-    </figure>
-
     <div class="treat">
       <div class="treat-photo reveal">
         <img src="images/reiki.jpeg" alt="סלם מעבירה טיפול רייקי בחלל מרגיע" loading="lazy" />
@@ -346,14 +336,14 @@
       </div>
       <div class="treat-blocks reveal" data-delay="1">
         <article class="tblock">
-          <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 9c-4 4-6 10-6 18 0 7 4 12 9 12s7-4 7-9"/><circle cx="19" cy="20" r="1.4"/><circle cx="17" cy="28" r="1.4"/><path d="M28 24c4-2 8-1 11 3"/></svg></div>
+          <div class="ic"><object data="images/reflexology-icon.svg" type="image/svg+xml" style="width:100%; height:100%;"></object></div>
           <h3>רפלקסולוגיה</h3>
           <p>רפלקסולוגיה היא שיטת טיפול הוליסטית המתבצעת דרך כפות הרגליים, כאשר כל אזור בכף הרגל משקף איברים ומערכות שונות בגוף. באמצעות מגע ולחיצות מדויקות ניתן לעודד זרימה, איזון, הרפיה ושחרור מתחים בגוף ובנפש.</p>
         </article>
         <article class="tblock">
           <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 8c4 6 4 10 0 14s-4 8 0 14"/><path d="M24 8c-4 6-4 10 0 14s4 8 0 14"/><circle cx="24" cy="40" r="2"/></svg></div>
           <h3>ריפוי רייקי</h3>
-          <p>רייקי היא שיטת טיפול אנרגטית עדינה שמטרתה ליצור איזון והרפיה בגוף ובנפש. הטיפול נעשה באמצעות מגע עדין או ללא מגע, מתוך כוונה להעביר אנרגיית ריפוי המסייעת לשחרור מתחים, רוגע וחיזוק תחושת האיזון הפנימי.</p>
+          <p>הרייקי מזמין אותך לחזור לאיזון טבעי דרך ערוץ אנרגטי מעמיק ומשרה רוגע. הטיפול משלב מגע רך ומכיל, או עבודה עדינה ללא מגע כלל, במטרה להזרים אנרגיית חיים, להמיס מתחים שהצטברו, ולייצר מרחב פנימי של שקט, הרפיה והתחדשות.</p>
         </article>
       </div>
     </div>
@@ -474,7 +464,6 @@
       <div class="col">
         <span class="eyebrow">מן הסיר אל היד שלך</span>
         <h2>הזמן הוא המרכיב הסודי.</h2>
-        <p>אי אפשר למהר סבון טוב. כמו טבעות בעץ, הוא נבנה שכבה אחר שכבה — וזה בדיוק מה שמרגישים בעור.</p>
         <span class="vegan">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c0-9 6-15 15-15 0 9-6 15-15 15z"/><path d="M5 21c2-5 5-8 9-10"/></svg>
           צמחי לחלוטין · ללא מרכיבים מן החי
@@ -561,7 +550,7 @@
 <footer>
   <div class="wrap foot">
     <a href="#top" class="brand">
-      <svg class="mark" viewBox="0 0 400 400"><use href="#treering" transform="translate(200 200) scale(.92) translate(-200 -200)"/><use href="#treering" transform="translate(8 6) rotate(7 200 200) translate(200 200) scale(.5) translate(-200 -200)"/></svg>
+      <img class="mark" src="images/Logo_Palm.svg" alt="הלוגו של סלם — כף יד פתוחה" />
       סלם
     </a>
     <small>רפלקסולוגיה · ריפוי רייקי · סבון טבעי · לנשים</small>
