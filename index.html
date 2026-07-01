@@ -194,6 +194,8 @@
   .soap-foot{ display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:.5rem; padding-top:.9rem; border-top:1px solid var(--line-soft); }
   .price{ font-weight:900; font-size:1.2rem; color:var(--cacao); }
   .price small{ font-weight:400; font-size:.82rem; color:var(--ink-soft); }
+  .price .was{ font-weight:500; font-size:.86em; color:var(--ink-soft); text-decoration:line-through; text-decoration-thickness:1px; margin-inline-end:.35em; }
+  .sale-tag{ display:inline-block; margin-top:1.1rem; background:var(--rose-deep); color:var(--paper); font-weight:700; font-size:.85rem; letter-spacing:.02em; padding:.45rem 1.15rem; border-radius:100px; box-shadow:var(--shadow-sm); }
   .buy{ background:var(--espresso); color:var(--paper); border:none; cursor:pointer; font-family:inherit; font-weight:600; font-size:.9rem; padding:.55rem 1.05rem; border-radius:100px; display:inline-flex; align-items:center; gap:.45rem; transition:background .25s, transform .25s; }
   .buy:hover{ background:var(--clay-deep); transform:translateY(-2px); }
   .shop-note{ margin-top:2.2rem; text-align:center; color:var(--ink-soft); font-size:.98rem; }
@@ -387,6 +389,7 @@
         <span class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>ללא חומרי ריח סינתטיים ו‑SLS</span>
         <span class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>ידידותי לעור וסביבה</span>
       </div>
+      <span class="sale-tag reveal">חגיגת השקה — 20% הנחה על כל הסבונים</span>
     </div>
 
     <div class="gallery">
@@ -395,7 +398,7 @@
         <div class="soap-body">
           <h3>חימר לבן, פחם פעיל ועץ התה</h3>
           <p>חימר לבן ופחם פעיל שמנקים ומאזנים לעומק, עם שמן אתרי עץ התה המטהר. מתאים לעור מעורב, שומני או נוטה לפצעונים.</p>
-          <div class="soap-foot"><div class="price">₪38</div><button class="buy" data-soap="חימר לבן, פחם פעיל ועץ התה">להזמנה<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg></button></div>
+          <div class="soap-foot"><div class="price"><s class="was">₪38</s> ₪30</div><button class="buy" data-soap="חימר לבן, פחם פעיל ועץ התה">להזמנה<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg></button></div>
         </div>
       </article>
 
@@ -404,7 +407,7 @@
         <div class="soap-body">
           <h3>אלוורה, חימר ירוק ולבנדר</h3>
           <p>אלוורה מרגיעה וחימר ירוק מאזן, עם ניחוח לבנדר שמלטף את החושים. מתאים לעור רגיל, מעורב או אדמומי שזקוק להרגעה.</p>
-          <div class="soap-foot"><div class="price">₪39</div><button class="buy" data-soap="אלוורה, חימר ירוק ולבנדר">להזמנה<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg></button></div>
+          <div class="soap-foot"><div class="price"><s class="was">₪39</s> ₪31</div><button class="buy" data-soap="אלוורה, חימר ירוק ולבנדר">להזמנה<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg></button></div>
         </div>
       </article>
 
@@ -413,7 +416,7 @@
         <div class="soap-body">
           <h3>קקאו, שיבולת שועל ואילנג־אילנג</h3>
           <p>קקאו מזין עם שיבולת שועל טחונה דק ושמן אתרי אילנג־אילנג המרגיע. מתאים לעור יבש, רגיש או בוגר.</p>
-          <div class="soap-foot"><div class="price">₪42</div><button class="buy" data-soap="קקאו, שיבולת שועל ואילנג־אילנג">להזמנה<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg></button></div>
+          <div class="soap-foot"><div class="price"><s class="was">₪42</s> ₪33</div><button class="buy" data-soap="קקאו, שיבולת שועל ואילנג־אילנג">להזמנה<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg></button></div>
         </div>
       </article>
 
@@ -422,7 +425,7 @@
         <div class="soap-body">
           <h3>קפה וכורכום — פילינג עדין</h3>
           <p>קפה וכורכום לפילינג עדין שמרכך עור יבש ומחזיר זוהר לעור עמום. מתאים לפילינג גוף מחדש וריענון העור.</p>
-          <div class="soap-foot"><div class="price">₪36</div><button class="buy" data-soap="קפה וכורכום — פילינג עדין">להזמנה<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg></button></div>
+          <div class="soap-foot"><div class="price"><s class="was">₪36</s> ₪28</div><button class="buy" data-soap="קפה וכורכום — פילינג עדין">להזמנה<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg></button></div>
         </div>
       </article>
     </div>
@@ -449,7 +452,7 @@
         <h2>קפה וכורכום — פילינג עדין</h2>
         <p>בחירת החודש של סלם — סבון פילינג מעורר. גרגרי קפה שמנערים את העור לחיים, כורכום שמאיר, ופילינג עדין שמרכך עור יבש ומחזיר זוהר לעור עמום.</p>
         <div class="month-foot">
-          <div class="price">₪36 <small>/ חפיסה</small></div>
+          <div class="price"><s class="was">₪36</s> ₪28 <small>/ חפיסה</small></div>
           <button class="buy" data-soap="הסבון של החודש — קפה וכורכום לפילינג עדין">להזמנה<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg></button>
         </div>
       </div>
