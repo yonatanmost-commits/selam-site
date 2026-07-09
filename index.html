@@ -243,6 +243,28 @@
   .step b{ display:block; font-weight:700; font-size:1.06rem; }
   .step small{ color:rgba(244,235,226,.64); font-size:.92rem; }
 
+  /* ───────────────── WORKSHOP ───────────────── */
+  .workshop{ position:relative; overflow:hidden; background:var(--paper-2); border:1px solid var(--line); border-radius:28px; padding:clamp(2.2rem,5vw,4rem); box-shadow:var(--shadow-sm); }
+  .workshop .rings{ position:absolute; top:-30%; inset-inline-end:-10%; width:min(460px,54%); opacity:.32; pointer-events:none; }
+  .workshop .rings use{ stroke:var(--rose-deep); stroke-width:.9; }
+  .workshop-head{ position:relative; z-index:1; max-width:640px; }
+  .workshop-head h2{ font-weight:900; font-size:clamp(1.9rem,4vw,2.8rem); margin:.9rem 0 .8rem; color:var(--espresso); letter-spacing:-.02em; }
+  .workshop-head p{ color:var(--ink-soft); font-size:1.1rem; font-weight:300; }
+  .workshop-grid{ position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:1.5rem 2.4rem; margin:2.4rem 0; }
+  @media(max-width:680px){ .workshop-grid{ grid-template-columns:1fr; } }
+  .ws-item{ display:grid; grid-template-columns:auto 1fr; gap:1rem; align-items:start; }
+  .ws-ic{ width:2.7rem; height:2.7rem; flex:none; border-radius:50%; background:var(--blush); color:var(--rose-deep); display:grid; place-items:center; }
+  .ws-ic svg{ width:1.35rem; height:1.35rem; }
+  .ws-item b{ display:block; font-weight:700; font-size:1.06rem; color:var(--espresso); margin-bottom:.15rem; }
+  .ws-item small{ color:var(--ink-soft); font-size:.94rem; line-height:1.6; }
+  .workshop-foot{ position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:1.3rem 2rem; flex-wrap:wrap; padding-top:1.9rem; border-top:1px solid var(--line); }
+  .ws-meta{ display:flex; flex-wrap:wrap; gap:.55rem 1.4rem; color:var(--ink-soft); font-size:.95rem; }
+  .ws-meta span{ display:inline-flex; align-items:center; gap:.5rem; }
+  .ws-meta svg{ width:1.05rem; height:1.05rem; color:var(--clay); flex:none; }
+  .ws-price-cta{ display:flex; align-items:center; gap:1.3rem; }
+  .ws-price-cta .price{ font-size:1.6rem; }
+  .ws-cta{ text-decoration:none; }
+
   /* ───────────────── ABOUT / PERSONAL (last) ───────────────── */
   #about{ position:relative; overflow-x:clip; background:linear-gradient(180deg, transparent, var(--paper-2) 16%, var(--paper-2) 84%, transparent); }
   .about-rings{ position:absolute; top:50%; inset-inline-end:-14%; transform:translateY(-50%); width:min(760px,72vw); z-index:0; opacity:.36; pointer-events:none; }
@@ -313,6 +335,7 @@
   <nav aria-label="ניווט ראשי">
     <a href="#treatments">מרחב הטיפול</a>
     <a href="#shop">הסבונים</a>
+    <a href="#workshop">סדנה</a>
     <a href="#about">הסיפור</a>
     <button type="button" id="shareBtn" class="nav-share" aria-label="שיתוף העמוד">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/><path d="M8.3 10.85 15.7 6.35M8.3 13.15l7.4 4.5"/></svg>
@@ -491,6 +514,52 @@
     </div>
   </section>
 
+  <!-- WORKSHOP -->
+  <section id="workshop" class="wrap">
+    <div class="workshop reveal">
+      <svg class="rings" viewBox="0 0 400 400" aria-hidden="true">
+        <use href="#treering" transform="translate(200 200) scale(1) translate(-200 -200)"/>
+        <use href="#treering" transform="translate(5 6) rotate(7 200 200) translate(200 200) scale(.74) translate(-200 -200)"/>
+        <use href="#treering" transform="translate(11 13) rotate(-6 200 200) translate(200 200) scale(.5) translate(-200 -200)"/>
+        <use href="#treering" transform="translate(16 19) rotate(9 200 200) translate(200 200) scale(.3) translate(-200 -200)"/>
+      </svg>
+      <div class="workshop-head">
+        <span class="eyebrow">סדנה אישית</span>
+        <h2>להכין סבון בידיים שלך.</h2>
+        <p>רוצה ללמוד איך מכינים סבון גוף אמיתי, בריא ו‑100% טבעי? בואי למפגש אינטימי ומעשי של שעה וחצי, שבו נלמד יחד את אמנות הסבונאות — מאפס ועד חפיסה מוגמרת.</p>
+      </div>
+      <div class="workshop-grid">
+        <div class="ws-item">
+          <span class="ws-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20"/></svg></span>
+          <div><b>ידע פרקטי מאפס</b><small>שיטת ההכנה הקרה, חומרי הגלם וכללי הבטיחות — הכול צעד אחר צעד.</small></div>
+        </div>
+        <div class="ws-item">
+          <span class="ws-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6a5 5 0 0 0-8.8-3.2A5 5 0 0 0 3.2 8.6C3.2 13 12 20 12 20s8.8-7 8.8-11.4z"/></svg></span>
+          <div><b>חוויה אישית</b><small>מפגש אחד־על־אחד, בקצב שלך, עם התאמה אישית של ריחות ותוספים.</small></div>
+        </div>
+        <div class="ws-item">
+          <span class="ws-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M3 8l2.2-4h13.6L21 8"/><path d="M12 4v4"/></svg></span>
+          <div><b>4 סבונים שרקחת בעצמך</b><small>יוצאות הביתה עם ארבע חפיסות מוצקות ומפנקות מעבודת היד שלך.</small></div>
+        </div>
+        <div class="ws-item">
+          <span class="ws-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></span>
+          <div><b>מתכון להמשך</b><small>חוברת מתכון מפורטת, כדי שתוכלי להמשיך להכין בקלות ובבטחה גם בבית.</small></div>
+        </div>
+      </div>
+      <div class="workshop-foot">
+        <div class="ws-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>שעה וחצי</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>מתאים למתחילות</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>אין צורך בניסיון קודם</span>
+        </div>
+        <div class="ws-price-cta">
+          <div class="price">₪350 <small>/ מפגש</small></div>
+          <a class="buy ws-cta" href="#" role="button">להזמנת מקום<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ABOUT / PERSONAL — her own voice, kept for last -->
   <section id="about">
     <svg class="about-rings" viewBox="0 0 400 400" aria-hidden="true">
@@ -622,6 +691,13 @@
       const text = 'היי סלם! 🌿\nאשמח להזמין את הסבון: ' + soap + '.\nאפשר פרטים?';
       window.open('https://wa.me/' + PHONE + '?text=' + encodeURIComponent(text), '_blank');
     });
+  });
+
+  const wsCta = document.querySelector('.ws-cta');
+  if (wsCta) wsCta.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    const text = 'היי סלם! 🌿\nאשמח להצטרף לסדנת הכנת הסבון (350 ₪).\nאפשר פרטים על מועדים?';
+    window.open('https://wa.me/' + PHONE + '?text=' + encodeURIComponent(text), '_blank');
   });
 
   document.getElementById('contactForm').addEventListener('submit', (ev) => {
