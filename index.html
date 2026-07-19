@@ -316,6 +316,44 @@
   .reveal{ opacity:0; transform:translateY(26px); transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
   .reveal.in{ opacity:1; transform:none; }
   [data-delay="1"]{ transition-delay:.1s; } [data-delay="2"]{ transition-delay:.2s; } [data-delay="3"]{ transition-delay:.3s; } [data-delay="4"]{ transition-delay:.4s; }
+  /* ───────────────── CART ───────────────── */
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+  .buy.added{ background:var(--olive); }
+  .cart-pill{ position:fixed; bottom:1.2rem; inset-inline-start:1.2rem; z-index:150; display:inline-flex; align-items:center; gap:.55rem;
+    background:var(--espresso); color:var(--paper); border:none; cursor:pointer; font-family:inherit; font-weight:600; font-size:.95rem;
+    padding:.8rem 1.3rem; border-radius:100px; box-shadow:var(--shadow); transition:transform .25s; }
+  .cart-pill:hover{ transform:translateY(-3px); }
+  .cart-badge{ background:var(--rose-deep); color:var(--paper); font-size:.8rem; font-weight:700; min-width:1.5rem; height:1.5rem;
+    border-radius:100px; display:grid; place-items:center; padding:0 .3rem; }
+  .cart-backdrop{ position:fixed; inset:0; z-index:180; background:rgba(46,38,31,.45); }
+  .cart-drawer{ position:fixed; z-index:190; bottom:0; inset-inline:0; margin-inline:auto; max-width:480px; max-height:85vh; overflow:auto;
+    background:var(--paper); border:1px solid var(--line); border-bottom:none; border-radius:22px 22px 0 0; padding:1.4rem 1.5rem 1.7rem;
+    box-shadow:var(--shadow); }
+  .cart-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
+  .cart-head h3{ font-weight:900; font-size:1.25rem; color:var(--espresso); }
+  .cart-close{ background:transparent; border:1px solid var(--line); color:var(--ink-soft); width:2.2rem; height:2.2rem; border-radius:50%;
+    cursor:pointer; font-size:1rem; }
+  .cart-empty{ color:var(--ink-soft); padding:.6rem 0 1rem; }
+  .cart-empty a{ color:var(--rose-deep); font-weight:600; }
+  .cart-items{ list-style:none; display:grid; gap:.7rem; }
+  .cart-item{ display:grid; grid-template-columns:1fr auto; gap:.2rem .9rem; align-items:center; background:var(--paper-2);
+    border:1px solid var(--line); border-radius:12px; padding:.7rem .9rem; }
+  .cart-item .nm{ font-weight:600; font-size:.95rem; color:var(--espresso); }
+  .cart-item .ln{ color:var(--ink-soft); font-size:.88rem; }
+  .cart-qty{ display:inline-flex; align-items:center; gap:.55rem; grid-row:span 2; }
+  .cart-qty button{ width:1.9rem; height:1.9rem; border-radius:50%; border:1px solid var(--line); background:var(--paper);
+    color:var(--espresso); font-size:1rem; cursor:pointer; line-height:1; }
+  .cart-qty .rm{ border-color:transparent; color:var(--rose-deep); font-size:.85rem; width:auto; border-radius:8px; padding:0 .3rem; }
+  .cart-delivery{ border:1px solid var(--line); border-radius:12px; padding:.9rem 1rem; margin-top:1.1rem; display:grid; gap:.55rem; }
+  .cart-delivery legend{ padding:0 .4rem; font-weight:600; font-size:.92rem; color:var(--espresso); }
+  .cart-delivery label{ display:flex; align-items:center; gap:.6rem; font-size:.95rem; color:var(--ink-soft); cursor:pointer; }
+  .cart-delivery input{ accent-color:var(--rose-deep); width:1.05rem; height:1.05rem; }
+  .cart-total{ display:flex; justify-content:space-between; align-items:center; margin-top:1.1rem; padding-top:1rem;
+    border-top:1px solid var(--line); font-size:1.05rem; color:var(--espresso); }
+  .cart-total b{ font-weight:900; font-size:1.35rem; color:var(--cacao); }
+  .cart-checkout{ width:100%; justify-content:center; margin-top:1rem; }
+  .cart-pay-note{ margin-top:.7rem; text-align:center; color:var(--ink-soft); font-size:.85rem; }
+
   @media(prefers-reduced-motion:reduce){ .reveal{ opacity:1; transform:none; } html{ scroll-behavior:auto; } *{ animation-duration:.001ms !important; transition-duration:.001ms !important; } }
 </style>
 <noscript><style>.reveal{ opacity:1 !important; transform:none !important; }</style></noscript>
