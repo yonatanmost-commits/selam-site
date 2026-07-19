@@ -81,6 +81,132 @@
   if (typeof module !== 'undefined' && module.exports) module.exports = SelamCart;
   else root.SelamCart = SelamCart;
 
-  // DOM wiring added in a later task; guarded so node tests skip it.
   if (typeof document === 'undefined') return;
+
+  document.addEventListener('DOMContentLoaded', function () {
+    const WA_PHONE = '972543477997';
+    const $ = (id) => document.getElementById(id);
+    const pill = $('cartPill'), badge = $('cartCount'), live = $('cartLive'),
+          backdrop = $('cartBackdrop'), drawer = $('cartDrawer'), closeBtn = $('cartClose'),
+          listEl = $('cartItems'), emptyEl = $('cartEmpty'), totalEl = $('cartTotal'),
+          checkoutBtn = $('cartCheckout'), deliveryBox = $('cartDelivery');
+    if (!pill || !drawer) return;
+
+    // Catalog from DOM — first button per id wins (gallery before soap-of-month)
+    const catalog = {};
+    document.querySelectorAll('.buy[data-id]').forEach((b) => {
+      const id = b.dataset.id;
+      if (!catalog[id]) catalog[id] = { id, name: b.dataset.soap, price: Number(b.dataset.price) };
+    });
+
+    // Storage (in-memory fallback)
+    const KEY = 'selam-cart';
+    let memory = [];
+    function load() {
+      try { return SelamCart.sanitize(JSON.parse(localStorage.getItem(KEY)) || [], catalog); }
+      catch (_) { return memory; }
+    }
+    function save(items) {
+      memory = items;
+      try { localStorage.setItem(KEY, JSON.stringify(items)); } catch (_) {}
+    }
+
+    let items = load();
+    let deliveryId = 'post';
+    let lastFocus = null;
+
+    function fmt(n) { return '₪' + n; }
+
+    function render() {
+      const count = SelamCart.cartCount(items);
+      badge.textContent = count;
+      pill.hidden = count === 0;
+      emptyEl.hidden = count !== 0;
+      checkoutBtn.disabled = count === 0;
+      listEl.innerHTML = '';
+      items.forEach((it) => {
+        const p = catalog[it.id];
+        const li = document.createElement('li');
+        li.className = 'cart-item';
+        li.innerHTML =
+          '<span class="nm"></span>' +
+          '<span class="cart-qty">' +
+            '<button type="button" data-act="dec" aria-label="הפחתת כמות">−</button>' +
+            '<b>' + it.qty + '</b>' +
+            '<button type="button" data-act="inc" aria-label="הוספת כמות">+</button>' +
+            '<button type="button" class="rm" data-act="rm" aria-label="הסרה מהסל">הסרה</button>' +
+          '</span>' +
+          '<span class="ln">' + it.qty + ' × ' + fmt(p.price) + '</span>';
+        li.querySelector('.nm').textContent = p.name;
+        li.dataset.id = it.id;
+        listEl.appendChild(li);
+      });
+      totalEl.textContent = fmt(SelamCart.total(items, catalog, deliveryId));
+      if (count === 0 && !drawer.hidden) closeDrawer();
+    }
+
+    function openDrawer() {
+      lastFocus = document.activeElement;
+      backdrop.hidden = false; drawer.hidden = false;
+      closeBtn.focus();
+    }
+    function closeDrawer() {
+      backdrop.hidden = true; drawer.hidden = true;
+      if (lastFocus) lastFocus.focus();
+    }
+
+    // Add-to-cart buttons
+    document.querySelectorAll('.buy[data-id]').forEach((b) => {
+      b.setAttribute('aria-label', 'הוספה לסל: ' + b.dataset.soap);
+      b.addEventListener('click', () => {
+        items = SelamCart.addItem(items, b.dataset.id);
+        save(items); render();
+        live.textContent = 'נוסף לסל — ' + SelamCart.cartCount(items) + ' פריטים בסל';
+        b.classList.add('added');
+        const label = b.firstChild; const orig = label.textContent;
+        label.textContent = 'נוסף ✓';
+        clearTimeout(b._t);
+        b._t = setTimeout(() => { b.classList.remove('added'); label.textContent = orig; }, 1200);
+      });
+    });
+
+    // Drawer item actions (event delegation)
+    listEl.addEventListener('click', (ev) => {
+      const btn = ev.target.closest('button[data-act]'); if (!btn) return;
+      const id = btn.closest('.cart-item').dataset.id;
+      const cur = items.find((it) => it.id === id);
+      if (btn.dataset.act === 'inc') items = SelamCart.setQty(items, id, cur.qty + 1);
+      if (btn.dataset.act === 'dec') items = SelamCart.setQty(items, id, cur.qty - 1);
+      if (btn.dataset.act === 'rm')  items = SelamCart.removeItem(items, id);
+      save(items); render();
+    });
+
+    deliveryBox.addEventListener('change', (ev) => {
+      if (ev.target.name === 'delivery') { deliveryId = ev.target.value; render(); }
+    });
+
+    pill.addEventListener('click', openDrawer);
+    closeBtn.addEventListener('click', closeDrawer);
+    backdrop.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', (ev) => {
+      if (ev.key === 'Escape' && !drawer.hidden) closeDrawer();
+    });
+    drawer.addEventListener('keydown', (ev) => { // keep Tab inside the dialog
+      if (ev.key !== 'Tab') return;
+      const f = drawer.querySelectorAll('button:not([disabled]), input, a[href]');
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (ev.shiftKey && document.activeElement === first) { ev.preventDefault(); last.focus(); }
+      else if (!ev.shiftKey && document.activeElement === last) { ev.preventDefault(); first.focus(); }
+    });
+
+    checkoutBtn.addEventListener('click', () => {
+      const msg = SelamCart.buildMessage(items, catalog, deliveryId);
+      if (!msg) return;
+      window.open(SelamCart.buildWaUrl(msg, WA_PHONE), '_blank');
+      items = []; save(items); render(); closeDrawer();
+    });
+
+    render();
+  });
 })(this);

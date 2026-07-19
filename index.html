@@ -749,15 +749,6 @@
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   window.addEventListener('load', () => { document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in')); });
 
-  document.querySelectorAll('.buy[data-soap]').forEach(b => {
-    b.setAttribute('aria-label', 'להזמנה בוואטסאפ: ' + b.getAttribute('data-soap'));
-    b.addEventListener('click', () => {
-      const soap = b.getAttribute('data-soap');
-      const text = 'היי סלם! 🌿\nאשמח להזמין את הסבון: ' + soap + '.\nאפשר פרטים?';
-      window.open('https://wa.me/' + PHONE + '?text=' + encodeURIComponent(text), '_blank');
-    });
-  });
-
   const wsCta = document.querySelector('.ws-cta');
   if (wsCta) wsCta.addEventListener('click', (ev) => {
     ev.preventDefault();
