@@ -158,12 +158,13 @@
     // Add-to-cart buttons
     document.querySelectorAll('.buy[data-id]').forEach((b) => {
       b.setAttribute('aria-label', 'הוספה לסל: ' + b.dataset.soap);
+      const label = b.firstChild;
+      const orig = label.textContent;
       b.addEventListener('click', () => {
         items = SelamCart.addItem(items, b.dataset.id);
         save(items); render();
         live.textContent = 'נוסף לסל — ' + SelamCart.cartCount(items) + ' פריטים בסל';
         b.classList.add('added');
-        const label = b.firstChild; const orig = label.textContent;
         label.textContent = 'נוסף ✓';
         clearTimeout(b._t);
         b._t = setTimeout(() => { b.classList.remove('added'); label.textContent = orig; }, 1200);
