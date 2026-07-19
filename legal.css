@@ -1,4 +1,5 @@
 :root{
+  color-scheme: only light;
   --paper:#F4EBE2; --paper-2:#ECDCCD; --espresso:#2E261F; --ink-soft:#5F5346;
   --cacao:#6E4429; --clay-deep:#874426; --rose-deep:#824641; --blush:#E7CBC3;
   --line:rgba(46,38,31,.16);

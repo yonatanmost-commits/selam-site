@@ -12,6 +12,8 @@
 <link rel="manifest" href="site.webmanifest" />
 <meta name="apple-mobile-web-app-title" content="סֶלָּם" />
 <meta name="theme-color" content="#A9572F" />
+<!-- The earth palette IS the design — opt out of Android/Chrome forced dark theming -->
+<meta name="color-scheme" content="only light" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,6 +21,7 @@
 
 <style>
   :root{
+    color-scheme: only light;
     --paper:      #F4EBE2;   /* soft warm cream, a breath of blush */
     --paper-2:    #ECDCCD;   /* second cream layer                 */
     --espresso:   #2E261F;   /* deep cacao — text/ink              */
