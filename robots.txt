@@ -1,2 +1,8 @@
 User-agent: *
-Disallow: /
+Allow: /
+
+# Legal pages carry the street address — keep them out of search
+Disallow: /privacy.html
+Disallow: /accessibility.html
+
+Sitemap: https://yonatanmost-commits.github.io/selam-site/sitemap.xml

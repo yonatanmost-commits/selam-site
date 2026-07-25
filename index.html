@@ -3,10 +3,22 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>רפואה משלימה</title>
-<meta name="description" content="סלם — רפואה משלימה לנשים: רפלקסולוגיה, ריפוי רייקי וסבון טבעי בעבודת יד. ריפוי הוליסטי שנבנה דרך הקשבה, מתוך אהבה אמיתית לאדם ולטבע." />
-<!-- Draft phase: shareable by link, but kept out of search engines -->
-<meta name="robots" content="noindex, nofollow" />
+<title>סלם · רפואת שורש — רפלקסולוגיה וריפוי רייקי לנשים בחדרה</title>
+<meta name="description" content="סלם — רפואה משלימה לנשים בחדרה והסביבה: רפלקסולוגיה, ריפוי רייקי וסבון טבעי בעבודת יד. ריפוי הוליסטי שנבנה דרך הקשבה, מתוך אהבה אמיתית לאדם ולטבע." />
+<link rel="canonical" href="https://yonatanmost-commits.github.io/selam-site/" />
+
+<!-- Share card — she sends this link on WhatsApp; og:image must be an absolute URL -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="סלם · רפואת שורש" />
+<meta property="og:locale" content="he_IL" />
+<meta property="og:title" content="סלם · רפואת שורש — רפלקסולוגיה וריפוי רייקי לנשים בחדרה" />
+<meta property="og:description" content="רפלקסולוגיה, ריפוי רייקי וסבון טבעי בעבודת יד. ריפוי הוליסטי שנבנה דרך הקשבה." />
+<meta property="og:url" content="https://yonatanmost-commits.github.io/selam-site/" />
+<meta property="og:image" content="https://yonatanmost-commits.github.io/selam-site/images/share-card.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="סלם · רפואת שורש — רפלקסולוגיה, ריפוי רייקי וסבון טבעי" />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" type="image/png" href="images/Logo_small.png" />
 <link rel="apple-touch-icon" href="images/app-icon512.png" />
 <link rel="manifest" href="site.webmanifest" />
@@ -395,7 +407,7 @@
 
     <div class="hero-inner">
       <div class="hero-copy">
-        <span class="eyebrow reveal">רפואה משלימה</span>
+        <span class="eyebrow reveal">רפואה משלימה · חדרה והסביבה</span>
         <h1 class="reveal" data-delay="1">מעשה ידיים,<br><span class="tint">מעשה לב.</span></h1>
         <p class="lead reveal" data-delay="2">רפלקסולוגיה, ריפוי רייקי וסבון טבעי שנרקח לאט.<br>ריפוי הוליסטי שנבנה דרך הקשבה, פתיחות ורצון אמיתי<br>להרגיש טוב יותר.</p>
         <div class="crafts-line reveal" data-delay="3">
@@ -442,6 +454,8 @@
         </article>
       </div>
     </div>
+
+    <p class="shop-note reveal">הטיפולים מתקיימים בקליניקה בחדרה. הכתובת המדויקת נשלחת בתיאום.</p>
   </section>
 
   <svg class="strata wrap" viewBox="0 0 1200 24" preserveAspectRatio="none" aria-hidden="true">
@@ -624,6 +638,7 @@
             <div><b>אימייל</b><small>shorashealing@gmail.com</small></div>
           </a>
         </div>
+        <span class="ship-note">הטיפולים בקליניקה בחדרה — ומגיעות אליי מפרדס חנה־כרכור, אור עקיבא, בנימינה, גבעת עדה ועמק חפר. סבונים נשלחים בדואר לכל הארץ.</span>
       </div>
 
       <form class="reveal" data-delay="1" id="contactForm">
@@ -652,7 +667,7 @@
       <img class="mark" src="images/Logo_small.png" alt="" />
       <span class="brand-text"><span class="brand-name">סֶלָּם</span><span class="brand-tag">רְפוּאַת שֹׁרֶשׁ</span></span>
     </a>
-    <small>רפלקסולוגיה · ריפוי רייקי · סבון טבעי · לנשים</small>
+    <small>רפלקסולוגיה · ריפוי רייקי · סבון טבעי · לנשים · חדרה</small>
     <small><a href="privacy.html">מדיניות פרטיות</a> · <a href="accessibility.html">הצהרת נגישות</a></small>
     <small>כל הזכויות שמורות לסלם</small>
   </div>
@@ -742,6 +757,82 @@
     const text = 'היי סלם! 🌿\n' + 'שמי ' + name + '.\n' + (phone ? 'טלפון: ' + phone + '\n' : '') + (msg ? '\n' + msg : '\nאשמח לתאם מפגש.');
     window.open('https://wa.me/' + PHONE + '?text=' + encodeURIComponent(text), '_blank');
   });
+</script>
+
+<!-- Structured data. Prices MUST mirror the displayed (discounted) prices —
+     tests/seo.test.js asserts they match the .buy[data-price] attributes.
+     Soap-of-month shares coffee-turmeric's id, so it gets no Product of its own. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "HealthAndBeautyBusiness",
+      "@id": "https://yonatanmost-commits.github.io/selam-site/#business",
+      "name": "סלם · רפואת שורש",
+      "alternateName": "רפואת שורש",
+      "description": "רפואה משלימה לנשים: רפלקסולוגיה, ריפוי רייקי וסבון טבעי בעבודת יד.",
+      "url": "https://yonatanmost-commits.github.io/selam-site/",
+      "image": "https://yonatanmost-commits.github.io/selam-site/images/share-card.png",
+      "logo": "https://yonatanmost-commits.github.io/selam-site/images/Logo_small.png",
+      "telephone": "+972543477997",
+      "email": "shorashealing@gmail.com",
+      "priceRange": "₪₪",
+      "knowsLanguage": "he",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "חדרה",
+        "addressRegion": "מחוז חיפה",
+        "addressCountry": "IL"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "חדרה" },
+        { "@type": "City", "name": "פרדס חנה־כרכור" },
+        { "@type": "City", "name": "אור עקיבא" },
+        { "@type": "City", "name": "בנימינה" },
+        { "@type": "City", "name": "גבעת עדה" },
+        { "@type": "City", "name": "עמק חפר" }
+      ],
+      "audience": { "@type": "PeopleAudience", "suggestedGender": "female" },
+      "makesOffer": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "רפלקסולוגיה", "description": "שיטת טיפול הוליסטית המתבצעת דרך כפות הרגליים, לעידוד זרימה, איזון והרפיה." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ריפוי רייקי", "description": "טיפול אנרגטי המשלב מגע רך ומכיל או עבודה עדינה ללא מגע, להרפיה והתחדשות." } }
+      ]
+    },
+    {
+      "@type": "Product",
+      "name": "חימר לבן, פחם פעיל ועץ התה",
+      "description": "חימר לבן ופחם פעיל שמנקים ומאזנים לעומק, עם שמן אתרי עץ התה המטהר. מתאים לעור מעורב, שומני או נוטה לפצעונים.",
+      "image": "https://yonatanmost-commits.github.io/selam-site/images/soap-white-clay-charcoal-tea-tree.jpeg",
+      "brand": { "@type": "Brand", "name": "סלם · רפואת שורש" },
+      "offers": { "@type": "Offer", "price": "30", "priceCurrency": "ILS", "availability": "https://schema.org/InStock", "url": "https://yonatanmost-commits.github.io/selam-site/#shop" }
+    },
+    {
+      "@type": "Product",
+      "name": "אלוורה, חימר ירוק ולבנדר",
+      "description": "אלוורה מרגיעה וחימר ירוק מאזן, עם ניחוח לבנדר שמלטף את החושים. מתאים לעור רגיל, מעורב או אדמומי שזקוק להרגעה.",
+      "image": "https://yonatanmost-commits.github.io/selam-site/images/soap-aloe-green-clay-lavender.jpeg",
+      "brand": { "@type": "Brand", "name": "סלם · רפואת שורש" },
+      "offers": { "@type": "Offer", "price": "28", "priceCurrency": "ILS", "availability": "https://schema.org/InStock", "url": "https://yonatanmost-commits.github.io/selam-site/#shop" }
+    },
+    {
+      "@type": "Product",
+      "name": "קקאו, שיבולת שועל וילנג ילנג",
+      "description": "קקאו מזין עם שיבולת שועל טחונה דק ושמן אתרי ילנג ילנג המרגיע. מתאים לעור יבש, רגיש או בוגר.",
+      "image": "https://yonatanmost-commits.github.io/selam-site/images/soap-cacao-oat-ylang.jpeg",
+      "brand": { "@type": "Brand", "name": "סלם · רפואת שורש" },
+      "offers": { "@type": "Offer", "price": "30", "priceCurrency": "ILS", "availability": "https://schema.org/InStock", "url": "https://yonatanmost-commits.github.io/selam-site/#shop" }
+    },
+    {
+      "@type": "Product",
+      "name": "קפה וכורכום — פילינג עדין",
+      "description": "קפה וכורכום לפילינג עדין שמרכך עור יבש ומחזיר זוהר לעור עמום. מתאים לפילינג גוף מחדש וריענון העור.",
+      "image": "https://yonatanmost-commits.github.io/selam-site/images/soap-coffee-turmeric.jpeg",
+      "brand": { "@type": "Brand", "name": "סלם · רפואת שורש" },
+      "offers": { "@type": "Offer", "price": "30", "priceCurrency": "ILS", "availability": "https://schema.org/InStock", "url": "https://yonatanmost-commits.github.io/selam-site/#shop" }
+    }
+  ]
+}
 </script>
 </body>
 </html>
