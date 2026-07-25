@@ -90,7 +90,7 @@ The highest-felt change: Selam shares this link over WhatsApp constantly, and it
 <meta property="og:title"       content="סלם · רפואת שורש — רפלקסולוגיה וריפוי רייקי לנשים בחדרה" />
 <meta property="og:description" content="רפלקסולוגיה, ריפוי רייקי וסבון טבעי בעבודת יד. ריפוי הוליסטי שנבנה דרך הקשבה." />
 <meta property="og:url"         content="{BASE_URL}" />
-<meta property="og:image"       content="{BASE_URL}images/share-card.png" />
+<meta property="og:image"       content="{BASE_URL}images/share-card.jpg" />
 <meta property="og:image:width"  content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt"   content="סלם · רפואת שורש — רפלקסולוגיה, ריפוי רייקי וסבון טבעי" />
