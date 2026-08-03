@@ -57,6 +57,10 @@
   }
 
   *{ margin:0; padding:0; box-sizing:border-box; }
+  /* The browser's own [hidden]{display:none} loses to any author display: rule
+     (e.g. .cart-pill's inline-flex), so cart.js toggling .hidden would do nothing.
+     Restate it here, in author scope, where it wins. */
+  [hidden]{ display:none !important; }
   html{ scroll-behavior:smooth; overflow-x:clip; }
   body{
     font-family:"Frank Ruhl Libre", serif;
