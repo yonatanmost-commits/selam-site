@@ -83,14 +83,55 @@ test('exactly 4 Products, matching the 4 distinct soap ids', () => {
   assert.strictEqual(graph().filter((n) => n['@type'] === 'Product').length, 4);
 });
 
-test('every JSON-LD price matches a displayed .buy[data-price]', () => {
+test('every JSON-LD price matches a price shown on the page', () => {
+  // Read the rendered .price, not the buy button — sold-out soaps still show a
+  // price but have no button. The <s class="was"> before it is the pre-discount
+  // price and must not count.
   const displayed = new Set(
-    [...html.matchAll(/class="buy"[^>]*data-price="(\d+)"/g)].map((m) => m[1])
+    [...html.matchAll(/<div class="price">(?:<s class="was">₪\d+<\/s>)?\s*₪(\d+)/g)].map((m) => m[1])
   );
-  assert.ok(displayed.size > 0, 'found no data-price attributes to compare against');
+  assert.ok(displayed.size > 0, 'found no displayed prices to compare against');
   for (const p of graph().filter((n) => n['@type'] === 'Product')) {
     assert.ok(displayed.has(String(p.offers.price)),
-      `Product "${p.name}" price ${p.offers.price} matches no button on the page`);
+      `Product "${p.name}" price ${p.offers.price} is shown nowhere on the page`);
+  }
+});
+
+// --- stock state ---
+
+/** Gallery cards as { name, soldOut, hasBuy } — the month card reuses a gallery id. */
+function soapCards() {
+  return [...html.matchAll(/<article class="soap([^"]*)"[^>]*>([\s\S]*?)<\/article>/g)].map((m) => ({
+    name: m[2].match(/<h3>([^<]+)<\/h3>/)[1],
+    soldOut: /\bout-of-stock\b/.test(m[1]),
+    hasBuy: /class="buy"/.test(m[2]),
+  }));
+}
+
+test('a sold-out card offers no way to buy, and says so', () => {
+  const cards = soapCards();
+  assert.ok(cards.length > 0, 'no soap cards found');
+  for (const c of cards.filter((x) => x.soldOut)) {
+    assert.ok(!c.hasBuy, `"${c.name}" is sold out but still has an add-to-cart button`);
+  }
+  // The month card duplicates a gallery soap; it must not outlive the card's stock state.
+  const monthName = html.match(/<div class="month-card([^"]*)"[\s\S]*?<h2>([^<]+)<\/h2>/);
+  const monthSoldOut = /\bout-of-stock\b/.test(monthName[1]);
+  const twin = cards.find((c) => c.name === monthName[2]);
+  if (twin) {
+    assert.strictEqual(monthSoldOut, twin.soldOut,
+      `soap of the month "${monthName[2]}" disagrees with its gallery card about stock`);
+  }
+});
+
+test('stock state on the page and in the structured data agree', () => {
+  const products = graph().filter((n) => n['@type'] === 'Product');
+  for (const c of soapCards()) {
+    const p = products.find((x) => x.name === c.name);
+    assert.ok(p, `no Product entry for "${c.name}"`);
+    const want = c.soldOut ? 'https://schema.org/OutOfStock' : 'https://schema.org/InStock';
+    assert.strictEqual(p.offers.availability, want,
+      `"${c.name}" is ${c.soldOut ? 'sold out' : 'in stock'} on the page but the JSON-LD disagrees`);
   }
 });
 
