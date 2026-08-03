@@ -220,6 +220,15 @@
   .ship-note{ display:block; margin-top:.8rem; color:var(--ink-soft); font-size:.85rem; font-weight:300; }
   .buy{ background:var(--espresso); color:var(--paper); border:none; cursor:pointer; font-family:inherit; font-weight:600; font-size:.9rem; padding:.55rem 1.05rem; border-radius:100px; display:inline-flex; align-items:center; gap:.45rem; transition:background .25s, transform .25s; }
   .buy:hover{ background:var(--clay-deep); transform:translateY(-2px); }
+  /* Sold out — keep the soap on the page, just take the button away. */
+  .soap-img .pill.out{ background:var(--espresso); color:var(--paper); }
+  .out-of-stock .soap-img img, .out-of-stock .month-photo img{ filter:saturate(.5); opacity:.88; }
+  .out-of-stock .price{ color:var(--ink-soft); }
+  .sold-out{ display:inline-flex; align-items:center; gap:.45rem; background:transparent; border:1px solid var(--line);
+    color:var(--ink-soft); font-weight:600; font-size:.9rem; padding:.5rem 1.05rem; border-radius:100px; }
+  .sold-out svg{ width:15px; height:15px; flex:none; }
+  .month-body .restock-note{ margin:1.1rem 0 0; color:var(--ink-soft); font-size:.95rem; font-weight:300; }
+  .restock-note a{ color:var(--rose-deep); font-weight:600; }
   .shop-note{ margin-top:2.2rem; text-align:center; color:var(--ink-soft); font-size:.98rem; }
   .soap-feats{ display:flex; flex-wrap:wrap; gap:.6rem .7rem; margin-top:1.7rem; }
   .feat{ display:inline-flex; align-items:center; gap:.5rem; background:var(--paper); border:1px solid var(--line); color:var(--espresso); font-weight:600; font-size:.9rem; padding:.5rem 1.05rem; border-radius:100px; }
@@ -509,12 +518,14 @@
         </div>
       </article>
 
-      <article class="soap reveal" data-delay="3">
-        <div class="soap-img"><img src="images/soap-coffee-turmeric.jpeg" alt="סבון קפה וכורכום לפילינג עדין" loading="lazy" /></div>
+      <!-- אזל מהמלאי — להחזרה למכירה: להסיר class="out-of-stock", למחוק את ה‑pill ואת .sold-out,
+           ולהחזיר את כפתור ה‑buy (data-id="coffee-turmeric" data-price="30"). גם ב‑JSON-LD למטה: OutOfStock → InStock. -->
+      <article class="soap reveal out-of-stock" data-delay="3">
+        <div class="soap-img"><img src="images/soap-coffee-turmeric.jpeg" alt="סבון קפה וכורכום לפילינג עדין" loading="lazy" /><span class="pill out">אזל מהמלאי</span></div>
         <div class="soap-body">
           <h3>קפה וכורכום — פילינג עדין</h3>
           <p>קפה וכורכום לפילינג עדין שמרכך עור יבש ומחזיר זוהר לעור עמום. מתאים לפילינג גוף מחדש וריענון העור.</p>
-          <div class="soap-foot"><div class="price"><s class="was">₪33</s> ₪30</div><button class="buy" data-id="coffee-turmeric" data-price="30" data-soap="קפה וכורכום — פילינג עדין">הוספה לסל<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></button></div>
+          <div class="soap-foot"><div class="price"><s class="was">₪33</s> ₪30</div><span class="sold-out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg>אזל מהמלאי</span></div>
         </div>
       </article>
     </div>
@@ -525,7 +536,7 @@
   <!-- SOAP OF THE MONTH -->
   <section id="month" class="wrap">
     <!-- ↓ להחלפה כל חודש: תמונה, שם, תיאור ומחיר של סבון החודש -->
-    <div class="month-card reveal">
+    <div class="month-card reveal out-of-stock">
       <svg class="rings" viewBox="0 0 400 400" aria-hidden="true">
         <use href="#treering" transform="translate(200 200) scale(1) translate(-200 -200)"/>
         <use href="#treering" transform="translate(5 6) rotate(7 200 200) translate(200 200) scale(.74) translate(-200 -200)"/>
@@ -542,8 +553,9 @@
         <p>בחירת החודש של סלם — סבון פילינג מעורר. גרגרי קפה שמנערים את העור לחיים, כורכום שמאיר, ופילינג עדין שמרכך עור יבש ומחזיר זוהר לעור עמום.</p>
         <div class="month-foot">
           <div class="price"><s class="was">₪33</s> ₪30 <small>/ חפיסה</small></div>
-          <button class="buy" data-id="coffee-turmeric" data-price="30" data-soap="הסבון של החודש — קפה וכורכום לפילינג עדין">הוספה לסל<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></button>
+          <span class="sold-out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg>אזל מהמלאי</span>
         </div>
+        <p class="restock-note">המוצר אזל מהמלאי. <a href="#contact">כתבו לנו</a> ונעדכן אתכן ברגע שהוא חוזר.</p>
       </div>
     </div>
   </section>
@@ -831,7 +843,7 @@
       "description": "קפה וכורכום לפילינג עדין שמרכך עור יבש ומחזיר זוהר לעור עמום. מתאים לפילינג גוף מחדש וריענון העור.",
       "image": "https://yonatanmost-commits.github.io/selam-site/images/soap-coffee-turmeric.jpeg",
       "brand": { "@type": "Brand", "name": "סלם · רפואת שורש" },
-      "offers": { "@type": "Offer", "price": "30", "priceCurrency": "ILS", "availability": "https://schema.org/InStock", "url": "https://yonatanmost-commits.github.io/selam-site/#shop" }
+      "offers": { "@type": "Offer", "price": "30", "priceCurrency": "ILS", "availability": "https://schema.org/OutOfStock", "url": "https://yonatanmost-commits.github.io/selam-site/#shop" }
     }
   ]
 }
