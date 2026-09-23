@@ -204,8 +204,13 @@
     checkoutBtn.addEventListener('click', () => {
       const msg = SelamCart.buildMessage(items, catalog, deliveryId);
       if (!msg) return;
-      window.open(SelamCart.buildWaUrl(msg, WA_PHONE), '_blank');
+      const url = SelamCart.buildWaUrl(msg, WA_PHONE);
+      // In-app browsers (WhatsApp/Instagram/Facebook links) block new tabs and
+      // window.open returns null — the cart used to empty with nothing opened.
+      // Fall back to navigating this tab so the order always reaches WhatsApp.
+      const win = window.open(url, '_blank');
       items = []; save(items); render(); closeDrawer();
+      if (!win) window.location.href = url;
     });
 
     render();
