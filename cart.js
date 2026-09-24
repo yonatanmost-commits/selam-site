@@ -72,10 +72,30 @@
     return 'https://wa.me/' + phone + '?text=' + encodeURIComponent(text);
   }
 
+  // TikTok / Instagram / Facebook in-app browsers block every hop to WhatsApp
+  // (wa.me, api.whatsapp.com, whatsapp://). Checkout has to route around them.
+  function isInAppBrowser(ua) {
+    return /musical_ly|trill_|BytedanceWebview|TikTok|Instagram|FBAN|FBAV|FB_IAB/i.test(ua || '');
+  }
+
+  // Cart <-> "?cart=" string, so "open in browser" carries the cart across.
+  function encodeCart(items) {
+    return items.map((it) => it.id + '.' + it.qty).join(',');
+  }
+
+  function decodeCart(s) {
+    return String(s || '').split(',').map((part) => {
+      const i = part.lastIndexOf('.');
+      const id = part.slice(0, i), qty = Number(part.slice(i + 1));
+      return i > 0 && Number.isInteger(qty) && qty > 0 ? { id, qty } : null;
+    }).filter(Boolean);
+  }
+
   const SelamCart = {
     DELIVERY, FREE_SHIPPING_ABOVE, MAX_QTY,
     addItem, setQty, removeItem, cartCount, subtotal,
     deliveryPrice, total, sanitize, buildMessage, buildWaUrl,
+    isInAppBrowser, encodeCart, decodeCart,
   };
 
   if (typeof module !== 'undefined' && module.exports) module.exports = SelamCart;
@@ -89,7 +109,9 @@
     const pill = $('cartPill'), badge = $('cartCount'), live = $('cartLive'),
           backdrop = $('cartBackdrop'), drawer = $('cartDrawer'), closeBtn = $('cartClose'),
           listEl = $('cartItems'), emptyEl = $('cartEmpty'), totalEl = $('cartTotal'),
-          checkoutBtn = $('cartCheckout'), deliveryBox = $('cartDelivery');
+          checkoutBtn = $('cartCheckout'), deliveryBox = $('cartDelivery'),
+          inAppBox = $('cartInApp'), copyBtn = $('cartCopy'), msgEl = $('cartMsg');
+    const IN_APP = SelamCart.isInAppBrowser(navigator.userAgent);
     if (!pill || !drawer) return;
 
     // Catalog from DOM — first button per id wins (gallery before soap-of-month)
@@ -106,12 +128,29 @@
       try { return SelamCart.sanitize(JSON.parse(localStorage.getItem(KEY)) || [], catalog); }
       catch (_) { return memory; }
     }
+    // Inside TikTok/Instagram the cart also rides in ?cart=, so "open in browser"
+    // (which reopens the current address) arrives with the cart already filled.
+    function syncUrl(items) {
+      try {
+        const u = new URL(location.href);
+        if (IN_APP && items.length) u.searchParams.set('cart', SelamCart.encodeCart(items));
+        else u.searchParams.delete('cart');
+        if (u.href !== location.href) history.replaceState(history.state, '', u.href);
+      } catch (_) {}
+    }
     function save(items) {
       memory = items;
       try { localStorage.setItem(KEY, JSON.stringify(items)); } catch (_) {}
+      syncUrl(items);
     }
 
     let items = load();
+    const carried = new URLSearchParams(location.search).get('cart');
+    if (carried) {
+      const fromUrl = SelamCart.sanitize(SelamCart.decodeCart(carried), catalog);
+      if (fromUrl.length) items = fromUrl;
+    }
+    save(items);
     let deliveryId = 'post';
     let lastFocus = null;
 
@@ -142,6 +181,7 @@
         listEl.appendChild(li);
       });
       totalEl.textContent = fmt(SelamCart.total(items, catalog, deliveryId));
+      if (inAppBox && !inAppBox.hidden) msgEl.value = SelamCart.buildMessage(items, catalog, deliveryId) || '';
       if (count === 0 && !drawer.hidden) closeDrawer();
     }
 
@@ -152,6 +192,7 @@
     }
     function closeDrawer() {
       backdrop.hidden = true; drawer.hidden = true;
+      if (inAppBox) inAppBox.hidden = true;
       if (lastFocus) lastFocus.focus();
     }
 
@@ -194,7 +235,7 @@
     });
     drawer.addEventListener('keydown', (ev) => { // keep Tab inside the dialog
       if (ev.key !== 'Tab') return;
-      const f = drawer.querySelectorAll('button:not([disabled]), input, a[href]');
+      const f = drawer.querySelectorAll('button:not([disabled]), input, textarea, a[href]');
       if (!f.length) return;
       const first = f[0], last = f[f.length - 1];
       if (ev.shiftKey && document.activeElement === first) { ev.preventDefault(); last.focus(); }
@@ -204,6 +245,12 @@
     checkoutBtn.addEventListener('click', () => {
       const msg = SelamCart.buildMessage(items, catalog, deliveryId);
       if (!msg) return;
+      if (IN_APP && inAppBox) { // WhatsApp is unreachable from here: keep the cart, offer the ways out
+        msgEl.value = msg;
+        inAppBox.hidden = false;
+        inAppBox.scrollIntoView({ block: 'nearest' });
+        return;
+      }
       const url = SelamCart.buildWaUrl(msg, WA_PHONE);
       // In-app browsers (WhatsApp/Instagram/Facebook links) block new tabs and
       // window.open returns null — the cart used to empty with nothing opened.
@@ -211,6 +258,18 @@
       const win = window.open(url, '_blank');
       items = []; save(items); render(); closeDrawer();
       if (!win) window.location.href = url;
+    });
+
+    if (copyBtn) copyBtn.addEventListener('click', () => {
+      const orig = copyBtn.textContent;
+      const done = () => { copyBtn.textContent = 'הועתק ✓'; setTimeout(() => { copyBtn.textContent = orig; }, 1500); };
+      const fallback = () => { // webviews often refuse the async clipboard API
+        msgEl.focus(); msgEl.select(); msgEl.setSelectionRange(0, msgEl.value.length);
+        try { if (document.execCommand('copy')) done(); } catch (_) {}
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(msgEl.value).then(done, fallback);
+      } else fallback();
     });
 
     render();

@@ -382,6 +382,12 @@
     border-top:1px solid var(--line); font-size:1.05rem; color:var(--espresso); }
   .cart-total b{ font-weight:900; font-size:1.35rem; color:var(--cacao); }
   .cart-checkout{ width:100%; justify-content:center; margin-top:1rem; }
+  .cart-inapp{ margin-top:1rem; padding:.9rem 1rem; border:1px solid var(--line); border-radius:12px; background:var(--paper-2); color:var(--ink-soft); font-size:.92rem; line-height:1.6; }
+  .cart-inapp b{ color:var(--espresso); font-weight:600; }
+  .cart-inapp ol{ margin:.5rem 1.2rem 0 0; display:grid; gap:.5rem; }
+  .cart-inapp a{ color:var(--rose-deep); font-weight:600; }
+  .cart-copy{ display:flex; margin-top:.5rem; padding:.5rem 1.2rem; font-size:.92rem; }
+  .cart-msg{ width:100%; margin-top:.7rem; padding:.6rem .7rem; border:1px solid var(--line); border-radius:8px; background:var(--paper); color:var(--espresso); font:inherit; font-size:.85rem; resize:none; }
   .cart-pay-note{ margin-top:.7rem; text-align:center; color:var(--ink-soft); font-size:.85rem; }
 
   @media(prefers-reduced-motion:reduce){ .reveal{ opacity:1; transform:none; } html{ scroll-behavior:auto; } *{ animation-duration:.001ms !important; transition-duration:.001ms !important; } }
@@ -714,6 +720,15 @@
   </fieldset>
   <div id="cartTotalRow" class="cart-total"><span>סה"כ</span><b id="cartTotal">₪0</b></div>
   <button id="cartCheckout" class="btn btn-primary cart-checkout">השלמת ההזמנה בוואטסאפ</button>
+  <div id="cartInApp" class="cart-inapp" hidden>
+    <p><b>האפליקציה שבה נפתח האתר (כמו טיקטוק או אינסטגרם) לא מאפשרת לעבור מכאן לוואטסאפ.</b> הסל שמור — אפשר להמשיך כך:</p>
+    <ol>
+      <li>לפתוח את האתר בדפדפן: תפריט <b>⋯</b> למעלה ← <b>פתיחה בדפדפן</b>. הסל יעבור איתכן.</li>
+      <li>או להעתיק את ההזמנה ולשלוח אותה בוואטסאפ ל־<a href="tel:+972543477997" dir="ltr">054-347-7997</a>
+        <button id="cartCopy" type="button" class="btn btn-ghost cart-copy">העתקת ההזמנה</button></li>
+    </ol>
+    <textarea id="cartMsg" class="cart-msg" readonly rows="5" aria-label="פרטי ההזמנה"></textarea>
+  </div>
   <p class="cart-pay-note">התשלום בביט או בפייבוקס לאחר אישור ההזמנה.</p>
 </aside>
 <script src="cart.js" defer></script>
