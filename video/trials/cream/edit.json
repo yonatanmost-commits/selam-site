@@ -1,0 +1,36 @@
+{
+ "sources": [
+  {"id": "61697", "path": "Videos/61697.mp4", "recorded_by": "Selam", "origin": "Selam's phone gallery, raw clip 61697 (melting and blending), received 2026-10-11"},
+  {"id": "61698", "path": "Videos/61698.mp4", "recorded_by": "Selam", "origin": "Selam's phone gallery, raw clip 61698 (oils, pH, jar), received 2026-10-11"},
+  {"id": "62056", "path": "Videos/62056.mp4", "recorded_by": "Selam", "origin": "Selam's phone gallery, raw clip 62056 (hair, to camera), received 2026-10-11"}
+ ],
+ "title": {"text": "קרם לשיער\nשהכנתי בעצמי", "seconds": 3},
+ "closing": {"text": "סלם · רפואת שורש", "seconds": 3},
+ "segments": [
+  {"source": "62056", "start": 0.6, "end": 8.7},
+  {"source": "61697", "start": 6.0, "end": 8.4, "mute": true},
+  {"source": "61697", "start": 23.9, "end": 26.0, "mute": true},
+  {"source": "61697", "start": 73.0, "end": 76.6, "mute": true},
+  {"source": "61697", "start": 94.0, "end": 96.8, "mute": true},
+  {"source": "61697", "start": 144.0, "end": 147.2, "mute": true},
+  {"source": "61698", "start": 14.4, "end": 16.8, "mute": true},
+  {"source": "61698", "start": 75.6, "end": 78.0, "mute": true},
+  {"source": "61698", "start": 172.0, "end": 174.8, "mute": true},
+  {"source": "61698", "start": 228.5, "end": 233.5, "mute": true},
+  {"source": "61698", "start": 311.6, "end": 314.4, "mute": true},
+  {"source": "62056", "start": 21.4, "end": 29.8},
+  {"source": "62056", "start": 36.0, "end": 38.4, "mute": true},
+  {"source": "62056", "start": 73.4, "end": 76.4, "mute": true},
+  {"source": "62056", "start": 78.0, "end": 81.4, "mute": true}
+ ],
+ "captions": [
+  {"source": "62056", "start": 1.0, "end": 4.32, "text": "ככה השיער נראה אחרי חפיפה,"},
+  {"source": "62056", "start": 4.44, "end": 5.44, "text": "שמתי את הקרם"},
+  {"source": "62056", "start": 5.44, "end": 8.7, "text": "והשיער התייבש לי בשמש."},
+  {"source": "62056", "start": 21.54, "end": 23.88, "text": "לא שמתי סרום או שמן אחר כך."},
+  {"source": "62056", "start": 24.76, "end": 27.3, "text": "זה המרקם של הקרם."}
+ ],
+ "levels": {"voice_gain_db": 18, "music_lufs": -20},
+ "music": {"path": "video/music/mixkit-815.mp3", "start": 0, "track": "My Little Prince", "artist": "Michael Ramir C.",
+           "source": "https://mixkit.co/free-stock-music/tag/acoustic/", "licence": "Mixkit Stock Music Free License"}
+}
