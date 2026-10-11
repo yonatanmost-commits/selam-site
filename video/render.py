@@ -16,11 +16,14 @@ The edit file (JSON) is the only description of an edit:
     closing   {text, seconds}                         optional; shown over the last seconds
     music     {path, start, track, source, licence}   optional; runs under the voice, lifts where nobody speaks;
                                                       start is where in the track the video begins
+    look      {lift}                                  optional; 0 to 0.2, lightens faces and shadows while
+                                                      leaving the bright parts of the picture alone
     levels    {voice_gain_db, music_lufs}             optional; how far to lift her recorded voice before
                                                       levelling, and how loud the music sits when nobody speaks
 
 Everything about ffmpeg lives here: the filter graph, caption styling and placement, scaling,
-loudness levelling and music ducking. --draft renders 720x1280 with a "טיוטה" mark.
+loudness levelling and music ducking. --draft renders 720x1280 with a "טיוטה" mark. --no-music leaves
+the music out, for a version that gets its sound added inside TikTok.
 """
 import argparse
 import json
@@ -112,11 +115,15 @@ def subtitles(edit, segs, total, draft):
             + "\n".join(lines) + "\n")
 
 
-def graph(segs, total, size, levels, music_input, loudnorm, picture=True):
+def graph(segs, total, size, look, levels, music_input, loudnorm, picture=True):
     """The ffmpeg filter graph. Inputs 0..n-1 are the segments; the music, if any, follows.
     With picture=False only the sound is built, for the loudness measuring pass."""
     w, h = size
     voice = VOICE.format(gain=levels.get("voice_gain_db", 0))
+    lift = look.get("lift", 0)
+    # Raise the dark and middle tones; black and white stay put, so skies and steel do not blow out.
+    light = (f"curves=all='0/0 0.25/{0.25 + lift:.3f} 0.55/{0.55 + lift:.3f} 1/1',"
+             f"eq=saturation={1 + lift / 2:.3f}," if lift else "")
     parts = []
     # Phone clips have uneven frame timing. Every piece is forced to exactly its length in both picture
     # and sound, or the picture slides behind the sound and captions a little more at every cut.
@@ -132,7 +139,7 @@ def graph(segs, total, size, levels, music_input, loudnorm, picture=True):
     if picture:
         for i, seg in enumerate(segs):
             parts.append(f"[{i}:v]scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},"
-                         f"{exact_v.format(seg['end'] - seg['start'])},setsar=1,format=yuv420p[v{i}]")
+                         f"{exact_v.format(seg['end'] - seg['start'])},{light}setsar=1,format=yuv420p[v{i}]")
         parts.append("".join(f"[v{i}]" for i in range(n)) + f"concat=n={n}:v=1:a=0,ass=captions.ass[vout]")
     if music_input is None:
         parts.append(f"[acat]{voice}[mix]")
@@ -155,7 +162,7 @@ def loudnorm_filter(measured=None):
             f":offset={measured['target_offset']},aresample=48000")
 
 
-def render(edit_path, out_path, draft=False):
+def render(edit_path, out_path, draft=False, music=True):
     """Render the edit described in `edit_path` to `out_path`."""
     with open(edit_path, encoding="utf-8") as f:
         edit = json.load(f)
@@ -168,7 +175,7 @@ def render(edit_path, out_path, draft=False):
     inputs = []
     for seg in segs:
         inputs += ["-ss", f"{seg['start']:.3f}", "-t", f"{seg['end'] - seg['start']:.3f}", "-i", sources[seg["source"]]]
-    music = edit.get("music")
+    music = edit.get("music") if music else None
     music_input = None
     if music and music.get("path"):
         music_input = len(segs)
@@ -182,7 +189,7 @@ def render(edit_path, out_path, draft=False):
 
         def run(loudnorm, tail, picture=True):
             with open(os.path.join(tmp, "graph.txt"), "w", encoding="utf-8") as f:
-                f.write(graph(segs, total, size, edit.get("levels", {}), music_input, loudnorm, picture))
+                f.write(graph(segs, total, size, edit.get("look", {}), edit.get("levels", {}), music_input, loudnorm, picture))
             return subprocess.run(["ffmpeg", "-hide_banner", "-nostdin", "-y", "-nostats", *inputs,
                                    "-/filter_complex", "graph.txt", "-t", f"{total:.3f}", *tail],
                                   cwd=tmp, check=True, capture_output=True, text=True, encoding="utf-8",
@@ -206,9 +213,10 @@ def main():
     ap.add_argument("edit")
     ap.add_argument("--out", required=True)
     ap.add_argument("--draft", action="store_true", help="720x1280, fast encode, marked טיוטה")
+    ap.add_argument("--no-music", action="store_true", help="leave the music out")
     args = ap.parse_args()
     try:
-        total = render(args.edit, args.out, args.draft)
+        total = render(args.edit, args.out, args.draft, music=not args.no_music)
     except subprocess.CalledProcessError as e:
         sys.exit("ffmpeg failed:\n" + (e.stderr or "")[-3000:])
     print(f"{total:.1f} s -> {args.out}")

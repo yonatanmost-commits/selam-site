@@ -32,6 +32,19 @@ Open after round 1:
 - Which bowl is the oil phase and which the water phase was read from the colour (yellow = oils). She should confirm.
 - These tracks are CC BY 4.0: free for business use, but the credit must appear in the TikTok description.
 
+### Round 2, 2026-10-11 (on draft 2, relayed by Yonatan) → draft 3
+"Doing good."
+
+| Note | Result |
+|---|---|
+| 0:07–0:09: remove, she looks away | Done. The shot of her standing at the bowls is gone, and the next shot now starts when she lifts the bowl. The Olive 1000 label moved onto the oil-phase shot, as a third line. |
+| Around 0:19: she looks at the camera unsure, because the electricity was disconnected | Done. The blender shot ends before she looks up (2.1 s instead of 3.5 s); the next blending shot runs 2 s longer. |
+| 0:42–0:44: she does not like that snippet | Done. The jar-to-camera shot is removed; the pour into the jar now cuts straight to the hair. |
+| Some light in the face | Done. Dark and middle tones are raised across the whole video (look.lift 0.12); bright areas are left alone. |
+| Maybe music that could be more viral | Not done as asked, with the reason: what is viral on TikTok is its own trending sounds, and those can only be added inside TikTok, not baked into a file. Draft 3 keeps "Lachaim"; a second file, draft3-no-music.mp4, has her voice and captions only, so a TikTok sound can be laid over it in the app. Which way to go is Selam's and Yonatan's decision, and it changes what the spec says about music (R13, R14). |
+
+Draft 3 runs 60 s. One round of notes is left.
+
 ## Assets
 | Asset | Kind | Origin |
 |---|---|---|
@@ -69,6 +82,7 @@ Tried and dropped: ffmpeg's built-in whisper filter with the ivrit.ai ggml model
 |---|---|---|
 | draft1.mp4 | 2026-10-11 | 55 s, cut from the three originals. Hair result and her first line as the hook, the making in ten short silent shots under music, then her two lines about serum and texture, closing on the hair. Title and closing line were proposals. Selam's notes on it are round 1. |
 | draft2.mp4 | 2026-10-11 | 64 s, after round 1. Her opening, her title, the making with ingredient labels, the hair and her lines at the end, klezmer-style music. |
+| draft3.mp4 | 2026-10-11 | 60 s, after round 2. Three snippets removed, faces lightened. draft3-no-music.mp4 is the same cut without music. |
 
 ## Result
 Not posted yet.
