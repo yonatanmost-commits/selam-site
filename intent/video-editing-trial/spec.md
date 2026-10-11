@@ -20,7 +20,7 @@ From: intent/video-editing-trial/intent.md v1.
 - R12. Her voice is levelled so that quiet and loud passages are both comfortable at one phone volume.
 - R13. Music runs under the voice throughout, quiet enough that every word stays clear, and lifts in passages with no speech.
 - R14. The music comes from a free source whose licence allows this use, and the track name, source and licence are written down.
-- R15. Every picture and every voice in the finished video is Selam's real footage and real voice.
+- R15. Every picture and every voice in the finished video is Selam's real footage and real voice. The one exception is her own brand logo and brand text, shown as on-screen graphics. Nothing in the video is AI-generated.
 - R16. The look stays inside her brand: professional and slow-craft. No meme effects, emoji bursts or clickbait text, even where they would add reach.
 
 ### Working with Selam
@@ -49,7 +49,7 @@ From: intent/video-editing-trial/intent.md v1.
 - A10 (R12). Given the finished video's audio, when its loudness is measured, then overall loudness is close to −14 LUFS, the loudness range is under 10 LU (the current cut measures about 24), and peaks do not clip.
 - A11 (R13). Given the finished video, when Selam listens on her phone speaker, then she can follow every word with the music playing.
 - A12 (R14). Given the written recommendation, when a reader looks for the music, then the track, its source and its licence are named, and the licence permits use in a business's social video at no cost.
-- A13 (R15). Given the list of every asset in the edit, when each is traced to its origin, then every picture and voice comes from Selam's own recordings.
+- A13 (R15). Given the list of every asset in the edit, when each is traced to its origin, then every picture and voice comes from Selam's own recordings, except her own brand logo, which is listed with its origin.
 - A14 (R16). Given the finished video, when Selam watches it, then she confirms it looks like her brand and names nothing she finds childish or gimmicky.
 - A15 (R17, R18). Given each round of Selam's notes, when the next draft is delivered, then each note is listed as done or as not done with a reason, and there are at most three rounds.
 - A16 (R19). Given the end of the trial, when its result is reported, then it says either that she posted the video, with the date, or that she would not post it, with her reasons.

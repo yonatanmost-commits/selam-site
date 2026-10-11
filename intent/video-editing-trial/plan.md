@@ -14,6 +14,8 @@ From: intent/video-editing-trial/spec.md v1.
 - D10. Footage sequence: the first draft is cut from `Videos/62076.mp4` (720p, CapCut logo visible, marked as a draft) so Selam can give notes at once. The final is re-rendered from the three raw clips when they arrive.
 - D11. Acceptance tests follow the existing pattern in `tests/cart.test.js` and `tests/seo.test.js`: Node's built-in test runner, one file, run by file path. No alternative worth weighing.
 - D12. Frames go to Claude as small contact sheets and single stills, not as full video, to keep plan usage low and measurable.
+- D13. Her brand (typeface, colours, logo) is a constant of the render module, not of the edit file. The edit file only switches the logo closing on. Chosen over listing the logo as an asset in the edit file because the brand does not vary per video, and that route needs the locked acceptance tests unlocked. Added after Selam asked for her logo in round 3 (ruling Q1); the logo is still listed in the log's Assets with its origin.
+- D14. The render stops with a clear message when the logo file is missing, since `images/receipt-logo-full.png` is not committed.
 
 ## Files that change
 - `.gitignore` (changed): already ignores `Videos/`; adds `video/out/`, `video/work/` and `video/music/`. The pending `ops/` line is committed with it.
