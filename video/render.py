@@ -60,7 +60,8 @@ TARGET_LUFS, TARGET_PEAK, TARGET_RANGE = -14, -2, 7
 VOICE = ("highpass=f=100,afftdn=nr=12:nf=-50:tn=1,volume={gain}dB,"
          "acompressor=threshold=-24dB:ratio=4:attack=10:release=200:makeup=6dB,alimiter=limit=0.7")
 VOICE_DELAY = 0.03      # the hiss filter and limiter hold the sound back this long (measured); it is cut off again
-CUT_FADE = 0.04         # each kept piece of sound fades in and out this long, so cuts do not click
+CUT_FADE = 0.012        # each kept piece of sound fades in and out this long, so cuts do not click;
+                        # longer than this swallows a short quiet word at the start of a piece
 MUSIC_LUFS = -20        # default levels.music_lufs; every track is first brought to one level,
                         # so tracks can be swapped freely
 # Her logo is drawn dark for paper; over footage it is recoloured to the caption colour with a soft shadow.

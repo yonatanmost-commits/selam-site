@@ -66,6 +66,10 @@ Not a round of notes; a defect in the render. Three causes, all fixed and now me
 - Caption times came from the speech model, which lumps pauses into words: "והשיער התייבש לי בשמש" came up about a second before she says it, and "זה המרקם של הקרם" stayed 0.85 s after. Her lines are now timed from the sound energy of the source clip in 20 ms steps; each caption appears 0.1 s before the first word and stays 0.3 s after the last.
 - The cut into "לא שמתי סרום" was at 21.40 s, inside a syllable. It is now at 21.18 s, in the pause before it.
 
+Yonatan on draft 5 (2026-10-12): the cut before "לא" now began in the end of the word before it, and the word "שמש" was cut off. Both fixed in draft 6, from a chart of the voiced sound and the hiss in 20 ms steps:
+- "בשמש": she says "שמש" after a pause, ending at 9.00 s (sh at 8.40, vowel 8.56–8.84, final sh 8.88–9.00). The piece ended at 8.4; it now ends at 9.08.
+- "לא שמתי": "בכלל" runs straight into a quiet "לא" with no pause; the level drops at 21.40 s where "לא" begins. The piece now starts at 21.39, and the fade at every cut is 0.012 s instead of 0.04 s, which had been swallowing half of that short word.
+
 Still true after the fix: the "לא" in that line is very faint in her recording. The speech model hears "שמתי סרום", "ושמתי סרום" or "לא שמתי סרום" depending on where the clip starts, with low confidence on that word every time. A viewer who does not read the caption may hear the opposite of what she means. Hers to decide: keep it with the caption, drop the line, or say it again.
 
 ### TikTok account and music (plan step 5), 2026-10-11
@@ -112,6 +116,7 @@ Tried and dropped: ffmpeg's built-in whisper filter with the ivrit.ai ggml model
 | draft3.mp4 | 2026-10-11 | 60 s, after round 2. Three snippets removed, faces lightened. draft3-no-music.mp4 is the same cut without music. |
 | draft4.mp4 | 2026-10-11 | 58 s, after round 3. Bowls on the table with a label above each, logo in the closing, calmer music. final.mp4 is the same cut at 1080×1920. |
 | draft5.mp4 | 2026-10-11 | 58 s. Draft 4's cut with the sync fault fixed and captions re-timed to her voice. final.mp4 is the same at 1080×1920. |
+| draft6.mp4 | 2026-10-12 | 58 s. Draft 5 with the two word cuts corrected. final.mp4 is the same at 1080×1920. |
 
 ## Result
 Not posted yet.
