@@ -2,6 +2,10 @@
 /Selam.jpg
 /Cacao, white clay, ylang ylang Soap.jpg
 
+# Business data — recipes, supplier prices, costs, margins.
+# This repo is PUBLIC (serves the live site). None of this may be committed.
+ops/
+
 # Local working stuff — never publish
 .claude/
 screenshots/
@@ -9,3 +13,14 @@ screen shot/
 screenshot/
 index-manual.html
 Change Report*.txt
+
+# Raw footage — her face and home. This repo is PUBLIC; never commit video.
+Videos/
+# Rendered drafts, transcripts and contact sheets, and downloaded music (video/ itself is tracked)
+video/out/
+video/work/
+video/music/
+
+# Generated lane review pages
+intent/**/loop.html
+intent/index.html
