@@ -8,7 +8,10 @@ The edit file (JSON) is the only description of an edit:
     sources   [{id, path, recorded_by, origin}]       paths relative to the repo root
     segments  [{source, start, end, mute}]            kept pieces, in order, in source-clip seconds;
                                                       mute drops a piece's own sound (off-camera talk)
-    captions  [{source, start, end, text}]            in source-clip seconds; they move with their segment
+    captions  [{source, start, end, text}]            what she says; in source-clip seconds, so they move
+                                                      with their segment
+    labels    [{source, start, end, text}]            on-screen words that are not speech (ingredients);
+                                                      timed and placed like captions
     title     {text, seconds}                         shown from the first frame
     closing   {text, seconds}                         optional; shown over the last seconds
     music     {path, start, track, source, licence}   optional; runs under the voice, lifts where nobody speaks;
@@ -66,9 +69,9 @@ def timeline(edit):
 
 
 def placed_captions(edit, segs):
-    """Captions in finished-video time. A caption shows only while its own segment plays."""
+    """Captions and labels in finished-video time. Each shows only while its own segment plays."""
     out = []
-    for cap in edit.get("captions", []):
+    for cap in edit.get("captions", []) + edit.get("labels", []):
         for seg in segs:
             if seg["source"] != cap["source"]:
                 continue
