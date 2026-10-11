@@ -58,7 +58,15 @@ Draft 4 runs 58 s. The three rounds are used.
 Open after round 3:
 - With the music playing, a speech model re-hearing the finished video catches "שמתי סרום" but drops the short "לא" before it. The caption carries it, but Selam should listen for it on her phone speaker (A11).
 - The logo is a picture that is not her footage. The spec says every picture is her real footage (R15); the question is with the planner.
-- The logo file, images/receipt-logo-full.png, is not committed to the repository; the render needs it on this PC.
+
+### Fault found by Selam in draft 4: captions, sound and picture out of sync (2026-10-11) → draft 5
+Not a round of notes; a defect in the render. Three causes, all fixed and now measured by `video/check_sync.py`:
+- The slowed table shot had 6 s of picture but only 3.4 s of sound, so her voice and the music ran 2.5 s ahead of the picture and captions from there on. Every piece's sound is now padded to its full length. Picture and sound are both 57.9 s.
+- The voice clean-up delayed her voice by 0.03 s. That delay is now cut off again. Measured against the source clips: picture 0 frames off in all 13 pieces, sound 0.00 s off in both spoken passages.
+- Caption times came from the speech model, which lumps pauses into words: "והשיער התייבש לי בשמש" came up about a second before she says it, and "זה המרקם של הקרם" stayed 0.85 s after. Her lines are now timed from the sound energy of the source clip in 20 ms steps; each caption appears 0.1 s before the first word and stays 0.3 s after the last.
+- The cut into "לא שמתי סרום" was at 21.40 s, inside a syllable. It is now at 21.18 s, in the pause before it.
+
+Still true after the fix: the "לא" in that line is very faint in her recording. The speech model hears "שמתי סרום", "ושמתי סרום" or "לא שמתי סרום" depending on where the clip starts, with low confidence on that word every time. A viewer who does not read the caption may hear the opposite of what she means. Hers to decide: keep it with the caption, drop the line, or say it again.
 
 ### TikTok account and music (plan step 5), 2026-10-11
 Yonatan: her account is not a business account. A personal account can post a video with music already in it, and can also use TikTok's whole sound library, so either route is open.
@@ -103,6 +111,7 @@ Tried and dropped: ffmpeg's built-in whisper filter with the ivrit.ai ggml model
 | draft2.mp4 | 2026-10-11 | 64 s, after round 1. Her opening, her title, the making with ingredient labels, the hair and her lines at the end, klezmer-style music. |
 | draft3.mp4 | 2026-10-11 | 60 s, after round 2. Three snippets removed, faces lightened. draft3-no-music.mp4 is the same cut without music. |
 | draft4.mp4 | 2026-10-11 | 58 s, after round 3. Bowls on the table with a label above each, logo in the closing, calmer music. final.mp4 is the same cut at 1080×1920. |
+| draft5.mp4 | 2026-10-11 | 58 s. Draft 4's cut with the sync fault fixed and captions re-timed to her voice. final.mp4 is the same at 1080×1920. |
 
 ## Result
 Not posted yet.

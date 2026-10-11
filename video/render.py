@@ -59,6 +59,7 @@ TARGET_LUFS, TARGET_PEAK, TARGET_RANGE = -14, -2, 7
 # dynaudnorm left them 3 LU apart or pumped the background.)
 VOICE = ("highpass=f=100,afftdn=nr=12:nf=-50:tn=1,volume={gain}dB,"
          "acompressor=threshold=-24dB:ratio=4:attack=10:release=200:makeup=6dB,alimiter=limit=0.7")
+VOICE_DELAY = 0.03      # the hiss filter and limiter hold the sound back this long (measured); it is cut off again
 CUT_FADE = 0.04         # each kept piece of sound fades in and out this long, so cuts do not click
 MUSIC_LUFS = -20        # default levels.music_lufs; every track is first brought to one level,
                         # so tracks can be swapped freely
@@ -138,7 +139,8 @@ def graph(segs, total, size, look, levels, music_input, logo, loudnorm, picture=
     `logo` is (input number, seconds on screen) or None.
     With picture=False only the sound is built, for the loudness measuring pass."""
     w, h = size
-    voice = VOICE.format(gain=levels.get("voice_gain_db", 0))
+    voice = (VOICE.format(gain=levels.get("voice_gain_db", 0))
+             + f",atrim=start={VOICE_DELAY},asetpts=PTS-STARTPTS,apad=whole_dur={total:.3f}")
     lift = look.get("lift", 0)
     # Raise the dark and middle tones; black and white stay put, so skies and steel do not blow out.
     light = (f"curves=all='0/0 0.25/{0.25 + lift:.3f} 0.55/{0.55 + lift:.3f} 1/1',"
@@ -147,7 +149,8 @@ def graph(segs, total, size, look, levels, music_input, logo, loudnorm, picture=
     # Phone clips have uneven frame timing. Every piece is forced to exactly its length in both picture
     # and sound, or the picture slides behind the sound and captions a little more at every cut.
     exact_v = f"fps={FPS}:start_time=0,tpad=stop_mode=clone:stop_duration=1,trim=duration={{:.3f}},setpts=PTS-STARTPTS"
-    exact_a = "apad=pad_dur=1,atrim=duration={:.3f},asetpts=PTS-STARTPTS"
+    # (A slowed piece has far less sound than picture, so the sound is padded to the whole length.)
+    exact_a = "apad=whole_dur={0:.3f},atrim=duration={0:.3f},asetpts=PTS-STARTPTS"
     n = len(segs)
     for i, seg in enumerate(segs):
         length = seg["length"]
@@ -217,6 +220,10 @@ def render(edit_path, out_path, draft=False, music=True):
     closing = edit.get("closing") or {}
     logo = None
     if closing.get("logo"):
+        # The logo file is not in the repository, so a fresh copy of the repo does not have it.
+        if not os.path.isfile(os.path.join(ROOT, LOGO)):
+            sys.exit(f"The closing asks for the logo, but {LOGO} is missing. "
+                     "Put the file back, or set closing.logo to false to close on the text line.")
         logo = (len(segs) if music_input is None else music_input + 1, closing.get("seconds", 3))
         inputs += ["-loop", "1", "-t", f"{total:.3f}", "-i", os.path.join(ROOT, LOGO)]
 
