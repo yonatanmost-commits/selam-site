@@ -6,14 +6,18 @@
 The edit file (JSON) is the only description of an edit:
 
     sources   [{id, path, recorded_by, origin}]       paths relative to the repo root
-    segments  [{source, start, end, mute}]            kept pieces, in order, in source-clip seconds;
-                                                      mute drops a piece's own sound (off-camera talk)
+    segments  [{source, start, end, mute, speed}]     kept pieces, in order, in source-clip seconds;
+                                                      mute drops a piece's own sound (off-camera talk);
+                                                      speed below 1 slows a muted piece (0.5 = twice as long)
     captions  [{source, start, end, text}]            what she says; in source-clip seconds, so they move
                                                       with their segment
-    labels    [{source, start, end, text}]            on-screen words that are not speech (ingredients);
-                                                      timed and placed like captions
+    labels    [{source, start, end, text, at, size}]  on-screen words that are not speech (ingredients);
+                                                      timed like captions. Placed like captions, or with
+                                                      at [x, y] centred above that point of the 1080x1920
+                                                      canvas, to sit next to the thing they name
     title     {text, seconds}                         shown from the first frame
-    closing   {text, seconds}                         optional; shown over the last seconds
+    closing   {text, seconds, logo}                   optional; shown over the last seconds. With logo true
+                                                      her logo (name, tagline and mark) stands in for the text
     music     {path, start, track, source, licence}   optional; runs under the voice, lifts where nobody speaks;
                                                       start is where in the track the video begins
     look      {lift}                                  optional; 0 to 0.2, lightens faces and shadows while
@@ -48,7 +52,7 @@ Style: Title,{FONT},92,&H00{PAPER},&H00{ESPRESSO},&H80000000,1,1,5,1,8,110,110,3
 Style: Closing,{FONT},70,&H00{PAPER},&H00{ESPRESSO},&H80000000,1,1,4.5,1,2,110,110,470,177
 Style: Draft,{FONT},40,&H60{PAPER},&H60{ESPRESSO},&H80000000,0,1,2,0,9,40,40,40,177
 """
-CAPTION_GAP = 0.04      # captions never touch, so one never flashes over the next
+CAPTION_GAP = 0.04
 TARGET_LUFS, TARGET_PEAK, TARGET_RANGE = -14, -2, 7
 # Voice clean-up: cut rumble, soften hiss, lift, then squeeze quiet and loud speech together before the
 # final levelling. (A compressor held her two passages within 1 LU of each other; speechnorm and
@@ -58,6 +62,10 @@ VOICE = ("highpass=f=100,afftdn=nr=12:nf=-50:tn=1,volume={gain}dB,"
 CUT_FADE = 0.04         # each kept piece of sound fades in and out this long, so cuts do not click
 MUSIC_LUFS = -20        # default levels.music_lufs; every track is first brought to one level,
                         # so tracks can be swapped freely
+# Her logo is drawn dark for paper; over footage it is recoloured to the caption colour with a soft shadow.
+LOGO = os.path.join("images", "receipt-logo-full.png")
+LOGO_WIDTH, LOGO_BOTTOM = 540, 1490   # on the 1080x1920 canvas; the bottom edge sits where captions sit
+LOGO_FADE = 0.5
 DUCK = "sidechaincompress=threshold=0.015:ratio=8:attack=60:release=900"
 END_FADE = 1.2          # the sound fades out over the last moments
 
@@ -66,8 +74,11 @@ def timeline(edit):
     """Each segment with where it starts in the finished video."""
     out, t = [], 0.0
     for seg in edit["segments"]:
-        out.append({**seg, "at": t})
-        t += seg["end"] - seg["start"]
+        speed = seg.get("speed", 1)
+        if speed != 1 and not seg.get("mute"):
+            sys.exit(f"Segment {seg['source']} {seg['start']}-{seg['end']}: only a muted piece can change speed.")
+        out.append({**seg, "speed": speed, "at": t, "length": (seg["end"] - seg["start"]) / speed})
+        t += out[-1]["length"]
     return out, t
 
 
@@ -80,11 +91,14 @@ def placed_captions(edit, segs):
                 continue
             start, end = max(cap["start"], seg["start"]), min(cap["end"], seg["end"])
             if end > start:
-                out.append((seg["at"] + start - seg["start"], seg["at"] + end - seg["start"], cap["text"]))
-    out.sort()
-    for i in range(len(out) - 1):
-        if out[i][1] > out[i + 1][0] - CAPTION_GAP:
-            out[i] = (out[i][0], out[i + 1][0] - CAPTION_GAP, out[i][2])
+                out.append((seg["at"] + (start - seg["start"]) / seg["speed"],
+                            seg["at"] + (end - seg["start"]) / seg["speed"], cap))
+    out.sort(key=lambda x: x[:2])
+    # Captions in the shared caption position never touch, so one never flashes over the next.
+    shared = [i for i, x in enumerate(out) if "at" not in x[2]]
+    for i, j in zip(shared, shared[1:]):
+        if out[i][1] > out[j][0] - CAPTION_GAP:
+            out[i] = (out[i][0], out[j][0] - CAPTION_GAP, out[i][2])
     return out
 
 
@@ -93,9 +107,11 @@ def ass_time(t):
     return f"{cs // 360000}:{cs // 6000 % 60:02d}:{cs // 100 % 60:02d}.{cs % 100:02d}"
 
 
-def ass_text(text):
+def ass_text(text, at=None, size=None):
     # U+202B forces a right-to-left line, so punctuation lands on the correct side in Hebrew.
-    return "\\N".join("\u202b" + line.strip() for line in text.replace("{", "(").replace("}", ")").split("\n"))
+    body = "\\N".join("\u202b" + line.strip() for line in text.replace("{", "(").replace("}", ")").split("\n"))
+    tags = (f"\\an2\\pos({at[0]},{at[1]})" if at else "") + (f"\\fs{size}" if size else "")
+    return ("{" + tags + "}" if tags else "") + body
 
 
 def subtitles(edit, segs, total, draft):
@@ -104,19 +120,22 @@ def subtitles(edit, segs, total, draft):
     if title and title.get("text"):
         events.append((0, title.get("seconds", 3), "Title", title["text"]))
     closing = edit.get("closing")
-    if closing and closing.get("text"):
+    if closing and closing.get("text") and not closing.get("logo"):
         events.append((total - closing.get("seconds", 3), total, "Closing", closing["text"]))
-    events += [(s, e, "Caption", text) for s, e, text in placed_captions(edit, segs)]
     lines = [f"Dialogue: 0,{ass_time(s)},{ass_time(e)},{style},,0,0,0,,{ass_text(text)}"
              for s, e, style, text in events]
+    lines += [f"Dialogue: 0,{ass_time(s)},{ass_time(e)},Caption,,0,0,0,,"
+              f"{ass_text(cap['text'], cap.get('at'), cap.get('size'))}"
+              for s, e, cap in placed_captions(edit, segs)]
     return (f"[Script Info]\nScriptType: v4.00+\nPlayResX: {CANVAS[0]}\nPlayResY: {CANVAS[1]}\n"
             f"WrapStyle: 0\nScaledBorderAndShadow: yes\n\n{STYLES}\n[Events]\n"
             "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text\n"
             + "\n".join(lines) + "\n")
 
 
-def graph(segs, total, size, look, levels, music_input, loudnorm, picture=True):
-    """The ffmpeg filter graph. Inputs 0..n-1 are the segments; the music, if any, follows.
+def graph(segs, total, size, look, levels, music_input, logo, loudnorm, picture=True):
+    """The ffmpeg filter graph. Inputs 0..n-1 are the segments; the music and the logo, if any, follow.
+    `logo` is (input number, seconds on screen) or None.
     With picture=False only the sound is built, for the loudness measuring pass."""
     w, h = size
     voice = VOICE.format(gain=levels.get("voice_gain_db", 0))
@@ -131,7 +150,7 @@ def graph(segs, total, size, look, levels, music_input, loudnorm, picture=True):
     exact_a = "apad=pad_dur=1,atrim=duration={:.3f},asetpts=PTS-STARTPTS"
     n = len(segs)
     for i, seg in enumerate(segs):
-        length = seg["end"] - seg["start"]
+        length = seg["length"]
         sound = "volume=0" if seg.get("mute") else (
             f"afade=t=in:d={CUT_FADE},afade=t=out:st={length - CUT_FADE:.3f}:d={CUT_FADE}")
         parts.append(f"[{i}:a]aresample=48000,aformat=channel_layouts=stereo,{exact_a.format(length)},{sound}[a{i}]")
@@ -139,8 +158,22 @@ def graph(segs, total, size, look, levels, music_input, loudnorm, picture=True):
     if picture:
         for i, seg in enumerate(segs):
             parts.append(f"[{i}:v]scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},"
-                         f"{exact_v.format(seg['end'] - seg['start'])},{light}setsar=1,format=yuv420p[v{i}]")
-        parts.append("".join(f"[v{i}]" for i in range(n)) + f"concat=n={n}:v=1:a=0,ass=captions.ass[vout]")
+                         f"setpts=PTS/{seg['speed']},{exact_v.format(seg['length'])},{light}setsar=1,"
+                         f"format=yuv420p[v{i}]")
+        parts.append("".join(f"[v{i}]" for i in range(n)) + f"concat=n={n}:v=1:a=0,ass=captions.ass"
+                     + ("[vtext]" if logo else "[vout]"))
+        if logo:
+            k = w / CANVAS[0]
+            start = total - logo[1]
+            fade = f"fade=t=in:st={start:.3f}:d={LOGO_FADE}:alpha=1"
+            parts.append(f"[{logo[0]}:v]format=rgba,scale={round(LOGO_WIDTH * k)}:-1,split[lg0][ls0]")
+            parts.append(f"[lg0]lutrgb=r=0x{PAPER[4:6]}:g=0x{PAPER[2:4]}:b=0x{PAPER[0:2]},{fade}[lg]")
+            parts.append(f"[ls0]lutrgb=r=0x{ESPRESSO[4:6]}:g=0x{ESPRESSO[2:4]}:b=0x{ESPRESSO[0:2]},"
+                         f"pad=iw+40:ih+40:20:20:color=black@0,gblur=sigma={6 * k:.1f},{fade}[ls]")
+            where = f"enable='gte(t,{start:.3f})'"
+            y = f"{round(LOGO_BOTTOM * k)}-h"
+            parts.append(f"[vtext][ls]overlay=x=(W-w)/2:y={y}+20:{where}[vsh]")
+            parts.append(f"[vsh][lg]overlay=x=(W-w)/2:y={y}:{where}[vout]")
     if music_input is None:
         parts.append(f"[acat]{voice}[mix]")
     else:
@@ -181,6 +214,11 @@ def render(edit_path, out_path, draft=False, music=True):
         music_input = len(segs)
         inputs += ["-stream_loop", "-1", "-ss", f"{music.get('start', 0):.3f}", "-t", f"{total:.3f}",
                    "-i", os.path.join(ROOT, music["path"])]
+    closing = edit.get("closing") or {}
+    logo = None
+    if closing.get("logo"):
+        logo = (len(segs) if music_input is None else music_input + 1, closing.get("seconds", 3))
+        inputs += ["-loop", "1", "-t", f"{total:.3f}", "-i", os.path.join(ROOT, LOGO)]
 
     # ffmpeg filter arguments choke on Windows drive colons, so work inside a folder with bare file names.
     with tempfile.TemporaryDirectory() as tmp:
@@ -189,7 +227,8 @@ def render(edit_path, out_path, draft=False, music=True):
 
         def run(loudnorm, tail, picture=True):
             with open(os.path.join(tmp, "graph.txt"), "w", encoding="utf-8") as f:
-                f.write(graph(segs, total, size, edit.get("look", {}), edit.get("levels", {}), music_input, loudnorm, picture))
+                f.write(graph(segs, total, size, edit.get("look", {}), edit.get("levels", {}), music_input, logo,
+                              loudnorm, picture))
             return subprocess.run(["ffmpeg", "-hide_banner", "-nostdin", "-y", "-nostats", *inputs,
                                    "-/filter_complex", "graph.txt", "-t", f"{total:.3f}", *tail],
                                   cwd=tmp, check=True, capture_output=True, text=True, encoding="utf-8",

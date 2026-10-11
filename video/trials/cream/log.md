@@ -45,17 +45,36 @@ Open after round 1:
 
 Draft 3 runs 60 s. One round of notes is left.
 
+### Round 3, 2026-10-11 (on draft 3, relayed by Yonatan) → draft 4
+| Note | Result |
+|---|---|
+| Second 16 is the same look to the camera she wanted out | Done. The blending shot now starts 0.7 s later, after she has looked down, and runs 0.7 s longer at its end. |
+| Use the footage of the bowls on the table showing their contents, not her holding them up (the water and oil phases were labelled correctly) | Done. Both holding-up shots are gone. In their place is the opening of clip 61697: the two bowls alone on the table, before she walks in. It is 2.4 s of footage slowed to 6 s so the ingredients can be read; nothing moves in it but leaves. Each ingredient list sits above its own bowl. |
+| Add her logo at the end | Done. The horizontal logo Yonatan pointed to (name, tagline and hand mark) fades in over the last three seconds in place of the text line, recoloured to the caption colour so it reads over footage. |
+| Music with a frequency that fits what she is doing | Done as a proposal: "Cattails" (Kevin MacLeod): acoustic guitar and banjo with accordion, described by its composer as calming and relaxed. Also downloaded: "Sardana" (solo guitar). Claude cannot hear them; the choice is hers. |
+
+Draft 4 runs 58 s. The three rounds are used.
+
+Open after round 3:
+- With the music playing, a speech model re-hearing the finished video catches "שמתי סרום" but drops the short "לא" before it. The caption carries it, but Selam should listen for it on her phone speaker (A11).
+- The logo is a picture that is not her footage. The spec says every picture is her real footage (R15); the question is with the planner.
+- The logo file, images/receipt-logo-full.png, is not committed to the repository; the render needs it on this PC.
+
+### TikTok account and music (plan step 5), 2026-10-11
+Yonatan: her account is not a business account. A personal account can post a video with music already in it, and can also use TikTok's whole sound library, so either route is open.
+
 ## Assets
 | Asset | Kind | Origin |
 |---|---|---|
 | 61697.mp4 | picture (melting, combining, blending); its sound is muted | raw clip from Selam's phone gallery, 1080×1920, received 2026-10-11 |
 | 61698.mp4 | picture (oils, pH strip, pouring into the jar); its sound is muted | raw clip from Selam's phone gallery, 1080×1920, received 2026-10-11 |
 | 62056.mp4 | picture and Selam's voice (hair, to camera) | raw clip from Selam's phone gallery, 1080×1920, received 2026-10-11 |
-| Lachaim (Kevin MacLeod) | music, proposal until Selam chooses | https://incompetech.com/music/royalty-free/music.html, CC BY 4.0, credit required |
+| Cattails (Kevin MacLeod) | music, proposal until Selam confirms | https://incompetech.com/music/royalty-free/music.html, CC BY 4.0, credit required |
+| receipt-logo-full.png | her logo, over the last three seconds | Selam's own brand logo, images/ folder on this PC |
 | Frank Ruehl CLM | caption font | Culmus project font already installed on this PC |
 
 Not used in the edit: 62076.mp4 (her 720×1280 CapCut export, with logo) and the 478×850 WhatsApp copy.
-Other music candidates downloaded for her to hear, all Kevin MacLeod, same source and licence: Duet Musette, Miri's Magic Dance, Tango de Manzana.
+Other music candidates downloaded for her to hear, all Kevin MacLeod, same source and licence: Sardana, Lachaim, Duet Musette, Miri's Magic Dance, Tango de Manzana.
 Round-0 candidates she turned down as not her style (Mixkit): My Little Prince, Beautiful Dream, Chillax, A Baby Story.
 
 ## Tools and services
@@ -83,6 +102,7 @@ Tried and dropped: ffmpeg's built-in whisper filter with the ivrit.ai ggml model
 | draft1.mp4 | 2026-10-11 | 55 s, cut from the three originals. Hair result and her first line as the hook, the making in ten short silent shots under music, then her two lines about serum and texture, closing on the hair. Title and closing line were proposals. Selam's notes on it are round 1. |
 | draft2.mp4 | 2026-10-11 | 64 s, after round 1. Her opening, her title, the making with ingredient labels, the hair and her lines at the end, klezmer-style music. |
 | draft3.mp4 | 2026-10-11 | 60 s, after round 2. Three snippets removed, faces lightened. draft3-no-music.mp4 is the same cut without music. |
+| draft4.mp4 | 2026-10-11 | 58 s, after round 3. Bowls on the table with a label above each, logo in the closing, calmer music. final.mp4 is the same cut at 1080×1920. |
 
 ## Result
 Not posted yet.

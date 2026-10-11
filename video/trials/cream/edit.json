@@ -5,14 +5,13 @@
   {"id": "62056", "path": "Videos/62056.mp4", "recorded_by": "Selam", "origin": "Selam's phone gallery, raw clip 62056 (hair, to camera), received 2026-10-11"}
  ],
  "title": {"text": "קרם פשתן ואלוורה\nלשיער מתולתל", "seconds": 3},
- "closing": {"text": "סלם · רפואת שורש", "seconds": 3},
+ "closing": {"text": "סלם · רפואת שורש", "seconds": 3, "logo": true},
  "segments": [
   {"source": "62056", "start": 69.5, "end": 70.7, "mute": true},
-  {"source": "61697", "start": 6.0, "end": 11.0, "mute": true},
-  {"source": "61697", "start": 25.2, "end": 27.8, "mute": true},
+  {"source": "61697", "start": 0.3, "end": 2.7, "mute": true, "speed": 0.4},
   {"source": "61697", "start": 72.5, "end": 77.5, "mute": true},
   {"source": "61697", "start": 93.5, "end": 95.6, "mute": true},
-  {"source": "61697", "start": 143.5, "end": 149.5, "mute": true},
+  {"source": "61697", "start": 144.2, "end": 150.2, "mute": true},
   {"source": "61698", "start": 26.0, "end": 28.6, "mute": true},
   {"source": "61698", "start": 83.4, "end": 87.4, "mute": true},
   {"source": "61698", "start": 104.0, "end": 107.0, "mute": true},
@@ -30,12 +29,12 @@
   {"source": "62056", "start": 24.76, "end": 27.3, "text": "זה המרקם של הקרם."}
  ],
  "labels": [
-  {"source": "61697", "start": 7.8, "end": 11.0, "text": "חמאת שיאה · שמן חוחובה\nשמן רוזמרין\nמתחלב Olive 1000"},
-  {"source": "61697", "start": 25.3, "end": 27.8, "text": "ג'ל אלוורה · ג'ל פשתן\nהידרוסול קמומיל"},
+  {"source": "61697", "start": 0.5, "end": 2.7, "at": [285, 1180], "size": 50, "text": "חמאת שיאה\nשמן חוחובה\nשמן רוזמרין\nמתחלב Olive 1000"},
+  {"source": "61697", "start": 0.5, "end": 2.7, "at": [765, 1140], "size": 50, "text": "ג'ל אלוורה\nג'ל פשתן\nהידרוסול קמומיל"},
   {"source": "61698", "start": 26.1, "end": 28.6, "text": "חומר משמר קוסגארד\nויטמין אי"},
   {"source": "61698", "start": 83.5, "end": 87.4, "text": "שמן אתרי רוזמרין\nשמן אתרי עץ התה"}
  ],
  "look": {"lift": 0.12},
  "levels": {"voice_gain_db": 18, "music_lufs": -20},
- "music": {"path": "video/music/macleod-lachaim.mp3", "start": 0, "track": "Lachaim", "artist": "Kevin MacLeod", "source": "https://incompetech.com/music/royalty-free/music.html", "licence": "CC BY 4.0, credit required: Lachaim by Kevin MacLeod (incompetech.com)"}
+ "music": {"path": "video/music/macleod-cattails.mp3", "start": 0, "track": "Cattails", "artist": "Kevin MacLeod", "source": "https://incompetech.com/music/royalty-free/music.html", "licence": "CC BY 4.0, credit required: Cattails by Kevin MacLeod (incompetech.com)"}
 }
