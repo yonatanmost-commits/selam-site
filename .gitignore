@@ -24,3 +24,6 @@ video/music/
 # Generated lane review pages
 intent/**/loop.html
 intent/index.html
+
+# Python bytecode
+__pycache__/
