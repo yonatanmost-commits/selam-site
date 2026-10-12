@@ -11,6 +11,7 @@ Things only a person can check (A3 watermark, A6, A7, A9, A11, A14), each with w
 
 | Criterion | Who | Date | Result |
 |---|---|---|---|
+| The whole video, by watching and listening | Selam, relayed by Yonatan | 2026-10-12 | Accepts draft 6. The join between "בכלל" and "לא" is fine as it is. Not recorded separately: the check in TikTok's preview (A9) and on her phone speaker (A11). |
 | A7 (transcript), in part | Selam, relayed by Yonatan | 2026-10-11 | Confirmed "לא שמתי סרום או שמן אחר כך". The other two lines were shown in draft 1 and drew no correction; not yet confirmed in so many words. |
 
 ## Rounds of notes
@@ -119,4 +120,7 @@ Tried and dropped: ffmpeg's built-in whisper filter with the ivrit.ai ggml model
 | draft6.mp4 | 2026-10-12 | 58 s. Draft 5 with the two word cuts corrected. final.mp4 is the same at 1080×1920. |
 
 ## Result
-Not posted yet.
+Accepted. On 2026-10-12 Yonatan relayed that Selam accepts draft 6 (final.mp4 is the same cut at 1080×1920).
+She heard the "בכלל לא" join, where the two words run together, and said it is fine as it is.
+The planner relayed the same day that she is posting it that day. The posting itself, its date, and the
+seven-day figures are not recorded here yet.
