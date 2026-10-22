@@ -78,9 +78,9 @@ test('business entity has locality but no street address', () => {
     'streetAddress must stay out — the clinic is at home (city-only decision)');
 });
 
-test('exactly 4 Products, matching the 4 distinct soap ids', () => {
-  // soap-of-month reuses coffee-turmeric's id, so a 5th block would be a duplicate product
-  assert.strictEqual(graph().filter((n) => n['@type'] === 'Product').length, 4);
+test('exactly 5 Products, matching the 5 distinct soap ids', () => {
+  // soap-of-month reuses coffee-turmeric's id, so a 6th block would be a duplicate product
+  assert.strictEqual(graph().filter((n) => n['@type'] === 'Product').length, 5);
 });
 
 test('every JSON-LD price matches a price shown on the page', () => {
