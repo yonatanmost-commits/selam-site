@@ -1,0 +1,15 @@
+{
+  "name": "סֶלָּם · רפואת שורש",
+  "short_name": "סֶלָּם",
+  "description": "רפואה משלימה לנשים — רפלקסולוגיה, ריפוי רייקי וסבון טבעי בעבודת יד.",
+  "lang": "he",
+  "dir": "rtl",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#F4EBE2",
+  "theme_color": "#A9572F",
+  "icons": [
+    { "src": "images/app-icon512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "images/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

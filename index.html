@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>סלם · רפואת שורש — רפלקסולוגיה וריפוי רייקי לנשים בחדרה</title>
+<meta name="description" content="סלם — רפואה משלימה לנשים בחדרה והסביבה: רפלקסולוגיה, ריפוי רייקי וסבון טבעי בעבודת יד. ריפוי הוליסטי שנבנה דרך הקשבה, מתוך אהבה אמיתית לאדם ולטבע." />
+<link rel="canonical" href="https://yonatanmost-commits.github.io/selam-site/" />
+
+<!-- Share card — she sends this link on WhatsApp; og:image must be an absolute URL -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="סלם · רפואת שורש" />
+<meta property="og:locale" content="he_IL" />
+<meta property="og:title" content="סלם · רפואת שורש — רפלקסולוגיה וריפוי רייקי לנשים בחדרה" />
+<meta property="og:description" content="רפלקסולוגיה, ריפוי רייקי וסבון טבעי בעבודת יד. ריפוי הוליסטי שנבנה דרך הקשבה." />
+<meta property="og:url" content="https://yonatanmost-commits.github.io/selam-site/" />
+<meta property="og:image" content="https://yonatanmost-commits.github.io/selam-site/images/share-card.jpg" />
+<meta property="og:image:secure_url" content="https://yonatanmost-commits.github.io/selam-site/images/share-card.jpg" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="סלם · רפואת שורש — רפלקסולוגיה, ריפוי רייקי וסבון טבעי" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/png" href="images/Logo_small.png" />
+<link rel="apple-touch-icon" href="images/app-icon512.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="apple-mobile-web-app-title" content="סֶלָּם" />
+<meta name="theme-color" content="#A9572F" />
+<!-- The earth palette IS the design — opt out of Android/Chrome forced dark theming -->
+<meta name="color-scheme" content="only light" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Frank+Ruhl+Libre:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    color-scheme: only light;
+    --paper:      #F4EBE2;   /* soft warm cream, a breath of blush */
+    --paper-2:    #ECDCCD;   /* second cream layer                 */
+    --espresso:   #2E261F;   /* deep cacao — text/ink              */
+    --ink-soft:   #5F5346;   /* muted body text                    */
+    --cacao:      #6E4429;   /* deep soap brown                    */
+    --clay:       #A9572F;   /* terracotta accent                  */
+    --clay-deep:  #874426;
+    --clay-light: #C4895C;
+    --olive:      #7E8358;   /* sage / olive                       */
+    --rose:       #C2867F;   /* dusty rose — the feminine thread   */
+    --rose-deep:  #824641;   /* deepened for WCAG AA contrast (cream 6.1:1, blush 4.7:1) */
+    --blush:      #E7CBC3;   /* soft blush                         */
+    --gold:       #B68B43;
+    --line:       rgba(46,38,31,.16);
+    --line-soft:  rgba(46,38,31,.09);
+    --shadow:     0 30px 70px -34px rgba(46,38,31,.5);
+    --shadow-sm:  0 14px 34px -20px rgba(46,38,31,.5);
+    --r:          18px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  /* The browser's own [hidden]{display:none} loses to any author display: rule
+     (e.g. .cart-pill's inline-flex), so cart.js toggling .hidden would do nothing.
+     Restate it here, in author scope, where it wins. */
+  [hidden]{ display:none !important; }
+  html{ scroll-behavior:smooth; overflow-x:clip; }
+  body{
+    font-family:"Frank Ruhl Libre", serif;
+    background:var(--paper);
+    color:var(--espresso);
+    line-height:1.78;
+    font-weight:400;
+    overflow-x:clip;          /* let textures bleed full-width, never scroll sideways */
+    max-width:100%;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(55% 45% at 88% -5%, rgba(182,139,67,.12), transparent 60%),
+      radial-gradient(50% 50% at -5% 50%, rgba(194,134,127,.13), transparent 60%),
+      radial-gradient(50% 55% at 105% 105%, rgba(126,131,88,.12), transparent 60%);
+  }
+  body::after{
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.4;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+  }
+  main, header, footer{ position:relative; z-index:1; }
+  ::selection{ background:var(--clay); color:var(--paper); }
+
+  /* ── accessibility: visible keyboard focus + skip link ── */
+  :focus-visible{ outline:3px solid var(--espresso); outline-offset:2px; border-radius:3px; }
+  footer :focus-visible{ outline-color:var(--paper); }
+  .skip-link{ position:absolute; inset-inline-start:1rem; top:-4rem; z-index:200; background:var(--espresso); color:var(--paper); padding:.65rem 1.1rem; border-radius:0 0 10px 10px; text-decoration:none; font-weight:600; transition:top .2s ease; }
+  .skip-link:focus{ top:0; }
+
+  h1,h2,h3{ font-weight:700; line-height:1.12; letter-spacing:-.01em; }
+  .wrap{ width:min(1140px, 90vw); margin-inline:auto; }
+  .eyebrow{ font-weight:600; letter-spacing:.26em; font-size:.74rem; color:var(--rose-deep); display:inline-flex; align-items:center; gap:.7em; }
+  .eyebrow::before{ content:""; width:30px; height:1px; background:var(--rose); display:inline-block; }
+
+  /* irregular tree-ring line — vector-effect keeps the line weight even at any scale */
+  .rings use, .ring-deco use{ fill:none; vector-effect:non-scaling-stroke; }
+
+  /* ───────────────── NAV ───────────────── */
+  header{
+    position:fixed; top:0; inset-inline:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    padding:1rem clamp(1rem,5vw,3.5rem);
+    transition:background .4s ease, box-shadow .4s ease, padding .4s ease;
+  }
+  header.scrolled{ background:rgba(244,235,226,.86); backdrop-filter:blur(12px); box-shadow:0 1px 0 var(--line-soft); padding-top:.6rem; padding-bottom:.6rem; }
+  .brand{ font-family:"Bellefair", serif; font-weight:400; color:var(--espresso); text-decoration:none; display:flex; align-items:center; gap:.6rem; white-space:nowrap; flex:none; }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.05; gap:.14rem; }
+  .brand-name{ font-size:1.6rem; letter-spacing:.03em; }
+  .brand-tag{ font-family:"Frank Ruhl Libre",serif; font-weight:500; font-size:.72rem; letter-spacing:.05em; color:var(--rose-deep); }
+  .foot .brand-tag{ color:var(--blush); }
+  .brand .mark{ width:auto; height:32px; flex:none; object-fit:contain; }
+  .brand .mark use{ fill:none; stroke:var(--clay); stroke-width:1.4; vector-effect:non-scaling-stroke; }
+  nav{ display:flex; gap:1.8rem; align-items:center; min-width:0; }
+  nav a{ color:var(--ink-soft); text-decoration:none; font-size:1rem; font-weight:500; position:relative; transition:color .25s; white-space:nowrap; }
+  nav a::after{ content:""; position:absolute; bottom:-5px; right:0; width:0; height:1.5px; background:var(--rose); transition:width .3s ease; }
+  nav a:hover{ color:var(--espresso); } nav a:hover::after{ width:100%; }
+  .nav-cta{ background:var(--espresso); color:var(--paper); padding:.5rem 1.15rem; border-radius:100px; font-size:.92rem; white-space:nowrap; flex:none; }
+  .nav-cta::after{ display:none; }
+  .nav-cta:hover{ background:var(--clay-deep); color:var(--paper); }
+  .nav-share{ display:inline-flex; align-items:center; gap:.42rem; background:transparent; border:1px solid var(--line); color:var(--ink-soft); padding:.42rem .95rem; border-radius:100px; font-family:inherit; font-size:.92rem; font-weight:500; line-height:1; cursor:pointer; white-space:nowrap; flex:none; transition:border-color .25s, color .25s, background .25s; }
+  .nav-share svg{ width:16px; height:16px; flex:none; }
+  .nav-share:hover{ color:var(--espresso); border-color:var(--clay-light); background:rgba(196,137,92,.08); }
+  .nav-share.copied{ color:var(--olive); border-color:var(--olive); background:rgba(126,131,88,.08); }
+  @media(max-width:820px){ nav a:not(.nav-cta){ display:none; } nav{ gap:.8rem; } .nav-share-label{ display:none; } .nav-share{ padding:0; width:40px; height:40px; justify-content:center; } }
+
+  /* ───────────────── HERO ───────────────── */
+  .hero{ min-height:90svh; display:grid; align-items:center; padding-top:7.5rem; padding-bottom:3rem; position:relative; overflow-x:clip; }
+  /* background image — main-pic.png */
+  .terrain{ position:absolute; inset:0; z-index:-1; width:100%; height:100%; opacity:.2; pointer-events:none; background-image:url('images/main-pic.png'); background-size:cover; background-position:center; background-repeat:no-repeat; }
+  .terrain path{ display:none; }
+  .hero-grid{ display:grid; grid-template-columns:1.08fr .92fr; gap:clamp(2rem,5vw,4.5rem); align-items:center; }
+  @media(max-width:920px){ .hero-grid{ grid-template-columns:1fr; } }
+  .hero h1{ font-weight:900; font-size:clamp(3rem,8.5vw,6rem); color:var(--espresso); margin:1.3rem 0 .5rem; letter-spacing:-.02em; }
+  .hero h1 .tint{ color:var(--rose-deep); }
+  .hero .lead{ font-size:clamp(1.1rem,2.1vw,1.42rem); color:var(--ink-soft); max-width:38ch; font-weight:300; }
+  .crafts-line{ margin-top:1.7rem; display:flex; flex-wrap:wrap; gap:.6rem 1.1rem; align-items:center; font-size:1rem; color:var(--espresso); font-weight:500; }
+  .crafts-line span{ display:inline-flex; align-items:center; gap:.55rem; }
+  .crafts-line .dot{ width:5px; height:5px; border-radius:50%; background:var(--olive); }
+  .hero-cta{ margin-top:2.3rem; display:flex; gap:1rem; flex-wrap:wrap; }
+  .btn{ font-family:inherit; font-weight:600; font-size:1.02rem; padding:.85rem 1.8rem; border-radius:100px; text-decoration:none; cursor:pointer; border:none; transition:transform .25s ease, box-shadow .25s ease, background .25s, border-color .25s; display:inline-flex; align-items:center; gap:.6rem; }
+  .btn-primary{ background:var(--clay-deep); color:var(--paper); box-shadow:0 14px 28px -14px rgba(135,68,38,.85); }
+  .btn-primary:hover{ transform:translateY(-3px); box-shadow:0 20px 36px -14px rgba(169,87,47,.9); }
+  .btn-ghost{ background:transparent; color:var(--espresso); border:1.5px solid var(--line); }
+  .btn-ghost:hover{ border-color:var(--espresso); transform:translateY(-3px); }
+
+  .hero-art{ position:relative; display:grid; place-items:center; }
+  .rings-bg{ position:absolute; width:122%; height:122%; z-index:0; opacity:.5; pointer-events:none; }
+  .rings-bg use{ stroke:var(--clay); stroke-width:.9; }
+  .photo-frame{ position:relative; z-index:1; width:min(440px,84vw); border-radius:var(--r); overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--line); transform:rotate(-1.4deg); }
+  .photo-frame img{ display:block; width:100%; height:100%; object-fit:cover; aspect-ratio:4/5; }
+  .photo-frame::after{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 55%, rgba(46,38,31,.3)); }
+  .photo-cap{ position:absolute; z-index:2; bottom:1.1rem; inset-inline-start:1.1rem; color:var(--paper); }
+  .photo-cap b{ display:block; font-weight:700; font-size:1.05rem; }
+  .photo-cap small{ opacity:.85; font-size:.85rem; }
+  .badge{ position:absolute; z-index:3; bottom:-14px; inset-inline-end:-10px; background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:.8rem 1rem; box-shadow:var(--shadow-sm); max-width:215px; display:flex; gap:.7rem; align-items:center; }
+  .badge .b-mark{ width:38px; height:38px; flex:none; }
+  .badge .b-mark use{ fill:none; stroke:var(--clay); stroke-width:.9; vector-effect:non-scaling-stroke; }
+  .badge small{ font-size:.84rem; line-height:1.45; color:var(--ink-soft); }
+  .badge b{ color:var(--espresso); font-weight:700; }
+
+  /* hero: text-only, centered, calm opener */
+  .hero-inner{ width:100%; max-width:780px; margin-inline:auto; text-align:center; }
+  .hero-inner .lead{ margin-inline:auto; }
+  .hero-inner .crafts-line{ justify-content:center; }
+  .hero-inner .hero-cta{ justify-content:center; }
+
+  /* her hand-painted treatment tent, inside מרחב הטיפול — aligned to the start like the rest */
+  .tent-figure{ margin:0 0 clamp(2rem,5vw,3.2rem); }
+  .tent-figure img{ display:block; width:min(560px,90%); height:auto; filter:drop-shadow(0 22px 44px rgba(46,38,31,.16)); }
+  .tent-figure figcaption{ margin-top:1.1rem; color:var(--ink-soft); font-size:clamp(1.05rem,2vw,1.2rem); font-weight:300; max-width:48ch; }
+
+  /* ───────────────── SECTION SHELL ───────────────── */
+  section{ padding:clamp(4.5rem,9vw,7.5rem) 0; }
+  .sec-head{ max-width:680px; margin-bottom:3.2rem; }
+  .sec-head h2{ font-weight:900; font-size:clamp(2.1rem,5vw,3.4rem); margin-top:1rem; color:var(--espresso); letter-spacing:-.02em; }
+  .sec-head p{ margin-top:1.1rem; font-size:1.14rem; color:var(--ink-soft); font-weight:300; }
+  .women-note{ display:inline-flex; align-items:center; gap:.55rem; margin-top:1.4rem; background:var(--blush); color:var(--rose-deep); font-weight:600; font-size:.92rem; padding:.5rem 1.1rem; border-radius:100px; }
+  .women-note svg{ width:16px; height:16px; }
+
+  /* irregular strata divider */
+  .strata{ height:24px; width:100%; display:block; opacity:.45; }
+  .strata path{ fill:none; stroke:var(--cacao); stroke-width:1; }
+
+  /* ───────────────── TREATMENTS ───────────────── */
+  #treatments{ position:relative; }
+  .treat{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,4rem); align-items:center; }
+  @media(max-width:880px){ .treat{ grid-template-columns:1fr; } }
+  .treat-photo{ position:relative; border-radius:var(--r); overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--line); aspect-ratio:4/5; }
+  .treat-photo img{ width:100%; height:100%; object-fit:cover; object-position:50% 38%; }
+  .treat-photo .tag{ position:absolute; bottom:1.1rem; inset-inline-start:1.1rem; background:rgba(46,38,31,.6); backdrop-filter:blur(4px); color:var(--paper); padding:.4rem .9rem; border-radius:100px; font-size:.85rem; font-weight:500; }
+  .treat-blocks{ display:flex; flex-direction:column; gap:1.6rem; }
+  .tblock{ background:var(--paper); border:1px solid var(--line); border-radius:var(--r); padding:1.8rem 1.9rem; transition:transform .3s ease, box-shadow .3s ease; }
+  .tblock:hover{ transform:translateY(-4px); box-shadow:var(--shadow-sm); }
+  .tblock .ic{ width:46px; height:46px; color:var(--rose-deep); margin-bottom:.9rem; }
+  .tblock .ic svg{ width:100%; height:100%; }
+  .tblock h3{ font-weight:700; font-size:1.5rem; color:var(--espresso); margin-bottom:.55rem; }
+  .tblock p{ color:var(--ink-soft); font-size:1.05rem; font-weight:300; }
+
+  /* ───────────────── SOAP GALLERY ───────────────── */
+  #shop{ position:relative; }
+  .gallery{ display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+  @media(max-width:880px){ .gallery{ grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:540px){ .gallery{ grid-template-columns:1fr; } }
+  .soap{ position:relative; background:var(--paper); border:1px solid var(--line); border-radius:var(--r); overflow:hidden; display:flex; flex-direction:column; transition:transform .35s ease, box-shadow .35s ease; }
+  .soap:hover{ transform:translateY(-7px); box-shadow:var(--shadow); }
+  .soap-img{ position:relative; aspect-ratio:1; overflow:hidden; }
+  .soap-img img{ width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.2,.7,.2,1); }
+  .soap:hover .soap-img img{ transform:scale(1.05); }
+  .soap-img .pill{ position:absolute; top:.9rem; inset-inline-start:.9rem; background:var(--paper); color:var(--clay-deep); font-size:.76rem; font-weight:600; padding:.3rem .8rem; border-radius:100px; box-shadow:var(--shadow-sm); }
+  .soap-body{ padding:1.3rem 1.4rem 1.5rem; display:flex; flex-direction:column; gap:.45rem; flex:1; }
+  .soap-body h3{ font-weight:700; font-size:1.2rem; color:var(--espresso); line-height:1.25; }
+  .soap-body p{ color:var(--ink-soft); font-size:.95rem; font-weight:300; flex:1; }
+  .soap-foot{ display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:.5rem; padding-top:.9rem; border-top:1px solid var(--line-soft); }
+  .price{ font-weight:900; font-size:1.2rem; color:var(--cacao); }
+  .price small{ font-weight:400; font-size:.82rem; color:var(--ink-soft); }
+  .price .was{ font-weight:500; font-size:.86em; color:var(--ink-soft); text-decoration:line-through; text-decoration-thickness:1px; margin-inline-end:.35em; }
+  .sale-tag{ display:inline-block; margin-top:1.1rem; background:var(--rose-deep); color:var(--paper); font-weight:700; font-size:.85rem; letter-spacing:.02em; padding:.45rem 1.15rem; border-radius:100px; box-shadow:var(--shadow-sm); }
+  .ship-note{ display:block; margin-top:.8rem; color:var(--ink-soft); font-size:.85rem; font-weight:300; }
+  .buy{ background:var(--espresso); color:var(--paper); border:none; cursor:pointer; font-family:inherit; font-weight:600; font-size:.9rem; padding:.55rem 1.05rem; border-radius:100px; display:inline-flex; align-items:center; gap:.45rem; transition:background .25s, transform .25s; }
+  .buy:hover{ background:var(--clay-deep); transform:translateY(-2px); }
+  /* Sold out — keep the soap on the page, just take the button away. */
+  .soap-img .pill.out{ background:var(--espresso); color:var(--paper); }
+  .out-of-stock .soap-img img, .out-of-stock .month-photo img{ filter:saturate(.5); opacity:.88; }
+  .out-of-stock .price{ color:var(--ink-soft); }
+  .sold-out{ display:inline-flex; align-items:center; gap:.45rem; background:transparent; border:1px solid var(--line);
+    color:var(--ink-soft); font-weight:600; font-size:.9rem; padding:.5rem 1.05rem; border-radius:100px; }
+  .sold-out svg{ width:15px; height:15px; flex:none; }
+  .month-body .restock-note{ margin:1.1rem 0 0; color:var(--ink-soft); font-size:.95rem; font-weight:300; }
+  .restock-note a{ color:var(--rose-deep); font-weight:600; }
+  .shop-note{ margin-top:2.2rem; text-align:center; color:var(--ink-soft); font-size:.98rem; }
+  .soap-feats{ display:flex; flex-wrap:wrap; gap:.6rem .7rem; margin-top:1.7rem; }
+  .feat{ display:inline-flex; align-items:center; gap:.5rem; background:var(--paper); border:1px solid var(--line); color:var(--espresso); font-weight:600; font-size:.9rem; padding:.5rem 1.05rem; border-radius:100px; }
+  .feat svg{ width:16px; height:16px; color:var(--olive); flex:none; }
+
+  /* ───────────────── SOAP OF THE MONTH ───────────────── */
+  #month{ position:relative; }
+  .month-card{ position:relative; display:grid; grid-template-columns:1fr 1.05fr; gap:clamp(1.5rem,4vw,3.5rem); align-items:center;
+    background:linear-gradient(150deg, var(--blush), #efd9cf 55%, var(--paper-2)); border:1px solid var(--line); border-radius:26px; padding:clamp(1.6rem,4vw,2.6rem); overflow:hidden; }
+  @media(max-width:820px){ .month-card{ grid-template-columns:1fr; } }
+  .month-card .rings{ position:absolute; bottom:-30%; inset-inline-start:-12%; width:min(520px,60%); opacity:.4; pointer-events:none; }
+  .month-card .rings use{ stroke:var(--rose-deep); stroke-width:.9; }
+  .month-photo{ position:relative; z-index:1; border-radius:var(--r); overflow:hidden; box-shadow:var(--shadow); aspect-ratio:4/5; }
+  .month-photo img{ width:100%; height:100%; object-fit:cover; }
+  .month-photo .ribbon{ position:absolute; top:1rem; inset-inline-start:1rem; background:var(--rose-deep); color:var(--paper); font-weight:700; font-size:.82rem; letter-spacing:.04em; padding:.4rem 1rem; border-radius:100px; box-shadow:var(--shadow-sm); }
+  .month-body{ position:relative; z-index:1; }
+  .month-body .eyebrow{ color:var(--rose-deep); } .month-body .eyebrow::before{ background:var(--rose-deep); }
+  .month-body h2{ font-weight:900; font-size:clamp(1.9rem,4vw,2.8rem); margin:.9rem 0 .8rem; color:var(--espresso); letter-spacing:-.02em; }
+  .month-body p{ color:var(--ink-soft); font-size:1.08rem; font-weight:300; margin-bottom:1.4rem; }
+  .month-body .month-foot{ display:flex; align-items:center; gap:1.4rem; flex-wrap:wrap; }
+  .month-body .price{ font-size:1.5rem; }
+
+  /* ───────────────── PROCESS STRIP ───────────────── */
+  .ritual{ position:relative; background:var(--espresso); color:var(--paper); border-radius:28px; padding:clamp(2.6rem,6vw,4.5rem);
+    display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,4rem); align-items:center; overflow:hidden; }
+  @media(max-width:820px){ .ritual{ grid-template-columns:1fr; } }
+  .ritual .terrain-dark{ position:absolute; inset:0; opacity:.16; pointer-events:none; width:100%; height:100%; }
+  .ritual .terrain-dark path{ fill:none; stroke:var(--paper); stroke-width:1; }
+  .ritual > .col{ position:relative; z-index:1; }
+  .ritual h2{ font-weight:900; font-size:clamp(2rem,4.5vw,2.9rem); color:var(--paper); letter-spacing:-.02em; }
+  .ritual .eyebrow{ color:var(--blush); } .ritual .eyebrow::before{ background:var(--rose); }
+  .ritual p{ color:rgba(244,235,226,.78); font-size:1.08rem; font-weight:300; margin-top:1rem; }
+  .vegan{ display:inline-flex; align-items:center; gap:.6rem; margin-top:1.6rem; border:1px solid rgba(244,235,226,.28); border-radius:100px; padding:.5rem 1.1rem; font-size:.92rem; font-weight:500; color:var(--blush); }
+  .vegan svg{ width:18px; height:18px; }
+  .steps{ display:flex; flex-direction:column; gap:.2rem; }
+  .step{ display:grid; grid-template-columns:auto 1fr; gap:1.1rem; padding:1.05rem 0; border-bottom:1px solid rgba(244,235,226,.14); align-items:start; }
+  .step:last-child{ border-bottom:none; }
+  .step .no{ font-weight:900; font-size:1.1rem; color:var(--rose); width:2.4rem; }
+  .step b{ display:block; font-weight:700; font-size:1.06rem; }
+  .step small{ color:rgba(244,235,226,.64); font-size:.92rem; }
+
+  /* ───────────────── WORKSHOP ───────────────── */
+  .workshop{ position:relative; overflow:hidden; background:var(--paper-2); border:1px solid var(--line); border-radius:28px; padding:clamp(2.2rem,5vw,4rem); box-shadow:var(--shadow-sm); }
+  .workshop .rings{ position:absolute; top:-30%; inset-inline-end:-10%; width:min(460px,54%); opacity:.32; pointer-events:none; }
+  .workshop .rings use{ stroke:var(--rose-deep); stroke-width:.9; }
+  .workshop-head{ position:relative; z-index:1; max-width:640px; }
+  .workshop-head h2{ font-weight:900; font-size:clamp(1.9rem,4vw,2.8rem); margin:.9rem 0 .8rem; color:var(--espresso); letter-spacing:-.02em; }
+  .workshop-head p{ color:var(--ink-soft); font-size:1.1rem; font-weight:300; }
+  .workshop-grid{ position:relative; z-index:1; display:grid; grid-template-columns:1fr 1fr; gap:1.5rem 2.4rem; margin:2.4rem 0; }
+  @media(max-width:680px){ .workshop-grid{ grid-template-columns:1fr; } }
+  .ws-item{ display:grid; grid-template-columns:auto 1fr; gap:1rem; align-items:start; }
+  .ws-ic{ width:2.7rem; height:2.7rem; flex:none; border-radius:50%; background:var(--blush); color:var(--rose-deep); display:grid; place-items:center; }
+  .ws-ic svg{ width:1.35rem; height:1.35rem; }
+  .ws-item b{ display:block; font-weight:700; font-size:1.06rem; color:var(--espresso); margin-bottom:.15rem; }
+  .ws-item small{ color:var(--ink-soft); font-size:.94rem; line-height:1.6; }
+  .workshop-foot{ position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:1.3rem 2rem; flex-wrap:wrap; padding-top:1.9rem; border-top:1px solid var(--line); }
+  .ws-meta{ display:flex; flex-wrap:wrap; gap:.55rem 1.4rem; color:var(--ink-soft); font-size:.95rem; }
+  .ws-meta span{ display:inline-flex; align-items:center; gap:.5rem; }
+  .ws-meta svg{ width:1.05rem; height:1.05rem; color:var(--clay); flex:none; }
+  .ws-price-cta{ display:flex; align-items:center; gap:1.3rem; }
+  .ws-price-cta .price{ font-size:1.6rem; }
+  .ws-cta{ text-decoration:none; }
+
+  /* ───────────────── ABOUT / PERSONAL (last) ───────────────── */
+  #about{ position:relative; overflow-x:clip; background:linear-gradient(180deg, transparent, var(--paper-2) 16%, var(--paper-2) 84%, transparent); }
+  .about-rings{ position:absolute; top:50%; inset-inline-end:-14%; transform:translateY(-50%); width:min(760px,72vw); z-index:0; opacity:.36; pointer-events:none; }
+  .about-rings use{ stroke:var(--cacao); stroke-width:.9; }
+  .about-grid{ position:relative; z-index:1; display:grid; grid-template-columns:.82fr 1.18fr; gap:clamp(2rem,6vw,5rem); align-items:center; }
+  @media(max-width:880px){ .about-grid{ grid-template-columns:1fr; } }
+  .portrait{ position:relative; border-radius:var(--r); aspect-ratio:4/5; overflow:hidden; box-shadow:var(--shadow); border:1px solid var(--line); }
+  .portrait img{ width:100%; height:100%; object-fit:cover; object-position:50% 28%; }
+  .portrait .tag{ position:absolute; bottom:1.1rem; inset-inline-start:1.1rem; background:rgba(46,38,31,.6); backdrop-filter:blur(4px); color:var(--paper); padding:.4rem .9rem; border-radius:100px; font-size:.85rem; font-weight:500; }
+  .about-body p{ font-size:1.16rem; margin-bottom:1.25rem; color:var(--ink-soft); }
+  .about-body strong{ color:var(--espresso); font-weight:600; }
+  .pull{ font-weight:700; font-size:clamp(1.4rem,3vw,1.95rem); line-height:1.34; color:var(--espresso); border-inline-start:3px solid var(--rose); padding-inline-start:1.2rem; margin:1.8rem 0; }
+  .creds{ display:flex; gap:.7rem; flex-wrap:wrap; margin-top:1.8rem; padding-top:1.8rem; border-top:1px solid var(--line); }
+  .cred{ background:var(--paper); border:1px solid var(--line); border-radius:100px; padding:.5rem 1.1rem; font-size:.92rem; font-weight:500; color:var(--espresso); }
+
+  /* ───────────────── CONTACT ───────────────── */
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,4rem); }
+  @media(max-width:820px){ .contact-grid{ grid-template-columns:1fr; } }
+  .reach{ display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+  .reach a{ display:flex; align-items:center; gap:1rem; text-decoration:none; color:var(--espresso); background:var(--paper-2); border:1px solid var(--line); border-radius:14px; padding:1.05rem 1.3rem; transition:transform .25s, border-color .25s; }
+  .reach a:hover{ transform:translateX(-6px); border-color:var(--rose); }
+  .reach .ri{ width:46px; height:46px; border-radius:12px; flex:none; display:grid; place-items:center; background:var(--paper); border:1px solid var(--line); color:var(--rose-deep); }
+  .reach b{ display:block; font-weight:700; font-size:1.04rem; }
+  .reach small{ color:var(--ink-soft); }
+  form{ background:var(--paper-2); border:1px solid var(--line); border-radius:var(--r); padding:clamp(1.6rem,4vw,2.4rem); box-shadow:var(--shadow); }
+  .field{ margin-bottom:1.2rem; }
+  .field label{ display:block; font-size:.95rem; margin-bottom:.45rem; color:var(--espresso); font-weight:600; }
+  .field input, .field textarea{ width:100%; font-family:inherit; font-size:1.04rem; color:var(--espresso); background:var(--paper); border:1px solid var(--line); border-radius:11px; padding:.85rem 1rem; transition:border-color .25s, box-shadow .25s; }
+  .field input:focus, .field textarea:focus{ outline:none; border-color:var(--rose); box-shadow:0 0 0 3px rgba(194,134,127,.18); }
+  .field textarea{ resize:vertical; min-height:120px; }
+  form .btn-primary{ width:100%; justify-content:center; }
+  .form-note{ font-size:.85rem; color:var(--ink-soft); margin-top:.9rem; text-align:center; }
+  .consent{ margin-bottom:1rem; }
+  .check-label{ display:flex; align-items:flex-start; gap:.6rem; font-size:.95rem; color:var(--espresso); font-weight:400; cursor:pointer; line-height:1.5; }
+  .check-label input{ width:1.15rem; height:1.15rem; flex:none; margin-top:.28rem; accent-color:var(--clay-deep); }
+  .form-legal{ font-size:.82rem; color:var(--ink-soft); margin-top:1rem; line-height:1.65; }
+  .form-legal a{ color:var(--clay-deep); font-weight:600; }
+
+  /* ───────────────── FOOTER ───────────────── */
+  footer{ background:var(--espresso); color:rgba(244,235,226,.7); padding:3.5rem 0 2.5rem; margin-top:2rem; }
+  .foot{ display:flex; justify-content:space-between; align-items:center; gap:1.5rem; flex-wrap:wrap; }
+  .foot .brand{ color:var(--paper); } .foot .brand .mark{ filter:brightness(0) invert(1) sepia(.25); opacity:.92; }
+  .foot a{ color:var(--blush); text-decoration:none; }
+  .foot small{ font-size:.85rem; }
+  .heart{ color:var(--rose); }
+
+  /* ───────────────── REVEAL ───────────────── */
+  .reveal{ opacity:0; transform:translateY(26px); transition:opacity .9s cubic-bezier(.2,.7,.2,1), transform .9s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in{ opacity:1; transform:none; }
+  [data-delay="1"]{ transition-delay:.1s; } [data-delay="2"]{ transition-delay:.2s; } [data-delay="3"]{ transition-delay:.3s; } [data-delay="4"]{ transition-delay:.4s; }
+  /* ───────────────── CART ───────────────── */
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+  .buy.added{ background:var(--olive); }
+  .cart-pill{ position:fixed; bottom:1.2rem; inset-inline-start:1.2rem; z-index:150; display:inline-flex; align-items:center; gap:.55rem;
+    background:var(--espresso); color:var(--paper); border:none; cursor:pointer; font-family:inherit; font-weight:600; font-size:.95rem;
+    padding:.8rem 1.3rem; border-radius:100px; box-shadow:var(--shadow); transition:transform .25s; }
+  .cart-pill:hover{ transform:translateY(-3px); }
+  .cart-badge{ background:var(--rose-deep); color:var(--paper); font-size:.8rem; font-weight:700; min-width:1.5rem; height:1.5rem;
+    border-radius:100px; display:grid; place-items:center; padding:0 .3rem; }
+  .cart-backdrop{ position:fixed; inset:0; z-index:180; background:rgba(46,38,31,.45); }
+  .cart-drawer{ position:fixed; z-index:190; bottom:0; inset-inline:0; margin-inline:auto; max-width:480px; max-height:85vh; overflow:auto;
+    background:var(--paper); border:1px solid var(--line); border-bottom:none; border-radius:22px 22px 0 0; padding:1.4rem 1.5rem 1.7rem;
+    box-shadow:var(--shadow); }
+  .cart-head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; }
+  .cart-head h3{ font-weight:900; font-size:1.25rem; color:var(--espresso); }
+  .cart-close{ background:transparent; border:1px solid var(--line); color:var(--ink-soft); width:2.2rem; height:2.2rem; border-radius:50%;
+    cursor:pointer; font-size:1rem; }
+  .cart-empty{ color:var(--ink-soft); padding:.6rem 0 1rem; }
+  .cart-empty a{ color:var(--rose-deep); font-weight:600; }
+  .cart-items{ list-style:none; display:grid; gap:.7rem; }
+  .cart-item{ display:grid; grid-template-columns:1fr auto; gap:.2rem .9rem; align-items:center; background:var(--paper-2);
+    border:1px solid var(--line); border-radius:12px; padding:.7rem .9rem; }
+  .cart-item .nm{ font-weight:600; font-size:.95rem; color:var(--espresso); }
+  .cart-item .ln{ color:var(--ink-soft); font-size:.88rem; }
+  .cart-qty{ display:inline-flex; align-items:center; gap:.55rem; grid-row:span 2; }
+  .cart-qty button{ width:1.9rem; height:1.9rem; border-radius:50%; border:1px solid var(--line); background:var(--paper);
+    color:var(--espresso); font-size:1rem; cursor:pointer; line-height:1; }
+  .cart-qty .rm{ border-color:transparent; color:var(--rose-deep); font-size:.85rem; width:auto; border-radius:8px; padding:0 .3rem; }
+  .cart-delivery{ border:1px solid var(--line); border-radius:12px; padding:.9rem 1rem; margin-top:1.1rem; display:grid; gap:.55rem; }
+  .cart-delivery legend{ padding:0 .4rem; font-weight:600; font-size:.92rem; color:var(--espresso); }
+  .cart-delivery label{ display:flex; align-items:center; gap:.6rem; font-size:.95rem; color:var(--ink-soft); cursor:pointer; }
+  .cart-delivery input{ accent-color:var(--rose-deep); width:1.05rem; height:1.05rem; }
+  .cart-total{ display:flex; justify-content:space-between; align-items:center; margin-top:1.1rem; padding-top:1rem;
+    border-top:1px solid var(--line); font-size:1.05rem; color:var(--espresso); }
+  .cart-total b{ font-weight:900; font-size:1.35rem; color:var(--cacao); }
+  .cart-checkout{ width:100%; justify-content:center; margin-top:1rem; }
+  .cart-inapp{ margin-top:1rem; padding:.9rem 1rem; border:1px solid var(--line); border-radius:12px; background:var(--paper-2); color:var(--ink-soft); font-size:.92rem; line-height:1.6; }
+  .cart-inapp b{ color:var(--espresso); font-weight:600; }
+  .cart-inapp ol{ margin:.5rem 1.2rem 0 0; display:grid; gap:.5rem; }
+  .cart-inapp a{ color:var(--rose-deep); font-weight:600; }
+  .cart-copy{ display:flex; margin-top:.5rem; padding:.5rem 1.2rem; font-size:.92rem; }
+  .cart-msg{ width:100%; margin-top:.7rem; padding:.6rem .7rem; border:1px solid var(--line); border-radius:8px; background:var(--paper); color:var(--espresso); font:inherit; font-size:.85rem; resize:none; }
+  .cart-pay-note{ margin-top:.7rem; text-align:center; color:var(--ink-soft); font-size:.85rem; }
+
+  @media(prefers-reduced-motion:reduce){ .reveal{ opacity:1; transform:none; } html{ scroll-behavior:auto; } *{ animation-duration:.001ms !important; transition-duration:.001ms !important; } }
+</style>
+<noscript><style>.reveal{ opacity:1 !important; transform:none !important; }</style></noscript>
+</head>
+<body>
+<a class="skip-link" href="#top">דלג לתוכן</a>
+
+<!-- ░░ irregular tree-ring, drawn once, reused everywhere (a real ring, off-center, lived-in) ░░ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <path id="treering" d="M206 26 C 292 16 351 70 372 152 C 392 232 366 300 286 344 C 214 384 120 380 64 322 C 14 270 18 178 60 110 C 92 58 150 32 206 26 Z" />
+</defs></svg>
+
+<header id="topbar">
+  <a href="#top" class="brand">
+    <img class="mark" src="images/Logo_small.png" alt="" />
+    <span class="brand-text"><span class="brand-name">סֶלָּם</span><span class="brand-tag">רְפוּאַת שֹׁרֶשׁ</span></span>
+  </a>
+  <nav aria-label="ניווט ראשי">
+    <a href="#treatments">מרחב הטיפול</a>
+    <a href="#shop">הסבונים</a>
+    <a href="#workshop">סדנאות</a>
+    <a href="#about">הסיפור</a>
+    <button type="button" id="shareBtn" class="nav-share" aria-label="שיתוף העמוד">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="2.6"/><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="19" r="2.6"/><path d="M8.3 10.85 15.7 6.35M8.3 13.15l7.4 4.5"/></svg>
+      <span class="nav-share-label">שיתוף</span>
+    </button>
+    <a href="#contact" class="nav-cta">צרו קשר</a>
+  </nav>
+</header>
+
+<main id="top" tabindex="-1">
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <div class="terrain" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow reveal">סלם · רפואת שורש</span>
+        <h1 class="reveal" data-delay="1">מעשה ידיים,<br><span class="tint">מעשה לב.</span></h1>
+        <p class="lead reveal" data-delay="2">רפלקסולוגיה, ריפוי רייקי וסבון טבעי שנרקח לאט.<br>ריפוי הוליסטי שנבנה דרך הקשבה, פתיחות ורצון אמיתי<br>להרגיש טוב יותר.</p>
+        <div class="crafts-line reveal" data-delay="3">
+          <span><i class="dot"></i> רפלקסולוגיה</span>
+          <span><i class="dot"></i> ריפוי רייקי</span>
+          <span><i class="dot"></i> סבון טבעי</span>
+        </div>
+        <div class="hero-cta reveal" data-delay="4">
+          <a href="#treatments" class="btn btn-primary">לטיפולים
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          </a>
+          <a href="#shop" class="btn btn-ghost">לגלריית הסבונים</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TREATMENTS — unified "מרחב הטיפול", including her hand-painted tent -->
+  <section id="treatments" class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">מרחב הטיפול</span>
+      <h2>מגע שמקשיב, ריפוי שמאזן.</h2>
+      <p>שתי דרכים עדינות לאותו המקום — להחזיר את הגוף והנפש אל האיזון הטבעי שלהם.</p>
+      <span class="women-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M12 13v8M9 18h6"/></svg>
+        הטיפולים מיועדים לנשים
+      </span>
+    </div>
+
+    <div class="treat">
+      <div class="treat-photo reveal">
+        <img src="images/reiki.jpeg" alt="מרחב הטיפול של סלם — מיטת טיפול רכה בחלל שקט ומרגיע" loading="lazy" />
+      </div>
+      <div class="treat-blocks reveal" data-delay="1">
+        <article class="tblock">
+          <div class="ic" aria-hidden="true"><object data="images/reflexology-icon.svg" type="image/svg+xml" tabindex="-1" aria-hidden="true" style="width:100%; height:100%; pointer-events:none;"></object></div>
+          <h3>רפלקסולוגיה</h3>
+          <p>רפלקסולוגיה היא שיטת טיפול הוליסטית המתבצעת דרך כפות הרגליים, כאשר כל אזור בכף הרגל משקף איברים ומערכות שונות בגוף. באמצעות מגע ולחיצות מדויקות ניתן לעודד זרימה, איזון, הרפיה ושחרור מתחים בגוף ובנפש.</p>
+        </article>
+        <article class="tblock">
+          <div class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M24 8c4 6 4 10 0 14s-4 8 0 14"/><path d="M24 8c-4 6-4 10 0 14s4 8 0 14"/><circle cx="24" cy="40" r="2"/></svg></div>
+          <h3>ריפוי רייקי</h3>
+          <p>הרייקי מזמין אותך לחזור לאיזון טבעי דרך ערוץ אנרגטי מעמיק ומשרה רוגע. הטיפול משלב מגע רך ומכיל, או עבודה עדינה ללא מגע כלל, במטרה להזרים אנרגיית חיים, להמיס מתחים שהצטברו, ולייצר מרחב פנימי של שקט, הרפיה והתחדשות.</p>
+        </article>
+      </div>
+    </div>
+
+    <p class="shop-note reveal">הטיפולים מתקיימים בקליניקה בחדרה. הכתובת המדויקת נשלחת בתיאום.</p>
+  </section>
+
+  <svg class="strata wrap" viewBox="0 0 1200 24" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 6 C 280 1 420 11 660 5 C 880 0 1020 10 1200 4"/>
+    <path d="M0 13 C 240 9 500 18 720 12 C 940 6 1080 16 1200 11"/>
+    <path d="M0 20 C 300 16 460 23 700 18 C 920 14 1060 22 1200 18"/>
+  </svg>
+
+  <!-- SOAP GALLERY -->
+  <section id="shop" class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">סבונים טבעיים בעבודת יד</span>
+      <h2>בריאות שנרקחת מהאדמה.</h2>
+      <p>סדרת הסבונים הטבעיים שלנו מבוססת על טהרת שמני המרפא, חמאות צמחיות ותמציות בוטניות איכותיות. כל בלוק סבון נחתך ונארז בעבודת יד, מתוך כוונה להעניק לעור שלך ניקוי עדין, לחות עשירה והגנה טבעית.</p>
+      <div class="soap-feats">
+        <span class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>רכיבים טבעיים וצמחיים</span>
+        <span class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>ללא חומרי ריח סינתטיים ו‑SLS</span>
+        <span class="feat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>ידידותי לעור וסביבה</span>
+      </div>
+      <span class="sale-tag reveal">חגיגת השקה — 10% הנחה על כל הסבונים</span>
+      <span class="ship-note reveal">משלוח בדואר ₪25 · איסוף עצמי חינם</span>
+    </div>
+
+    <div class="gallery">
+      <article class="soap reveal">
+        <div class="soap-img"><img src="images/soap-white-clay-charcoal-tea-tree.jpeg" alt="סבון חימר לבן, פחם פעיל ועץ התה" loading="lazy" /></div>
+        <div class="soap-body">
+          <h3>חימר לבן, פחם פעיל ועץ התה</h3>
+          <p>חימר לבן ופחם פעיל שמנקים ומאזנים לעומק, עם שמן אתרי עץ התה המטהר. מתאים לעור מעורב, שומני או נוטה לפצעונים.</p>
+          <div class="soap-foot"><div class="price"><s class="was">₪33</s> ₪30</div><button class="buy" data-id="white-clay-charcoal-tea-tree" data-price="30" data-soap="חימר לבן, פחם פעיל ועץ התה">הוספה לסל<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></button></div>
+        </div>
+      </article>
+
+      <article class="soap reveal" data-delay="1">
+        <div class="soap-img"><img src="images/soap-aloe-green-clay-lavender.jpeg" alt="סבון אלוורה, חימר ירוק ולבנדר" loading="lazy" /></div>
+        <div class="soap-body">
+          <h3>אלוורה, חימר ירוק ולבנדר</h3>
+          <p>אלוורה מרגיעה וחימר ירוק מאזן, עם ניחוח לבנדר שמלטף את החושים. מתאים לעור רגיל, מעורב או אדמומי שזקוק להרגעה.</p>
+          <div class="soap-foot"><div class="price"><s class="was">₪31</s> ₪28</div><button class="buy" data-id="aloe-green-clay-lavender" data-price="28" data-soap="אלוורה, חימר ירוק ולבנדר">הוספה לסל<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></button></div>
+        </div>
+      </article>
+
+      <!-- אזל מהמלאי — להחזרה למכירה: להסיר class="out-of-stock", למחוק את ה‑pill ואת .sold-out,
+           ולהחזיר את כפתור ה‑buy (data-id="cacao-oat-ylang" data-price="30"). גם ב‑JSON-LD למטה: OutOfStock → InStock. -->
+      <article class="soap reveal out-of-stock" data-delay="2">
+        <div class="soap-img"><img src="images/soap-cacao-oat-ylang.jpeg" alt="סבון קקאו, שיבולת שועל וילנג ילנג" loading="lazy" /><span class="pill out">אזל מהמלאי</span></div>
+        <div class="soap-body">
+          <h3>קקאו, שיבולת שועל וילנג ילנג</h3>
+          <p>קקאו מזין עם שיבולת שועל טחונה דק ושמן אתרי ילנג ילנג המרגיע. מתאים לעור יבש, רגיש או בוגר.</p>
+          <div class="soap-foot"><div class="price"><s class="was">₪33</s> ₪30</div><span class="sold-out"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg>אזל מהמלאי</span></div>
+        </div>
+      </article>
+
+      <article class="soap reveal" data-delay="3">
+        <div class="soap-img"><img src="images/soap-coffee-turmeric.jpeg" alt="סבון קפה וכורכום לפילינג עדין" loading="lazy" /></div>
+        <div class="soap-body">
+          <h3>קפה וכורכום — פילינג עדין</h3>
+          <p>קפה וכורכום לפילינג עדין שמרכך עור יבש ומחזיר זוהר לעור עמום. מתאים לפילינג גוף מחדש וריענון העור.</p>
+          <div class="soap-foot"><div class="price"><s class="was">₪33</s> ₪30</div><button class="buy" data-id="coffee-turmeric" data-price="30" data-soap="קפה וכורכום — פילינג עדין">הוספה לסל<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></button></div>
+        </div>
+      </article>
+
+      <article class="soap reveal" data-delay="4">
+        <div class="soap-img"><img src="images/soap-moringa.jpeg" alt="סבון מורינגה" loading="lazy" /><span class="pill">חדש</span></div>
+        <div class="soap-body">
+          <h3>מורינגה</h3>
+          <p>אבקת עלי מורינגה, עשירה בנוגדי חמצון ובוויטמינים, שמזינה ומרעננת את העור בעדינות. מתאים לכל סוגי העור.</p>
+          <div class="soap-foot"><div class="price"><s class="was">₪33</s> ₪30</div><button class="buy" data-id="moringa" data-price="30" data-soap="מורינגה">הוספה לסל<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></button></div>
+        </div>
+      </article>
+    </div>
+
+    <p class="shop-note reveal">אפשר גם להרכיב סבון בהתאמה אישית — מתכון שנרקח בדיוק עבורכן, או כמות לאירוע. <a href="#contact" style="color:var(--rose-deep); font-weight:600;">נשמח להרכיב לכן&nbsp;מתכון&nbsp;→</a></p>
+  </section>
+
+  <!-- SOAP OF THE MONTH -->
+  <section id="month" class="wrap">
+    <!-- ↓ להחלפה כל חודש: תמונה, שם, תיאור ומחיר של סבון החודש -->
+    <div class="month-card reveal">
+      <svg class="rings" viewBox="0 0 400 400" aria-hidden="true">
+        <use href="#treering" transform="translate(200 200) scale(1) translate(-200 -200)"/>
+        <use href="#treering" transform="translate(5 6) rotate(7 200 200) translate(200 200) scale(.74) translate(-200 -200)"/>
+        <use href="#treering" transform="translate(11 13) rotate(-6 200 200) translate(200 200) scale(.5) translate(-200 -200)"/>
+        <use href="#treering" transform="translate(16 19) rotate(9 200 200) translate(200 200) scale(.3) translate(-200 -200)"/>
+      </svg>
+      <div class="month-photo">
+        <img src="images/soap-coffee-turmeric-loaf.jpeg" alt="הסבון של החודש — קפה וכורכום לפילינג עדין" loading="lazy" />
+        <span class="ribbon">הסבון של החודש</span>
+      </div>
+      <div class="month-body">
+        <span class="eyebrow">מתחדש בכל חודש</span>
+        <h2>קפה וכורכום — פילינג עדין</h2>
+        <p>בחירת החודש של סלם — סבון פילינג מעורר. גרגרי קפה שמנערים את העור לחיים, כורכום שמאיר, ופילינג עדין שמרכך עור יבש ומחזיר זוהר לעור עמום.</p>
+        <div class="month-foot">
+          <div class="price"><s class="was">₪33</s> ₪30 <small>/ חפיסה</small></div>
+          <button class="buy" data-id="coffee-turmeric" data-price="30" data-soap="הסבון של החודש — קפה וכורכום לפילינג עדין">הוספה לסל<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS STRIP -->
+  <!-- WORKSHOP -->
+  <section id="workshop" class="wrap">
+    <div class="workshop reveal">
+      <svg class="rings" viewBox="0 0 400 400" aria-hidden="true">
+        <use href="#treering" transform="translate(200 200) scale(1) translate(-200 -200)"/>
+        <use href="#treering" transform="translate(5 6) rotate(7 200 200) translate(200 200) scale(.74) translate(-200 -200)"/>
+        <use href="#treering" transform="translate(11 13) rotate(-6 200 200) translate(200 200) scale(.5) translate(-200 -200)"/>
+        <use href="#treering" transform="translate(16 19) rotate(9 200 200) translate(200 200) scale(.3) translate(-200 -200)"/>
+      </svg>
+      <div class="workshop-head">
+        <span class="eyebrow">סדנה אישית</span>
+        <h2>להכין סבון בידיים שלך.</h2>
+        <p>רוצה ללמוד איך מכינים סבון גוף אמיתי, בריא וטבעי? בואי למפגש אינטימי ומעשי של שעה וחצי, שבו נלמד יחד את אמנות הסבונאות — מאפס ועד חפיסה מוגמרת.</p>
+      </div>
+      <div class="workshop-grid">
+        <div class="ws-item">
+          <span class="ws-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20"/></svg></span>
+          <div><b>ידע פרקטי מאפס</b><small>שיטת ההכנה הקרה, חומרי הגלם וכללי הבטיחות — הכול צעד אחר צעד.</small></div>
+        </div>
+        <div class="ws-item">
+          <span class="ws-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6a5 5 0 0 0-8.8-3.2A5 5 0 0 0 3.2 8.6C3.2 13 12 20 12 20s8.8-7 8.8-11.4z"/></svg></span>
+          <div><b>חוויה אישית</b><small>מפגש אחד־על־אחד, בקצב שלך, עם התאמה אישית של ריחות ותוספים.</small></div>
+        </div>
+        <div class="ws-item">
+          <span class="ws-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M3 8l2.2-4h13.6L21 8"/><path d="M12 4v4"/></svg></span>
+          <div><b>4 סבונים שרקחת בעצמך</b><small>יוצאת הביתה עם ארבע חפיסות מוצקות ומפנקות מעבודת היד שלך.</small></div>
+        </div>
+        <div class="ws-item">
+          <span class="ws-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></span>
+          <div><b>מתכון להמשך</b><small>חוברת מתכון מפורטת, כדי שתוכלי להמשיך להכין בקלות ובבטחה גם בבית.</small></div>
+        </div>
+      </div>
+      <div class="workshop-foot">
+        <div class="ws-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>שעה וחצי</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>מתאים למתחילה</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>אין צורך בניסיון קודם</span>
+        </div>
+        <div class="ws-price-cta">
+          <div class="price">₪350 <small>/ מפגש</small></div>
+          <a class="buy ws-cta" href="#" role="button">להזמנת מקום<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / PERSONAL — her own voice, kept for last -->
+  <section id="about">
+    <svg class="about-rings" viewBox="0 0 400 400" aria-hidden="true">
+      <use href="#treering" transform="translate(200 200) scale(1) translate(-200 -200)"/>
+      <use href="#treering" transform="translate(4 5) rotate(5 200 200) translate(200 200) scale(.82) translate(-200 -200)"/>
+      <use href="#treering" transform="translate(9 11) rotate(-5 200 200) translate(200 200) scale(.64) translate(-200 -200)"/>
+      <use href="#treering" transform="translate(13 16) rotate(8 200 200) translate(200 200) scale(.46) translate(-200 -200)"/>
+      <use href="#treering" transform="translate(17 20) rotate(-6 200 200) translate(200 200) scale(.3) translate(-200 -200)"/>
+      <use href="#treering" transform="translate(20 24) rotate(10 200 200) translate(200 200) scale(.16) translate(-200 -200)"/>
+    </svg>
+
+    <div class="wrap about-grid">
+      <div class="portrait reveal">
+        <img src="images/selam.jpg" alt="סלם — מטפלת ברפלקסולוגיה וברייקי ורוקחת סבונים טבעיים" loading="lazy" />
+        <span class="tag">סלם</span>
+      </div>
+      <div class="about-body reveal" data-delay="1">
+        <span class="eyebrow">נעים מאוד</span>
+        <p>נעים מאוד, אני סלם. מטפלת הוליסטית ברפלקסולוגיה ורייקי, בעלת תואר ראשון במדעי הרוח ורוקחת סבונים טבעיים.</p>
+        <p>הגישה שלי מבוססת על החיבור השלם בין הגוף לנפש. אני מאמינה שהגוף שלנו מדבר איתנו, שכאב פיזי הוא לפעמים שיקוף של כאב רגשי או פנימי שפשוט זקוק למקום.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="eyebrow">בואו נדבר</span>
+        <h2 style="font-weight:900; font-size:clamp(2rem,4.5vw,3.1rem); margin:1rem 0 1rem; letter-spacing:-.02em;">מוזמנות לתאם מפגש<br>או לשאול.</h2>
+        <p style="color:var(--ink-soft); font-size:1.1rem; font-weight:300;">כל פנייה מקבלת יחס אישי. ספרו לי מה מביא אתכן — ונמצא יחד את הדרך הנכונה עבורכן.</p>
+        <div class="reach">
+          <a href="https://wa.me/972543477997?text=%D7%94%D7%99%D7%99%20%D7%A1%D7%9C%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%AA%D7%90%D7%9D%20%D7%9E%D7%A4%D7%92%D7%A9" target="_blank" rel="noopener">
+            <span class="ri"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-5.9c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1c0 1.2.9 2.4 1 2.6s1.8 2.8 4.4 3.9c1.6.7 2.2.7 3 .6a2.5 2.5 0 0 0 1.7-1.2 2 2 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3z"/></svg></span>
+            <div><b>וואטסאפ</b><small>הדרך המהירה ביותר להגיע אליי</small></div>
+          </a>
+          <a href="tel:+972543477997">
+            <span class="ri"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></span>
+            <div><b>טלפון</b><small>054-347-7997</small></div>
+          </a>
+          <a href="mailto:shorashealing@gmail.com">
+            <span class="ri"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <div><b>אימייל</b><small>shorashealing@gmail.com</small></div>
+          </a>
+        </div>
+        <span class="ship-note">הטיפולים בקליניקה בחדרה — ומגיעות אליי מפרדס חנה־כרכור, אור עקיבא, בנימינה, גבעת עדה ועמק חפר. סבונים נשלחים בדואר לכל הארץ.</span>
+      </div>
+
+      <form class="reveal" data-delay="1" id="contactForm">
+        <div class="field"><label for="name">השם שלך</label><input id="name" name="name" type="text" placeholder="איך לקרוא לך?" required /></div>
+        <div class="field"><label for="phone">טלפון</label><input id="phone" name="phone" type="tel" placeholder="050-000-0000" required /></div>
+        <div class="field"><label for="msg">מה מביא אותך?</label><textarea id="msg" name="msg" placeholder="ספרי לי כמה מילים — טיפול, סבון, או סתם שאלה..."></textarea></div>
+        <div class="field consent">
+          <label class="check-label" for="consent">
+            <input type="checkbox" id="consent" name="consent" required />
+            <span>אני מאשרת שהפרטים שמסרתי ישמשו ליצירת קשר ולמענה לפנייתי בלבד.</span>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary">לשליחה בוואטסאפ
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2z"/></svg>
+        </button>
+        <p class="form-legal">הפרטים שתמסרי נאספים אך ורק לצורך מענה לפנייתך, בהתאם לחוק הגנת הפרטיות (תיקון 13). הטופס אינו שומר מידע בשרת — הוא פותח הודעת וואטסאפ מוכנה לשליחה. למידע נוסף ראי את <a href="privacy.html">מדיניות הפרטיות</a>.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a href="#top" class="brand">
+      <img class="mark" src="images/Logo_small.png" alt="" />
+      <span class="brand-text"><span class="brand-name">סֶלָּם</span><span class="brand-tag">רְפוּאַת שֹׁרֶשׁ</span></span>
+    </a>
+    <small>רפלקסולוגיה · ריפוי רייקי · סבון טבעי · לנשים · חדרה</small>
+    <small><a href="privacy.html">מדיניות פרטיות</a> · <a href="accessibility.html">הצהרת נגישות</a></small>
+    <small>כל הזכויות שמורות לסלם</small>
+  </div>
+</footer>
+
+<!-- CART -->
+<button id="cartPill" class="cart-pill" hidden aria-haspopup="dialog" aria-controls="cartDrawer">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+  <span>הסל שלי</span><span id="cartCount" class="cart-badge">0</span>
+</button>
+<span id="cartLive" class="sr-only" aria-live="polite"></span>
+
+<div id="cartBackdrop" class="cart-backdrop" hidden></div>
+<aside id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-label="סל ההזמנה" hidden>
+  <div class="cart-head">
+    <h3>סל ההזמנה</h3>
+    <button id="cartClose" class="cart-close" aria-label="סגירת הסל">✕</button>
+  </div>
+  <p id="cartEmpty" class="cart-empty" hidden>הסל ריק — <a href="#shop">לגלריית הסבונים</a></p>
+  <ul id="cartItems" class="cart-items"></ul>
+  <fieldset id="cartDelivery" class="cart-delivery">
+    <legend>אופן קבלת ההזמנה</legend>
+    <label><input type="radio" name="delivery" value="post" checked> משלוח בדואר — ₪25</label>
+    <label><input type="radio" name="delivery" value="pickup"> איסוף עצמי — בתיאום (חינם)</label>
+  </fieldset>
+  <div id="cartTotalRow" class="cart-total"><span>סה"כ</span><b id="cartTotal">₪0</b></div>
+  <button id="cartCheckout" class="btn btn-primary cart-checkout">השלמת ההזמנה בוואטסאפ</button>
+  <div id="cartInApp" class="cart-inapp" hidden>
+    <p><b>האפליקציה שבה נפתח האתר (כמו טיקטוק או אינסטגרם) לא מאפשרת לעבור מכאן לוואטסאפ.</b> הסל שמור — אפשר להמשיך כך:</p>
+    <ol>
+      <li>לפתוח את האתר בדפדפן: תפריט <b>⋯</b> למעלה ← <b>פתיחה בדפדפן</b>. הסל יעבור איתכן.</li>
+      <li>או להעתיק את ההזמנה ולשלוח אותה בוואטסאפ ל־<a href="tel:+972543477997" dir="ltr">054-347-7997</a>
+        <button id="cartCopy" type="button" class="btn btn-ghost cart-copy">העתקת ההזמנה</button></li>
+    </ol>
+    <textarea id="cartMsg" class="cart-msg" readonly rows="5" aria-label="פרטי ההזמנה"></textarea>
+  </div>
+  <p class="cart-pay-note">התשלום בביט או בפייבוקס לאחר אישור ההזמנה.</p>
+</aside>
+<script src="cart.js" defer></script>
+<script>
+  const PHONE = '972543477997'; // מציין מיקום — להחליף למספר האמיתי של סלם לפני העלאה סופית
+
+  const bar = document.getElementById('topbar');
+  const onScroll = () => bar.classList.toggle('scrolled', window.scrollY > 40);
+  onScroll(); window.addEventListener('scroll', onScroll, { passive:true });
+
+  // Share: native share sheet on mobile, copy-link fallback on desktop
+  const shareBtn = document.getElementById('shareBtn');
+  if (shareBtn){
+    const shareLabel = shareBtn.querySelector('.nav-share-label');
+    const shareOriginal = shareLabel ? shareLabel.textContent : '';
+    shareBtn.addEventListener('click', async () => {
+      const url = location.href;
+      const data = { title: document.title, text: 'סלם — רפואת שורש', url };
+      if (navigator.share){
+        try { await navigator.share(data); return; }
+        catch (err){ if (err && err.name === 'AbortError') return; }
+      }
+      try { await navigator.clipboard.writeText(url); }
+      catch (err){
+        const t = document.createElement('textarea');
+        t.value = url; t.setAttribute('readonly',''); t.style.position = 'fixed'; t.style.opacity = '0';
+        document.body.appendChild(t); t.select();
+        try { document.execCommand('copy'); } catch (_){}
+        document.body.removeChild(t);
+      }
+      shareBtn.classList.add('copied');
+      if (shareLabel) shareLabel.textContent = 'הקישור הועתק';
+      clearTimeout(shareBtn._resetTimer);
+      shareBtn._resetTimer = setTimeout(() => {
+        shareBtn.classList.remove('copied');
+        if (shareLabel) shareLabel.textContent = shareOriginal;
+      }, 1900);
+    });
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:.14, rootMargin:'0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  window.addEventListener('load', () => { document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('in')); });
+
+  const wsCta = document.querySelector('.ws-cta');
+  if (wsCta) wsCta.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    const text = 'היי סלם! 🌿\nאשמח להצטרף לסדנת הכנת הסבון (350 ₪).\nאפשר פרטים על מועדים?';
+    window.open('https://wa.me/' + PHONE + '?text=' + encodeURIComponent(text), '_blank');
+  });
+
+  document.getElementById('contactForm').addEventListener('submit', (ev) => {
+    ev.preventDefault();
+    if (!document.getElementById('consent').checked) return; // consent required before sending
+    const name = document.getElementById('name').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const msg = document.getElementById('msg').value.trim();
+    const text = 'היי סלם! 🌿\n' + 'שמי ' + name + '.\n' + (phone ? 'טלפון: ' + phone + '\n' : '') + (msg ? '\n' + msg : '\nאשמח לתאם מפגש.');
+    window.open('https://wa.me/' + PHONE + '?text=' + encodeURIComponent(text), '_blank');
+  });
+</script>
+
+<!-- Structured data. Prices MUST mirror the displayed (discounted) prices —
+     tests/seo.test.js asserts they match the .buy[data-price] attributes.
+     Soap-of-month shares coffee-turmeric's id, so it gets no Product of its own. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "HealthAndBeautyBusiness",
+      "@id": "https://yonatanmost-commits.github.io/selam-site/#business",
+      "name": "סלם · רפואת שורש",
+      "alternateName": "רפואת שורש",
+      "description": "רפואה משלימה לנשים: רפלקסולוגיה, ריפוי רייקי וסבון טבעי בעבודת יד.",
+      "url": "https://yonatanmost-commits.github.io/selam-site/",
+      "image": "https://yonatanmost-commits.github.io/selam-site/images/share-card.jpg",
+      "logo": "https://yonatanmost-commits.github.io/selam-site/images/Logo_small.png",
+      "telephone": "+972543477997",
+      "email": "shorashealing@gmail.com",
+      "priceRange": "₪₪",
+      "knowsLanguage": "he",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "חדרה",
+        "addressRegion": "מחוז חיפה",
+        "addressCountry": "IL"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "חדרה" },
+        { "@type": "City", "name": "פרדס חנה־כרכור" },
+        { "@type": "City", "name": "אור עקיבא" },
+        { "@type": "City", "name": "בנימינה" },
+        { "@type": "City", "name": "גבעת עדה" },
+        { "@type": "City", "name": "עמק חפר" }
+      ],
+      "audience": { "@type": "PeopleAudience", "suggestedGender": "female" },
+      "makesOffer": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "רפלקסולוגיה", "description": "שיטת טיפול הוליסטית המתבצעת דרך כפות הרגליים, לעידוד זרימה, איזון והרפיה." } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ריפוי רייקי", "description": "טיפול אנרגטי המשלב מגע רך ומכיל או עבודה עדינה ללא מגע, להרפיה והתחדשות." } }
+      ]
+    },
+    {
+      "@type": "Product",
+      "name": "חימר לבן, פחם פעיל ועץ התה",
+      "description": "חימר לבן ופחם פעיל שמנקים ומאזנים לעומק, עם שמן אתרי עץ התה המטהר. מתאים לעור מעורב, שומני או נוטה לפצעונים.",
+      "image": "https://yonatanmost-commits.github.io/selam-site/images/soap-white-clay-charcoal-tea-tree.jpeg",
+      "brand": { "@type": "Brand", "name": "סלם · רפואת שורש" },
+      "offers": { "@type": "Offer", "price": "30", "priceCurrency": "ILS", "availability": "https://schema.org/InStock", "url": "https://yonatanmost-commits.github.io/selam-site/#shop" }
+    },
+    {
+      "@type": "Product",
+      "name": "אלוורה, חימר ירוק ולבנדר",
+      "description": "אלוורה מרגיעה וחימר ירוק מאזן, עם ניחוח לבנדר שמלטף את החושים. מתאים לעור רגיל, מעורב או אדמומי שזקוק להרגעה.",
+      "image": "https://yonatanmost-commits.github.io/selam-site/images/soap-aloe-green-clay-lavender.jpeg",
+      "brand": { "@type": "Brand", "name": "סלם · רפואת שורש" },
+      "offers": { "@type": "Offer", "price": "28", "priceCurrency": "ILS", "availability": "https://schema.org/InStock", "url": "https://yonatanmost-commits.github.io/selam-site/#shop" }
+    },
+    {
+      "@type": "Product",
+      "name": "קקאו, שיבולת שועל וילנג ילנג",
+      "description": "קקאו מזין עם שיבולת שועל טחונה דק ושמן אתרי ילנג ילנג המרגיע. מתאים לעור יבש, רגיש או בוגר.",
+      "image": "https://yonatanmost-commits.github.io/selam-site/images/soap-cacao-oat-ylang.jpeg",
+      "brand": { "@type": "Brand", "name": "סלם · רפואת שורש" },
+      "offers": { "@type": "Offer", "price": "30", "priceCurrency": "ILS", "availability": "https://schema.org/OutOfStock", "url": "https://yonatanmost-commits.github.io/selam-site/#shop" }
+    },
+    {
+      "@type": "Product",
+      "name": "קפה וכורכום — פילינג עדין",
+      "description": "קפה וכורכום לפילינג עדין שמרכך עור יבש ומחזיר זוהר לעור עמום. מתאים לפילינג גוף מחדש וריענון העור.",
+      "image": "https://yonatanmost-commits.github.io/selam-site/images/soap-coffee-turmeric.jpeg",
+      "brand": { "@type": "Brand", "name": "סלם · רפואת שורש" },
+      "offers": { "@type": "Offer", "price": "30", "priceCurrency": "ILS", "availability": "https://schema.org/InStock", "url": "https://yonatanmost-commits.github.io/selam-site/#shop" }
+    },
+    {
+      "@type": "Product",
+      "name": "מורינגה",
+      "description": "אבקת עלי מורינגה, עשירה בנוגדי חמצון ובוויטמינים, שמזינה ומרעננת את העור בעדינות. מתאים לכל סוגי העור.",
+      "image": "https://yonatanmost-commits.github.io/selam-site/images/soap-moringa.jpeg",
+      "brand": { "@type": "Brand", "name": "סלם · רפואת שורש" },
+      "offers": { "@type": "Offer", "price": "30", "priceCurrency": "ILS", "availability": "https://schema.org/InStock", "url": "https://yonatanmost-commits.github.io/selam-site/#shop" }
+    }
+  ]
+}
+</script>
+</body>
+</html>
